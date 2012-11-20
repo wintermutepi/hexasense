@@ -1,9 +1,9 @@
-avr-template
-============
+HexaSense
+=========
 
-A minimal template for AVR microcontroller projects. Clone this
-repository, then change the Makefile to reflect your microcontroller,
-programmer etc.
+This is a prototyping project for a room heating controller based on the
+HexaBus architecture. Nothing spectacular to see here - this is just a
+playground.
 
 ### License
 
