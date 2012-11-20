@@ -1,5 +1,15 @@
 # Object files
 *.o
+.dep
+
+# Images
+*.eep
+*.elf
+*.hex
+*.lss
+*.lst
+*.map
+*.sym
 
 # Libraries
 *.lib
