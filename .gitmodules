@@ -1,0 +1,3 @@
+[submodule "enclosure/mcad"]
+	path = enclosure/mcad
+	url = https://github.com/elmom/MCAD.git
