@@ -2,14 +2,8 @@ include <mcad/units.scad>;
 include <mcad/boxes.scad>;
 include <config.scad>;
 
-$fn=50;
+$fn=10;
 
-echo("Rendering enclosure:");
-echo("- width: ", width);
-echo("- depth: ", depth);
-echo("- airvent_width: ", airvent_width);
-echo("- airvent_x_start: ", airvent_x_start);
-echo("- airvent_x_end: ", airvent_x_end);
 
 // Bottom plate
 //translate([roundness, roundness,0]) {
@@ -51,13 +45,20 @@ echo("- airvent_x_end: ", airvent_x_end);
 //  }
 //}
 
-difference () {
-  translate([0,0,0]) roundedBox([width,depth,height],roundness,false);
-  translate([0,0,wall_thickness]) {
-    roundedBox([
-        (width-(2*wall_thickness)),
-        (depth-(2*wall_thickness)),
-        (height+epsilon)],
-        roundness, false);
+translate([width/2, depth/2, height/2]) {
+  // hollow box
+  difference () {
+    translate([0,0,0]) roundedBox([width,depth,height],roundness,false);
+    translate([0,0,wall_thickness]) {
+      roundedBox([
+          (width-(2*wall_thickness)),
+          (depth-(2*wall_thickness)),
+          (height+epsilon)],
+          roundness, false);
+    }
   }
+  // lower air vents
+  
+
+
 }
