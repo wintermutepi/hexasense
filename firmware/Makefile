@@ -37,7 +37,7 @@
 
 
 # MCU name
-MCU = atmega168
+MCU = atmega48
 
 
 # Processor frequency.
@@ -57,7 +57,7 @@ TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c uart.c
+SRC = $(TARGET).c uart.c adc.c
 
 
 # List Assembler source files here.
