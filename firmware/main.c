@@ -6,6 +6,7 @@
 
 #include "uart.h"
 #include "adc.h"
+#include "dht_sensor.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
@@ -27,6 +28,7 @@ void init(void) {
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
   adc_init();
 
+
   /*
    * now enable interrupt, since UART library is interrupt controlled
    */
@@ -37,26 +39,36 @@ int main(void)
 {
   char buffer[7];
   uint16_t num=0;
+  uint8_t temp1; 
+  float temp2; 
 
   init();
-
-  /*
-   * Transmit string from program memory to UART
-   */
   uart_puts_P("HexaSense prototype\n\r");
 
 
-  /* 
-   * Use standard avr-libc functions to convert numbers into string
-   * before transmitting via UART
-   */     
 
   while(1) {
     num = adc_get_single_sample(0);
     itoa( num, buffer, 10);   // convert interger into string (decimal format)         
     uart_puts(buffer);        // and transmit string to UART
     uart_puts_P("\r\n");
-    _delay_ms(1000);
+
+    DHT22_ERROR_t errorCode = read_dht22( &temp1, &temp2 ); 
+    switch(errorCode) { 
+      case DHT_ERROR_NONE: 
+        uart_puts_P("Temperature: ");
+        dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
+        uart_puts(buffer);        // and transmit string to UART
+        uart_puts_P("\r\nHumidity: ");
+        itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
+        uart_puts(buffer);        // and transmit string to UART
+        uart_puts_P("\r\n");
+        break; 
+      default:
+        uart_puts_P("Error reading DHT22 sensor.\r\n");
+        break;
+    } 
+    _delay_ms(3000);
   }
 
 }
