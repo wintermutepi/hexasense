@@ -57,7 +57,7 @@ TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c uart.c adc.c dht_sensor.c
+SRC = $(TARGET).c uart.c adc.c dht_sensor.c button.c
 
 
 # List Assembler source files here.

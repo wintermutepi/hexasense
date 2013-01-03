@@ -10,13 +10,13 @@
 #include <stdlib.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include "hw_config.h"
 
 #define DHT22_DATA_BIT_COUNT 40
-#define DHT22_PIN    PB1
-#define DHT22_PORT   PORTB
-#define DHT22_DDR    DDRB
-#define DHT22_PINC   PINB
 
+#ifndef DHT22_PIN
+#error "No DHT hardware definition found - did you include hw_config.h?"
+#endif
 
 typedef enum
 {
