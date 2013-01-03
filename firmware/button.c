@@ -3,22 +3,10 @@
 #include "button.h"
 #include "hw_config.h"
 
-// See http://www.mikrocontroller.net/articles/Entprellung#Warteschleifen-Verfahren
-// Probably needs to be rewritten to utilize the contiki thread functions.
-//static inline uint8_t debounce(volatile uint8_t *port, uint8_t pin)
-//{
-//    if ( !(*port & (1 << pin)) )
-//    {
-//        /* Pin wurde auf Masse gezogen, 100ms warten   */
-//        _delay_ms(50);   // Maximalwert des Parameters an _delay_ms 
-//        if ( *port & (1 << pin) ) {
-//            /* Anwender Zeit zum Loslassen des Tasters geben */
-//            _delay_ms(50);
-//            return 1;
-//        }
-//    }
-//    return 0;
-//}
+/**
+ * See http://www.mikrocontroller.net/articles/Pollin_Funk-AVR-Evaluationsboard#Tasty_Reloaded
+ * This is an active high implementation as on the Pollin boards.
+ */
 
 #define debounce( port, pin )                                        \
 ({                                                                   \
@@ -66,7 +54,7 @@ void button_init(void) {
 }
 
 bool is_button0_pressed(void) {
-  if (debounce(BTN0_IN, (uint8_t)BTN0_PIN)) {
+  if (debounce(BTN0_IN, BTN0_PIN)) {
 	return true;
   } else {
 	return false;
@@ -74,7 +62,7 @@ bool is_button0_pressed(void) {
 }
 
 bool is_button1_pressed(void) {
-  if (debounce(BTN1_IN, (uint8_t)BTN1_PIN)) {
+  if (debounce(BTN1_IN, BTN1_PIN)) {
 	return true;
   } else {
 	return false;
@@ -82,7 +70,7 @@ bool is_button1_pressed(void) {
 }
 
 bool is_button2_pressed(void) {
-  if (debounce(BTN2_IN, (uint8_t)BTN2_PIN)) {
+  if (debounce(BTN2_IN, BTN2_PIN)) {
 	return true;
   } else {
 	return false;
