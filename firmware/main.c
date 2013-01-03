@@ -47,8 +47,6 @@ int main(void)
   init();
   uart_puts_P("HexaSense prototype\n\r");
 
-
-
   while(1) {
     if (is_button0_pressed()) {
       uart_puts_P("BTN0 pressed.\r\n");
