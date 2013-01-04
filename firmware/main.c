@@ -7,6 +7,7 @@
 #include "uart.h"
 #include "adc.h"
 #include "dht_sensor.h"
+#include "button.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
@@ -27,6 +28,7 @@ void init(void) {
    */
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
   adc_init();
+  button_init();
 
 
   /*
@@ -45,30 +47,34 @@ int main(void)
   init();
   uart_puts_P("HexaSense prototype\n\r");
 
-
-
   while(1) {
-    num = adc_get_single_sample(0);
-    itoa( num, buffer, 10);   // convert interger into string (decimal format)         
-    uart_puts(buffer);        // and transmit string to UART
-    uart_puts_P("\r\n");
-
-    DHT22_ERROR_t errorCode = read_dht22( &temp1, &temp2 ); 
-    switch(errorCode) { 
-      case DHT_ERROR_NONE: 
-        uart_puts_P("Temperature: ");
-        dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
-        uart_puts(buffer);        // and transmit string to UART
-        uart_puts_P("\r\nHumidity: ");
-        itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
-        uart_puts(buffer);        // and transmit string to UART
-        uart_puts_P("\r\n");
-        break; 
-      default:
-        uart_puts_P("Error reading DHT22 sensor.\r\n");
-        break;
-    } 
-    _delay_ms(3000);
+    if (is_button0_pressed()) {
+      uart_puts_P("BTN0 pressed.\r\n");
+      DHT22_ERROR_t errorCode = read_dht22( &temp1, &temp2 ); 
+      switch(errorCode) { 
+        case DHT_ERROR_NONE: 
+          uart_puts_P("Temperature: ");
+          dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
+          uart_puts(buffer);        // and transmit string to UART
+          uart_puts_P("\r\nHumidity: ");
+          itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
+          uart_puts(buffer);        // and transmit string to UART
+          uart_puts_P("\r\n");
+          break; 
+        default:
+          uart_puts_P("Error reading DHT22 sensor.\r\n");
+          break;
+      }
+    }
+    if (is_button1_pressed()) {
+      uart_puts_P("BTN1 pressed.\r\n");
+      num = adc_get_single_sample(0);
+      itoa( num, buffer, 10);   // convert interger into string (decimal format)         
+      uart_puts(buffer);        // and transmit string to UART
+      uart_puts_P("\r\n");
+    }
+    if (is_button2_pressed()) {
+      uart_puts_P("BTN2 pressed.\r\n");
+    }
   }
-
 }
