@@ -29,7 +29,7 @@ void init(void) {
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
   adc_init();
   button_init();
-
+  led_init();
 
   /*
    * now enable interrupt, since UART library is interrupt controlled
