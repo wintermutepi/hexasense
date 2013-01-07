@@ -30,5 +30,7 @@
 *.s#*
 *.b#*
 
-# Autodesk Inventor lockfiles
+# Autodesk Inventor
 lockfile.lck
+OldVersions
+
