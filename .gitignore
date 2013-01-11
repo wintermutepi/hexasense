@@ -29,3 +29,8 @@
 # Eagle temporary files
 *.s#*
 *.b#*
+
+# Autodesk Inventor
+lockfile.lck
+OldVersions
+
