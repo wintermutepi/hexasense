@@ -4,35 +4,35 @@
 /**
  * Connection of the DHT22 sensor.
  */
-#define DHT22_PIN    PB1
-#define DHT22_PORT   PORTB
-#define DHT22_DDR    DDRB
-#define DHT22_PINC   PINB
+#define DHT22_PIN    PD3
+#define DHT22_PORT   PORTD
+#define DHT22_DDR    DDRD
+#define DHT22_PINC   PIND
 
 
 /**
- * Connection of the first button.
+ * Connection of the first button: PA1
  */
-#define BTN0_DDR	DDRD
-#define BTN0_PORT	PORTD
-#define BTN0_PIN	PD2
-#define BTN0_IN		PIND
+#define BTN0_DDR	DDRA
+#define BTN0_PORT	PORTA
+#define BTN0_PIN	PA1
+#define BTN0_IN		PINA
 
 /**
- * Connection of the second button.
+ * Connection of the second button: PA2
  */
-#define BTN1_DDR	DDRD
-#define BTN1_PORT	PORTD
-#define BTN1_PIN	PD3
-#define BTN1_IN		PIND
+#define BTN1_DDR	DDRA
+#define BTN1_PORT	PORTA
+#define BTN1_PIN	PA2
+#define BTN1_IN		PINA
 
 /**
- * Connection of the second button.
+ * Connection of the third button: PA3
  */
-#define BTN2_DDR	DDRD
-#define BTN2_PORT	PORTD
-#define BTN2_PIN	PD4
-#define BTN2_IN		PIND
+#define BTN2_DDR	DDRA
+#define BTN2_PORT	PORTA
+#define BTN2_PIN	PA3
+#define BTN2_IN		PINA
 
 
 

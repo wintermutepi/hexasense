@@ -3,7 +3,6 @@
 // http://www.mikrocontroller.net/articles/AVR-GCC-Tutorial/Analoge_Ein-_und_Ausgabe
 
 void adc_init(void) {
-  uint16_t result;
   // interne Referenzspannung als Referenz für den ADC wählen:
   ADMUX = (1<<REFS1) | (1<<REFS0);
   

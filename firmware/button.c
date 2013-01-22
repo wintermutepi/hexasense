@@ -5,7 +5,7 @@
 
 /**
  * See http://www.mikrocontroller.net/articles/Pollin_Funk-AVR-Evaluationsboard#Tasty_Reloaded
- * This is an active high implementation as on the Pollin boards.
+ * This is a modified active low version.
  */
 
 #define debounce( port, pin )                                        \
@@ -15,7 +15,7 @@
                                                                      \
   if( flag ){                  /* check for key release: */          \
     for(;;){                   /* loop... */                         \
-      if( (port & 1<<pin) ){   /* ... until key pressed or ... */    \
+      if( !(port & 1<<pin) ){   /* ... until key pressed or ... */    \
         i = 0;                 /* 0 = bounce */                      \
         break;                                                       \
       }                                                              \
@@ -28,7 +28,7 @@
     }                                                                \
   }else{                       /* else check for key press: */       \
     for(;;){                   /* loop ... */                        \
-      if( !(port & 1<<pin) ){  /* ... until key released or ... */   \
+      if( (port & 1<<pin) ){  /* ... until key released or ... */   \
         i = 0;                 /* 0 = bounce */                      \
         break;                                                       \
       }                                                              \
@@ -37,7 +37,7 @@
         flag = 1;              /* set press flag */                  \
         i = 1;                 /* 1 = key press debounced */         \
         break;                                                       \
-      }                                                              \ 
+      }                                                              \
     }                                                                \
   }                                                                  \
   i;                           /* return value of Macro */           \
@@ -45,12 +45,13 @@
 
 
 void button_init(void) {
+  // Button pins as inputs with internal pullup enabled
+  BTN0_PORT |= (1<<BTN0_PIN);
   BTN0_DDR &= ~(1<<BTN0_PIN);
-  BTN0_PORT &= ~(1<<BTN0_PIN);
+  BTN1_PORT |= (1<<BTN1_PIN);
   BTN1_DDR &= ~(1<<BTN1_PIN);
-  BTN1_PORT &= ~(1<<BTN1_PIN);
+  BTN2_PORT |= (1<<BTN2_PIN);
   BTN2_DDR &= ~(1<<BTN2_PIN);
-  BTN2_PORT &= ~(1<<BTN2_PIN);
 }
 
 bool is_button0_pressed(void) {
