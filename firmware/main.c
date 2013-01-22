@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdbool.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -8,11 +9,12 @@
 #include "adc.h"
 #include "dht_sensor.h"
 #include "button.h"
+#include "led_driver.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
 #ifndef F_CPU
-#define F_CPU 16000000UL
+#define F_CPU 8000000UL
 #endif
 
 /* 9600 baud */
@@ -27,6 +29,10 @@ void init(void) {
    *  UART_BAUD_SELECT_DOUBLE_SPEED() ( double speed mode)
    */
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
+
+  /**
+   * run the initialization code of all components
+   */
   adc_init();
   button_init();
   led_init();
@@ -46,6 +52,10 @@ int main(void)
 
   init();
   uart_puts_P("HexaSense prototype\n\r");
+
+  // LED1: On PC7, active low.
+  DDRC |= (1 << PC7);
+  PORTC &= ~(1 << PC7);
 
   while(1) {
     if (is_button0_pressed()) {
