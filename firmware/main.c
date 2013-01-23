@@ -10,6 +10,7 @@
 #include "dht_sensor.h"
 #include "button.h"
 #include "led_driver.h"
+#include "conversion.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
@@ -80,6 +81,7 @@ int main(void)
     if (is_button1_pressed()) {
       uart_puts_P("BTN1 pressed.\r\n");
       num = adc_get_single_sample(0);
+      /** Do the conversion from adc value to temperaure here */ 
       itoa( num, buffer, 10);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
