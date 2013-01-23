@@ -34,3 +34,5 @@
 lockfile.lck
 OldVersions
 
+# VIM temporary files
+*.swp
