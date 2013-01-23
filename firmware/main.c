@@ -49,7 +49,8 @@ int main(void)
   char buffer[7];
   uint16_t num=0;
   uint8_t temp1; 
-  float temp2; 
+  float temp2;
+  int8_t temperature=0;
 
   init();
   uart_puts_P("HexaSense prototype\n\r");
@@ -81,8 +82,8 @@ int main(void)
     if (is_button1_pressed()) {
       uart_puts_P("BTN1 pressed.\r\n");
       num = adc_get_single_sample(0);
-      /** Do the conversion from adc value to temperaure here */ 
-      itoa( num, buffer, 10);   // convert interger into string (decimal format)         
+      temperature=temperature_conversion(num); // convert from adc value to temperaure 
+      itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
     }
