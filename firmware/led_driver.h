@@ -7,6 +7,11 @@
 void led_init(void);
 
 /**
+ * run all LEDs at full power!
+ */
+void led_all_full(void);
+
+/**
  * called for displaying the air quality metric
  */
 void led_good(void);

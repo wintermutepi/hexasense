@@ -34,7 +34,10 @@
 #define BTN2_PIN	PA3
 #define BTN2_IN		PINA
 
-
+/**
+ * PCA9532 I2C bus address
+ */
+#define PCA9532_ADDR  0xC0
 
 
 
