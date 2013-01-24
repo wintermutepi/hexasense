@@ -1,6 +1,13 @@
+#ifndef CONVERSION_H
+#define CONVERSION_H 1
+#include <stdlib.h>
 #include "conversion.h"
+#include "adc.h"
+#include <avr/pgmspace.h>
 
-int8_t temperature_conversion(uint16_t adc) {
-  uart_puts_P("converting adc value to temperature\r\n");
-  return ( TEMP_MIN+(TEMP_MAX-TEMP-MIN)/(ADC_MAX-ADC_MIN)*adc );
+float temperature_adc(void) {
+  uint16_t adc = adc_get_single_sample(0);
+
+    return ( TEMP_MIN+(TEMP_MAX-TEMP_MIN)/(ADC_MAX-ADC_MIN) * adc );
 }
+#endif /* CONVERSION_H */
