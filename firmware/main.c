@@ -82,8 +82,12 @@ int main(void)
     if (is_button1_pressed()) {
       uart_puts_P("BTN1 pressed.\r\n");
       temperature=temperature_adc(); // convert from adc value to temperaure 
-      itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
-      uart_puts(buffer);        // and transmit string to UART
+      //itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
+      
+      static char temperature_string_buffer[10];
+      dtostrf(temperature_value, 9, 4, &temperature_string_buffer);
+      uart_puts_P("Temperature from ADC: ");
+      uart_puts(temperature_string_buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
     }
     if (is_button2_pressed()) {
