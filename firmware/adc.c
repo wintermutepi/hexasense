@@ -3,8 +3,8 @@
 // http://www.mikrocontroller.net/articles/AVR-GCC-Tutorial/Analoge_Ein-_und_Ausgabe
 
 void adc_init(void) {
-  // interne Referenzspannung als Referenz für den ADC wählen:
-  ADMUX = (1<<REFS1) | (1<<REFS0);
+  // interne Referenzspannung (1.1V) als Referenz für den ADC wählen:
+  ADMUX = (1<<REFS1) | (0<<REFS0);
   
   // Bit ADFR ("free running") in ADCSRA steht beim Einschalten
   // schon auf 0, also single conversion
