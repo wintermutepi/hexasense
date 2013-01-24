@@ -1,5 +1,3 @@
-#ifndef CONVERSION_H
-#define CONVERSION_H 1
 #include <stdlib.h>
 #include "conversion.h"
 #include "adc.h"
@@ -16,4 +14,3 @@ float temperature_adc(void) {
   uart_puts_P("\r\n");
   return ( TEMP_MIN+(TEMP_MAX-TEMP_MIN)/(ADC_MAX-ADC_MIN) * (float)adc );
 }
-#endif /* CONVERSION_H */
