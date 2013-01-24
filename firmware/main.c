@@ -85,7 +85,7 @@ int main(void)
       //itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
       
       static char temperature_string_buffer[10];
-      dtostrf(temperature_value, 9, 4, &temperature_string_buffer);
+      dtostrf(temperature, 9, 4, &temperature_string_buffer);
       uart_puts_P("Temperature from ADC: ");
       uart_puts(temperature_string_buffer);        // and transmit string to UART
       uart_puts_P("\r\n");

@@ -8,6 +8,7 @@
 
 float temperature_adc(void) {
   uint16_t adc = adc_get_single_sample(0);
+  char buffer[7];
 
   uart_puts_P("ADC Value: ");
   itoa( adc, buffer, 10);   // convert interger into string (decimal format)         
