@@ -11,12 +11,20 @@ void led_init(void);
  */
 void led_all_full(void);
 
+/***
+ * turn all leds off.
+ */
+void led_all_off(void);
+
 /**
  * called for displaying the air quality metric
  */
 void led_good(void);
 void led_intermediate(void);
 void led_bad(void);
+
+
+void led_red_full(void);
 
 /** 
  * show that the window is opened
