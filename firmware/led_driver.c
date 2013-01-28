@@ -8,25 +8,62 @@
 void led_init(void) {
   uart_puts_P("initializing LED driver\r\n");
   i2c_init();
-}
-
-void led_all_full(void) {
   // start communication with PCA9535
   if (i2c_start(PCA9532_ADDR+I2C_WRITE)) {
 	uart_puts_P("I2C: Failed to access device.\r\n");
   } else {
+	// PSC0 subaddress + auto-increment
 	i2c_write(0x12);
+	// prescaler 0: maximum frequency
 	i2c_write(0x00);
+	// pwm0 duty cycle: 256/256
 	i2c_write(0xFF);
+	// prescaler 1: maximum frequency
 	i2c_write(0x00);
+	// pwm1 duty cycle: 256/256
 	i2c_write(0xFF);
-	i2c_write(0x55);
-	i2c_write(0xFA);
-	i2c_write(0xFF);
-	i2c_write(0xFF);
-	i2c_stop();
   }
+  i2c_stop();
+  // turn all LEDs off.
+  led_all_off();
 }
+
+void led_all_full(void) {
+  if (i2c_start(PCA9532_ADDR+I2C_WRITE)) {
+	uart_puts_P("I2C: Failed to access device.\r\n");
+  } else {
+	//LS0 subaddress + auto-increment
+	i2c_write(0x16);
+	// LED 0-3 on
+	i2c_write(0x55);
+	// LED 4-7 on
+	i2c_write(0x55);
+	// LED 8-11 on
+	i2c_write(0x55);
+	// LED 12-15 on
+	i2c_write(0x55);
+  }
+  i2c_stop();
+}
+
+void led_all_off(void) {
+  if (i2c_start(PCA9532_ADDR+I2C_WRITE)) {
+	uart_puts_P("I2C: Failed to access device.\r\n");
+  } else {
+	//LS0 subaddress + auto-increment
+	i2c_write(0x16);
+	// LED 0-3 off
+	i2c_write(0x00);
+	// LED 4-7 off
+	i2c_write(0x00);
+	// LED 8-11 off
+	i2c_write(0x00);
+	// LED 12-15 off
+	i2c_write(0x00);
+  }
+  i2c_stop();
+}
+
 
 void led_good(void) {
   uart_puts_P("LED good.\r\n");
@@ -38,6 +75,18 @@ void led_intermediate(void) {
 
 void led_bad(void) {
   uart_puts_P("LED bad.\r\n");
+}
+
+void led_red_full(void) {
+  if (i2c_start(PCA9532_ADDR+I2C_WRITE)) {
+	uart_puts_P("I2C: Failed to access device.\r\n");
+  } else {
+	//LS0 subaddress + auto-increment
+	i2c_write(0x16);
+	// LED 0-2 on
+	i2c_write(0x15);
+  }
+  i2c_stop();
 }
 
 void led_window_open(void) {

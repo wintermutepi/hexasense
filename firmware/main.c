@@ -57,7 +57,7 @@ int main(void)
   DDRC |= (1 << PC7);
   PORTC &= ~(1 << PC7);
 
-
+  uint8_t full_led_on = false;
   while(1) {
     if (is_button0_pressed()) {
       uart_puts_P("BTN0 pressed.\r\n");
@@ -86,7 +86,14 @@ int main(void)
     }
     if (is_button2_pressed()) {
       uart_puts_P("BTN2 pressed.\r\n");
-      led_all_full();
+      if (! full_led_on) {
+        led_all_full();
+        full_led_on=true;
+      } else {
+        led_all_off();
+        led_red_full();
+        full_led_on=false;
+      }
     }
   }
 }
