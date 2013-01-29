@@ -10,6 +10,7 @@
 #include "dht_sensor.h"
 #include "button.h"
 #include "led_driver.h"
+#include "conversion.h"
 
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
@@ -48,7 +49,8 @@ int main(void)
   char buffer[7];
   uint16_t num=0;
   uint8_t temp1; 
-  float temp2; 
+  float temp2;
+  float temperature=0;
 
   init();
   uart_puts_P("HexaSense prototype\n\r");
@@ -79,9 +81,13 @@ int main(void)
     }
     if (is_button1_pressed()) {
       uart_puts_P("BTN1 pressed.\r\n");
-      num = adc_get_single_sample(0);
-      itoa( num, buffer, 10);   // convert interger into string (decimal format)         
-      uart_puts(buffer);        // and transmit string to UART
+      temperature=temperature_adc(); // convert from adc value to temperaure 
+      //itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
+      
+      static char temperature_string_buffer[10];
+      dtostrf(temperature, 9, 4, &temperature_string_buffer);
+      uart_puts_P("Temperature from ADC: ");
+      uart_puts(temperature_string_buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
     }
     if (is_button2_pressed()) {
