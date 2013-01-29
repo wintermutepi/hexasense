@@ -59,40 +59,29 @@ int main(void)
   DDRC |= (1 << PC7);
   PORTC &= ~(1 << PC7);
 
+  led_all_full();
 
   while(1) {
-    if (is_button0_pressed()) {
-      uart_puts_P("BTN0 pressed.\r\n");
       DHT22_ERROR_t errorCode = read_dht22( &temp1, &temp2 ); 
       switch(errorCode) { 
         case DHT_ERROR_NONE: 
-          uart_puts_P("Temperature: ");
           dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
           uart_puts(buffer);        // and transmit string to UART
-          uart_puts_P("\r\nHumidity: ");
+          uart_puts_P(" ");
           itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
           uart_puts(buffer);        // and transmit string to UART
-          uart_puts_P("\r\n");
           break; 
         default:
-          uart_puts_P("Error reading DHT22 sensor.\r\n");
           break;
       }
-    }
-    if (is_button1_pressed()) {
-      uart_puts_P("BTN1 pressed.\r\n");
       temperature=temperature_adc(); // convert from adc value to temperaure 
       //itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
       
       static char temperature_string_buffer[10];
       dtostrf(temperature, 9, 4, &temperature_string_buffer);
-      uart_puts_P("Temperature from ADC: ");
+          uart_puts_P(" ");
       uart_puts(temperature_string_buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
-    }
-    if (is_button2_pressed()) {
-      uart_puts_P("BTN2 pressed.\r\n");
-      led_all_full();
-    }
+    _delay_ms(60000); // wait one minute
   }
 }
