@@ -67,7 +67,7 @@ int main(void)
         case DHT_ERROR_NONE: 
           dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
           uart_puts(buffer);        // and transmit string to UART
-          uart_puts_P(" ");
+          uart_puts_P(";");
           itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
           uart_puts(buffer);        // and transmit string to UART
           break; 
@@ -78,8 +78,8 @@ int main(void)
       //itoa( temperature, buffer, 10);   // convert interger into string (decimal format)         
       
       static char temperature_string_buffer[10];
-      dtostrf(temperature, 9, 4, &temperature_string_buffer);
-          uart_puts_P(" ");
+      dtostrf(temperature, 5, 2, &temperature_string_buffer);
+      uart_puts_P(";");
       uart_puts(temperature_string_buffer);        // and transmit string to UART
       uart_puts_P("\r\n");
     _delay_ms(60000); // wait one minute
