@@ -52,6 +52,13 @@ int main(void)
   uint8_t temp1; 
   float temp2;
   float temperature=0;
+  enum led_states {
+    LED_OFF = 0,
+    LED_ALL = 1,
+    LED_RED = 2,
+    LED_GREEN = 3,
+    LED_BLUE = 4
+  };
 
   init();
 
@@ -60,7 +67,9 @@ int main(void)
   //DDRC |= (1 << PC7);
   //PORTC &= ~(1 << PC7);
 
-  uint8_t full_led_on = false;
+  enum led_states statemachine;
+  statemachine=LED_OFF;
+  led_all_off();
   while(1) {
     if (is_button0_pressed()) {
       uart_puts_P("BTN0 pressed.\r\n");
@@ -93,13 +102,12 @@ int main(void)
     }
     if (is_button2_pressed()) {
       uart_puts_P("BTN2 pressed.\r\n");
-      if (! full_led_on) {
-        led_all_full();
-        full_led_on=true;
-      } else {
-        led_all_off();
-        led_red_full();
-        full_led_on=false;
+      switch (statemachine) {
+        case LED_OFF: led_all_full(); statemachine = LED_ALL; break;
+        case LED_ALL: led_red_full(); statemachine = LED_RED; break;
+        case LED_RED: led_green_full(); statemachine = LED_GREEN; break;
+        case LED_GREEN: led_blue_full(); statemachine = LED_BLUE; break;
+        case LED_BLUE: led_all_off(); statemachine = LED_OFF; break;
       }
     }
   }
