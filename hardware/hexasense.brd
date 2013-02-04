@@ -588,9 +588,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <element name="U$4" library="hexabus" package="HEXABUS" value="HEXABUS" x="64.2" y="17" rot="MR90"/>
 <element name="U$5" library="humidity" package="HUMIDITY-SENSOR" value="HUMIDITY-SENSOR" x="17.23" y="47.53" rot="R270"/>
 <element name="U$6" library="humidity" package="HUMIDITY-SENSOR" value="HUMIDITY-SENSOR" x="54.9" y="40.3" rot="R270"/>
-<element name="S4" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="30.24" y="5.32" smashed="yes">
-<attribute name="NAME" x="24.42" y="0.64" size="1.27" layer="25"/>
-<attribute name="VALUE" x="27.24" y="0.32" size="1.27" layer="27"/>
+<element name="S4" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="30.5" y="5.3" smashed="yes">
+<attribute name="NAME" x="24.68" y="0.62" size="1.27" layer="25"/>
+<attribute name="VALUE" x="27.5" y="0.3" size="1.27" layer="27"/>
 </element>
 <element name="U$7" library="humidity" package="HYT271" value="HYT271" x="15.99" y="47.53" rot="MR90"/>
 <element name="U$8" library="humidity" package="HYT271" value="HYT271" x="51.1" y="47.54" rot="MR90"/>
@@ -753,7 +753,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <signal name="BTN">
 <contactref element="U$4" pad="BTN"/>
 <contactref element="S4" pad="1"/>
-<wire x1="25.24" y1="7.57" x2="50.67" y2="18.49" width="0" layer="19" extent="1-1"/>
+<wire x1="25.5" y1="7.55" x2="50.67" y2="18.49" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="LED1" pad="K"/>
