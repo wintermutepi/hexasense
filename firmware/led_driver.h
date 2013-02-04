@@ -2,10 +2,7 @@
 #define LED_DRIVER_H 1
 #include <stdint.h>
 
-#define I2C_ERROR 1
-#define I2C_SUCCESS 0
-#define PCA9532_FULL 0x55
-#define PCA9532_OFF 0x00
+
 
 /**
  * initialize the led driver suite

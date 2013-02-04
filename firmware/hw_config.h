@@ -37,8 +37,11 @@
 /**
  * PCA9532 I2C bus address
  */
+#define I2C_ERROR 1
+#define I2C_SUCCESS 0
 #define PCA9532_ADDR  0xC0
-
+#define PCA9532_FULL 0x55
+#define PCA9532_OFF 0x00
 
 
 
