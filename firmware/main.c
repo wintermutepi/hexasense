@@ -30,7 +30,12 @@ void init(void) {
    *  UART_BAUD_SELECT_DOUBLE_SPEED() ( double speed mode)
    */
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
+  /*
+   * now enable interrupt, since UART library is interrupt controlled
+   */
+  sei();
 
+  uart_puts_P("HexaSense prototype startup\n\r");
   /**
    * run the initialization code of all components
    */
@@ -38,11 +43,7 @@ void init(void) {
   button_init();
   led_init();
 
-  /*
-   * now enable interrupt, since UART library is interrupt controlled
-   */
-  sei();
-}
+  }
 
 int main(void)
 {
@@ -53,11 +54,11 @@ int main(void)
   float temperature=0;
 
   init();
-  uart_puts_P("HexaSense prototype\n\r");
 
-  // LED1: On PC7, active low.
-  DDRC |= (1 << PC7);
-  PORTC &= ~(1 << PC7);
+  // For debugging. Do not use in production.
+  //// LED1: On PC7, active low.
+  //DDRC |= (1 << PC7);
+  //PORTC &= ~(1 << PC7);
 
   uint8_t full_led_on = false;
   while(1) {
