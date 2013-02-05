@@ -8,6 +8,7 @@
 #include "uart.h"
 #include "adc.h"
 #include "dht_sensor.h"
+#include "dew_point.h"
 #include "hyt271.h"
 #include "button.h"
 #include "led_driver.h"
@@ -104,6 +105,11 @@ int main(void)
 		  itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
 		  uart_puts(buffer);        // and transmit string to UART
 		  uart_puts_P("\r\n");
+		  uart_puts_P("Dewpoint based on HYT271 sensor:\r\n");
+		  double dp=dew_point(hyt271_temp, hyt271_hum);
+		  itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
+		  uart_puts(buffer);        // and transmit string to UART
+		  uart_puts_P("\r\n");
 		  break;
 		case HYT271_BUS_ERROR:
 		  uart_puts_P("Bus error while reading HYT271 sensor.\r\n");
@@ -112,6 +118,7 @@ int main(void)
 		  uart_puts_P("Unknown error reading HYT271 sensor.\r\n");
 		  break;
 	  }
+
 	}
 	if (is_button1_pressed()) {
 	  uart_puts_P("BTN1 pressed.\r\n");

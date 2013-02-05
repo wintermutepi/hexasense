@@ -9,12 +9,12 @@ void adc_init(void) {
   // Bit ADFR ("free running") in ADCSRA steht beim Einschalten
   // schon auf 0, also single conversion
 
-  // ADC Prescaler Calculation: We run at 16 MHz, the ADC needs a frequency 
+  // ADC Prescaler Calculation: We run at 8 MHz, the ADC needs a frequency 
   // between 0.05 MHz and 0.2 MHz:
-  // 0.05 <= 16/x <= 0.2
-  // <=> 0.05*x <= 16 <= 0.2*x
+  // 0.05 <= 8/x <= 0.2
+  // <=> 0.05*x <= 8 <= 0.2*x
   // Satisfied for x=128. Set Prescaler accordingly:
-  ADCSRA = (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);     
+  ADCSRA =  (1<<ADPS1) | (1<<ADPS0);     
   ADCSRA |= (1<<ADEN);                  // ADC aktivieren
  
   /* nach Aktivieren des ADC wird ein "Dummy-Readout" empfohlen, man liest

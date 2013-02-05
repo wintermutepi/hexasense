@@ -5,6 +5,7 @@
 #include <avr/pgmspace.h>
 
 float temperature_adc(void) {
+  // TODO: Implement supersampling.
   uint16_t adc = adc_get_single_sample(0);
   char buffer[7];
 
