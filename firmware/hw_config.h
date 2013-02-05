@@ -35,15 +35,25 @@
 #define BTN2_IN		PINA
 
 /**
- * PCA9532 I2C bus address
+ * I2C error codes.
  */
 #define I2C_ERROR 1
 #define I2C_SUCCESS 0
+
+/**
+ * PCA9532 I2C bus definitions
+ */
 #define PCA9532_ADDR  0xC0
 #define PCA9532_FULL 0x55
 #define PCA9532_OFF 0x00
 
+/**
+ * HYT271 I2C bus definitions
+ */
 
+#define HYT271_ADDR (0x28 << 1)
+#define HYT271_CONV_DELAY 6
+#define HYT271_BUFFER_LEN 4
 
 #endif /* HW_CONFIG_H */
 
