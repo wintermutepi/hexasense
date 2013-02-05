@@ -120,7 +120,7 @@
 <wire x1="13.4" y1="26.25" x2="0" y2="26.25" width="2" layer="46"/>
 <text x="96.52" y="47.5" size="1.778" layer="1" font="vector" ratio="10" rot="SR270">HexaSense</text>
 <text x="96" y="29" size="1.778" layer="1" font="vector" ratio="10" rot="SR270">Display</text>
-<text x="52" y="57.93" size="1.778" layer="1" font="vector" ratio="10" rot="SR0">20130114</text>
+<text x="52" y="57.93" size="1.778" layer="1" font="vector" ratio="10" rot="SR0">20130205</text>
 <hole x="96" y="58" drill="4"/>
 <hole x="96" y="4" drill="4"/>
 <hole x="4" y="4" drill="4"/>
