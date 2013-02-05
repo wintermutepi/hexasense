@@ -702,8 +702,6 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="92.67" y1="15.68" x2="92.67" y2="7.32" width="0.254" layer="1"/>
 <wire x1="92.67" y1="7.32" x2="90.2" y2="4.85" width="0.254" layer="1"/>
 <wire x1="90.2" y1="4.85" x2="88.8" y2="4.85" width="0.254" layer="1"/>
-<wire x1="92.03" y1="16.32" x2="94.51" y2="18.8" width="0.254" layer="1"/>
-<wire x1="94.51" y1="18.8" x2="94.51" y2="48.99" width="0.254" layer="1"/>
 <wire x1="86.12" y1="42.83" x2="92.28" y2="48.99" width="0.254" layer="1"/>
 <wire x1="92.28" y1="48.99" x2="94.51" y2="48.99" width="0.254" layer="1"/>
 <wire x1="85.52" y1="59.05" x2="86.12" y2="58.45" width="0.254" layer="1"/>
@@ -784,6 +782,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="26.41" y1="9.03" x2="29.05" y2="9.03" width="0.254" layer="1"/>
 <wire x1="29.05" y1="9.03" x2="31.35" y2="11.33" width="0.254" layer="1"/>
 <wire x1="31.35" y1="11.33" x2="31.35" y2="13.805" width="0.254" layer="1"/>
+<wire x1="92.03" y1="16.32" x2="93.68" y2="17.97" width="0.254" layer="1"/>
+<wire x1="93.68" y1="17.97" x2="93.68" y2="46.38" width="0.254" layer="1"/>
+<wire x1="93.68" y1="46.38" x2="94.51" y2="47.21" width="0.254" layer="1"/>
+<wire x1="94.51" y1="47.21" x2="94.51" y2="48.99" width="0.254" layer="1"/>
 </signal>
 <signal name="TEMP_1">
 <contactref element="U$1" pad="3"/>
@@ -1094,7 +1096,24 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <signal name="S3">
 <contactref element="S3" pad="1"/>
 <contactref element="U$4" pad="PA3"/>
-<wire x1="83.69" y1="3.25" x2="75" y2="33.25" width="0" layer="19" extent="1-1"/>
+<wire x1="75" y1="33.25" x2="71.28" y2="33.25" width="0.254" layer="1"/>
+<wire x1="71.28" y1="33.25" x2="66.08" y2="28.05" width="0.254" layer="1"/>
+<wire x1="66.08" y1="28.05" x2="66.08" y2="26.27" width="0.254" layer="1"/>
+<wire x1="66.08" y1="26.27" x2="73.54" y2="18.81" width="0.254" layer="1"/>
+<wire x1="73.54" y1="18.81" x2="73.54" y2="13.8" width="0.254" layer="1"/>
+<wire x1="73.54" y1="13.8" x2="74.99" y2="12.35" width="0.254" layer="1"/>
+<wire x1="74.99" y1="12.35" x2="81.02" y2="12.35" width="0.254" layer="1"/>
+<wire x1="81.02" y1="12.35" x2="82.17" y2="13.5" width="0.254" layer="1"/>
+<wire x1="82.17" y1="13.5" x2="84.74" y2="13.5" width="0.254" layer="1"/>
+<wire x1="84.74" y1="13.5" x2="86.34" y2="11.9" width="0.254" layer="1"/>
+<wire x1="86.34" y1="11.9" x2="86.34" y2="9.33" width="0.254" layer="1"/>
+<wire x1="86.34" y1="9.33" x2="85.44" y2="8.43" width="0.254" layer="1"/>
+<wire x1="85.44" y1="8.43" x2="78.07" y2="8.43" width="0.254" layer="1"/>
+<via x="78.07" y="8.43" extent="1-16" drill="0.3"/>
+<wire x1="78.07" y1="8.43" x2="78.07" y2="7.33" width="0.254" layer="16"/>
+<wire x1="78.07" y1="7.33" x2="79.12" y2="6.28" width="0.254" layer="16"/>
+<wire x1="79.12" y1="6.28" x2="80.66" y2="6.28" width="0.254" layer="16"/>
+<wire x1="80.66" y1="6.28" x2="83.69" y2="3.25" width="0.254" layer="16"/>
 </signal>
 <signal name="S2">
 <contactref element="S2" pad="2"/>
