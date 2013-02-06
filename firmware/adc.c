@@ -33,7 +33,7 @@ uint16_t adc_get_single_sample(uint8_t channel) {
 }
 
 uint16_t adc_get_super_sample(uint8_t channel) {
-  uint16_t buffer;
+  uint16_t buffer=0;
   // no overflow here: 8*1024 <<<< max(uint16_t)
   for (uint8_t i=0; i < SUPERSAMPLING_MAX_ITERATION; i++) {
 	buffer += adc_get_single_sample(channel);
