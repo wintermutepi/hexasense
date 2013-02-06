@@ -87,8 +87,26 @@ int main(void)
 		  uart_puts(buffer);        // and transmit string to UART
 		  uart_puts_P("\r\n");
 		  break; 
+		case DHT_BUS_HUNG:
+		  uart_puts_P("Bus hung error reading DHT22 sensor.\r\n");
+		  break;
+		case  DHT_ERROR_NOT_PRESENT:
+		  uart_puts_P("Error reading DHT22 sensor: sensor not present.\r\n");
+		  break;
+		case  DHT_ERROR_ACK_TOO_LONG:
+		  uart_puts_P("Error reading DHT22 sensor: ACK takes too long.\r\n");
+		  break;
+		case  DHT_ERROR_SYNC_TIMEOUT:
+		  uart_puts_P("Error reading DHT22 sensor: Sync timeout.\r\n");
+		  break;
+		case  DHT_ERROR_DATA_TIMEOUT:
+		  uart_puts_P("Error reading DHT22 sensor: Data timeout.\r\n");
+		  break;
+		case  DHT_ERROR_CHECKSUM:
+		  uart_puts_P("Error reading DHT22 sensor: Checksum invalid.\r\n");
+		  break;
 		default:
-		  uart_puts_P("Error reading DHT22 sensor.\r\n");
+		  uart_puts_P("Unknown error reading DHT22 sensor.\r\n");
 		  break;
 	  }
 	  uart_puts_P("HYT271 sensor:\r\n");
