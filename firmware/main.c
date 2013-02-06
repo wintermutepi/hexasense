@@ -122,7 +122,7 @@ int main(void)
 		  itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
 		  uart_puts(buffer);        // and transmit string to UART
 		  uart_puts_P("\r\n");
-		  uart_puts_P("Dewpoint based on HYT271 sensor:\r\n");
+		  uart_puts_P("Dewpoint based on HYT271 sensor: ");
 		  double dp=dew_point(hyt271_temp, hyt271_hum);
 		  itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
 		  uart_puts(buffer);        // and transmit string to UART
