@@ -72,6 +72,7 @@ int main(void)
           uart_puts(buffer);        // and transmit string to UART
           break; 
         default:
+          uart_puts_P(";");
           break;
       }
       temperature=temperature_adc(); // convert from adc value to temperaure 
