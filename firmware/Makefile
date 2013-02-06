@@ -58,7 +58,7 @@ TARGET = main
 
 # List C source files here. (C dependencies are automatically generated.)
 SRC = $(TARGET).c uart.c adc.c dht_sensor.c button.c led_driver.c \
-	  twimaster.c conversion.c hyt271.c dew_point.c
+	  twimaster.c adc_temp_conversion.c hyt271.c dew_point.c
 
 
 # List Assembler source files here.

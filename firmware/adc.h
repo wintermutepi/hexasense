@@ -7,6 +7,7 @@
 
 void adc_init(void);
 uint16_t adc_get_single_sample(uint8_t channel);
+uint16_t adc_get_super_sample(uint8_t channel);
 
 #endif /* ADC_H */
 
