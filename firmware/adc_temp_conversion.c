@@ -1,7 +1,7 @@
-#include <stdlib.h>
-#include "conversion.h"
+#include "adc_temp_conversion.h"
 #include "adc.h"
 #include "uart.h"
+#include <stdlib.h>
 #include <avr/pgmspace.h>
 
 float temperature_adc(void) {

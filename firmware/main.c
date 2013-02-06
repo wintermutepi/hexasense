@@ -12,7 +12,7 @@
 #include "hyt271.h"
 #include "button.h"
 #include "led_driver.h"
-#include "conversion.h"
+#include "adc_temp_conversion.h"
 #include "i2cmaster.h"
 
 
