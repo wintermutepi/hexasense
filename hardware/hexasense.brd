@@ -747,6 +747,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="6.26" y1="46.21" x2="3.2" y2="49.27" width="0.254" layer="1"/>
 <contactref element="C2" pad="2"/>
 <via x="51.11" y="2.36" extent="1-16" drill="0.3"/>
+<contactref element="S1" pad="4"/>
+<contactref element="S2" pad="4"/>
+<contactref element="S3" pad="4"/>
+<contactref element="S4" pad="4"/>
 <wire x1="64.31" y1="30.87" x2="65.43" y2="30.98" width="0" layer="19" extent="1-1"/>
 <wire x1="63.03" y1="30.88" x2="64.31" y2="30.87" width="0" layer="19" extent="1-1"/>
 <wire x1="61.75" y1="31.1" x2="63.03" y2="30.88" width="0" layer="19" extent="1-1"/>
@@ -999,6 +1003,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="50.98" y1="18.18" x2="50.67" y2="18.49" width="0.254" layer="1"/>
 <wire x1="50.99" y1="10.09" x2="51.42" y2="10.52" width="0.254" layer="1"/>
 <wire x1="35.5" y1="4.76" x2="40.83" y2="10.09" width="0.254" layer="1"/>
+<contactref element="S4" pad="2"/>
+<wire x1="25.5" y1="3.05" x2="35.5" y2="3.05" width="0.254" layer="1"/>
 </signal>
 <signal name="N$1">
 <contactref element="LED1" pad="K"/>
@@ -1207,6 +1213,14 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="78.07" y1="7.33" x2="79.12" y2="6.28" width="0.254" layer="16"/>
 <wire x1="79.12" y1="6.28" x2="80.66" y2="6.28" width="0.254" layer="16"/>
 <wire x1="80.66" y1="6.28" x2="83.69" y2="3.25" width="0.254" layer="16"/>
+<contactref element="S3" pad="2"/>
+<wire x1="85" y1="33.25" x2="85" y2="34.54" width="0.254" layer="1"/>
+<wire x1="85" y1="34.54" x2="84.51" y2="35.03" width="0.254" layer="1"/>
+<via x="84.51" y="35.03" extent="1-16" drill="0.3"/>
+<wire x1="84.51" y1="35.03" x2="77.24" y2="35.03" width="0.254" layer="16"/>
+<via x="77.24" y="35.03" extent="1-16" drill="0.3"/>
+<wire x1="77.24" y1="35.03" x2="76.78" y2="35.03" width="0.254" layer="1"/>
+<wire x1="76.78" y1="35.03" x2="75" y2="33.25" width="0.254" layer="1"/>
 </signal>
 <signal name="S2">
 <contactref element="S2" pad="2"/>
@@ -1234,6 +1248,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <via x="58.7" y="33.26" extent="1-16" drill="0.3"/>
 <wire x1="58.7" y1="33.26" x2="58.69" y2="33.25" width="0.254" layer="1"/>
 <wire x1="58.69" y1="33.25" x2="55" y2="33.25" width="0.254" layer="1"/>
+<contactref element="S2" pad="1"/>
+<wire x1="55" y1="33.25" x2="45" y2="33.25" width="0.254" layer="1"/>
 </signal>
 <signal name="S1">
 <contactref element="S1" pad="2"/>
@@ -1255,6 +1271,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="78.61" y1="4.49" x2="78.61" y2="3.25" width="0.254" layer="16"/>
 <wire x1="20.45" y1="24.24" x2="23.16" y2="21.53" width="0.254" layer="1"/>
 <wire x1="23.16" y1="21.53" x2="29.57" y2="21.53" width="0.254" layer="1"/>
+<contactref element="S1" pad="1"/>
+<wire x1="15" y1="33.25" x2="25" y2="33.25" width="0.254" layer="1"/>
 </signal>
 <signal name="TEMP_2">
 <contactref element="U$4" pad="PA0"/>
