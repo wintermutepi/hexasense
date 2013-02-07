@@ -529,79 +529,137 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </pass>
 </autorouter>
 <elements>
-<element name="R1" library="rcl" package="R0805" value="1k" x="19.92" y="36.57" rot="R270"/>
-<element name="R3" library="rcl" package="R0805" value="100k" x="9.47" y="42.84"/>
-<element name="R5" library="rcl" package="R0805" value="470k" x="36.58" y="42.77" rot="R180"/>
-<element name="R6" library="rcl" package="R0805" value="470k" x="30.93" y="42.79" rot="R180"/>
-<element name="R7" library="rcl" package="R0805" value="470k" x="29.16" y="29.47" rot="R180"/>
-<element name="R8" library="rcl" package="R0805" value="470k" x="34.38" y="35.7" rot="R90"/>
-<element name="R9" library="rcl" package="R0805" value="47k" x="23.08" y="42.05" rot="R180"/>
-<element name="R2" library="rcl" package="RTRIMT93YB" value="10k" x="6.33" y="38.82" rot="R90"/>
-<element name="R4" library="rcl" package="RTRIMT93YB" value="20k" x="14.62" y="39.42"/>
-<element name="U$1" library="Reichelt" package="RJ45-REICHELT" value="MEBP8-8G" x="4.7" y="25" rot="R270"/>
-<element name="U_M-1" library="testpad" package="B1,27" value="TPB1,27" x="35.56" y="38.1" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="35.56" y="38.1" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="R1" library="rcl" package="R0805" value="1k" x="19.92" y="36.57" smashed="yes" rot="R270">
+<attribute name="NAME" x="21.19" y="37.205" size="1.27" layer="25" rot="R270"/>
 </element>
-<element name="TEMP-1" library="testpad" package="B1,27" value="TPB1,27" x="22.86" y="45.72" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="22.86" y="45.72" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="R3" library="rcl" package="R0805" value="100k" x="9.47" y="42.84" smashed="yes">
+<attribute name="NAME" x="8.835" y="44.11" size="1.27" layer="25"/>
+</element>
+<element name="R5" library="rcl" package="R0805" value="470k" x="36.58" y="42.77" smashed="yes" rot="R180">
+<attribute name="NAME" x="37.215" y="41.5" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R6" library="rcl" package="R0805" value="470k" x="30.93" y="42.79" smashed="yes" rot="R180">
+<attribute name="NAME" x="31.565" y="41.52" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R7" library="rcl" package="R0805" value="470k" x="29.16" y="29.47" smashed="yes" rot="R180">
+<attribute name="NAME" x="29.795" y="28.2" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R8" library="rcl" package="R0805" value="470k" x="34.38" y="35.7" smashed="yes" rot="R90">
+<attribute name="NAME" x="35.79" y="36.685" size="1.27" layer="25" rot="R270"/>
+</element>
+<element name="R9" library="rcl" package="R0805" value="47k" x="23.08" y="42.05" smashed="yes" rot="R180">
+<attribute name="NAME" x="23.715" y="40.78" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R2" library="rcl" package="RTRIMT93YB" value="10k" x="6.33" y="38.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="6.52" y="36.18" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R4" library="rcl" package="RTRIMT93YB" value="20k" x="14.62" y="39.42" smashed="yes">
+<attribute name="NAME" x="11.83" y="33.93" size="1.27" layer="25" rot="R90"/>
+</element>
+<element name="U$1" library="Reichelt" package="RJ45-REICHELT" value="MEBP8-8G" x="4.7" y="25" rot="R270"/>
+<element name="U_M-1" library="testpad" package="B1,27" value="TPB1,27" x="35.56" y="38.1" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="36.195" y="36.195" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="34.395" y="37.616" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="36.195" y="37.338" size="0.0254" layer="28" rot="MR0"/>
+</element>
+<element name="TEMP-1" library="testpad" package="B1,27" value="TPB1,27" x="17.78" y="27.94" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="17.78" y="27.94" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="GND" library="testpad" package="B1,27" value="TPB1,27" x="15.24" y="45.72" rot="MR0">
 <attribute name="TP_SIGNAL_NAME" value="" x="15.24" y="45.72" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="VCC" library="testpad" package="B1,27" value="TPB1,27" x="10.16" y="33.02" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="10.16" y="33.02" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="VCC" library="testpad" package="B1,27" value="TPB1,27" x="10.16" y="33.02" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="10.795" y="31.115" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="12.895" y="33.936" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="10.795" y="32.258" size="0.0254" layer="28" rot="MR0"/>
 </element>
-<element name="U$2" library="Ergaenzung" package="HOHLBUCHSE" value="HOHLBUCHSE" x="40" y="14.5"/>
-<element name="JP2" library="pinhead" package="1X04/90" value="" x="46.5" y="32.5" rot="R270"/>
-<element name="U1" library="hexasense" package="SOIC127P600X175-14N" value="LM324D" x="26.8" y="35.7">
+<element name="U$2" library="Ergaenzung" package="HOHLBUCHSE" value="HOHLBUCHSE" x="40" y="14.5" smashed="yes"/>
+<element name="JP2" library="pinhead" package="1X04/90" value="" x="46.5" y="32.5" smashed="yes" rot="R270">
+<attribute name="VALUE" x="42.055" y="25.515" size="1.27" layer="27"/>
+</element>
+<element name="U1" library="hexasense" package="SOIC127P600X175-14N" value="LM324D" x="26.8" y="35.7" smashed="yes">
 <attribute name="MPN" value="LM324D" x="26.8" y="35.7" size="1.778" layer="27" display="off"/>
 <attribute name="OC_FARNELL" value="1467655" x="26.8" y="35.7" size="1.778" layer="27" display="off"/>
 <attribute name="OC_NEWARK" value="72K8847" x="26.8" y="35.7" size="1.778" layer="27" display="off"/>
 <attribute name="PACKAGE" value="SOIC-14" x="26.8" y="35.7" size="1.778" layer="27" display="off"/>
 <attribute name="SUPPLIER" value="STMicroelectronics" x="26.8" y="35.7" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R10" library="rcl" package="R0805" value="1k" x="13.8" y="10.7" rot="R270"/>
-<element name="R11" library="rcl" package="R0805" value="470k" x="26.95" y="18" rot="R180"/>
-<element name="R12" library="rcl" package="R0805" value="470k" x="21.5" y="18" rot="R180"/>
-<element name="R13" library="rcl" package="R0805" value="470k" x="21.7" y="3.4" rot="R180"/>
-<element name="R14" library="rcl" package="R0805" value="470k" x="26.95" y="9.65" rot="R90"/>
-<element name="R15" library="rcl" package="R0805" value="47k" x="6.6" y="12.9" rot="R180"/>
-<element name="R16" library="rcl" package="RTRIMT93YB" value="20k" x="3.4" y="6.3"/>
-<element name="U_M-2" library="testpad" package="B1,27" value="TPB1,27" x="30.48" y="10.16" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="94.68" y="34.46" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="R10" library="rcl" package="R0805" value="1k" x="13.8" y="10.7" smashed="yes" rot="R270">
+<attribute name="NAME" x="15.07" y="11.335" size="1.27" layer="25" rot="R270"/>
 </element>
-<element name="TEMP-2" library="testpad" package="B1,27" value="TPB1,27" x="17.78" y="25.4" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="64.18" y="51.9" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="R11" library="rcl" package="R0805" value="470k" x="26.95" y="18" smashed="yes" rot="R180">
+<attribute name="NAME" x="27.585" y="16.73" size="1.27" layer="25" rot="R180"/>
 </element>
-<element name="U2" library="hexasense" package="SOIC127P600X175-14N" value="LM324D" x="21.7" y="10.3">
+<element name="R12" library="rcl" package="R0805" value="470k" x="21.5" y="18" smashed="yes" rot="R180">
+<attribute name="NAME" x="22.785" y="20.48" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R13" library="rcl" package="R0805" value="470k" x="21.7" y="3.4" smashed="yes" rot="R180">
+<attribute name="NAME" x="22.335" y="2.13" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R14" library="rcl" package="R0805" value="470k" x="26.95" y="9.65" smashed="yes" rot="R90">
+<attribute name="NAME" x="29.135" y="12.88" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R15" library="rcl" package="R0805" value="47k" x="6.6" y="12.9" smashed="yes" rot="R180">
+<attribute name="NAME" x="4.435" y="13.78" size="1.27" layer="25" rot="R180"/>
+</element>
+<element name="R16" library="rcl" package="RTRIMT93YB" value="20k" x="3.4" y="6.3" smashed="yes">
+<attribute name="NAME" x="0.61" y="1.41" size="1.27" layer="25" rot="R90"/>
+</element>
+<element name="U_M-2" library="testpad" package="B1,27" value="TPB1,27" x="30.48" y="10.16" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="31.115" y="8.255" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="31.115" y="11.176" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="31.115" y="9.398" size="0.0254" layer="28" rot="MR0"/>
+</element>
+<element name="TEMP-2" library="testpad" package="B1,27" value="TPB1,27" x="17.78" y="25.4" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="18.415" y="23.495" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="24.865" y="25.016" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="18.415" y="24.638" size="0.0254" layer="28" rot="MR0"/>
+</element>
+<element name="U2" library="hexasense" package="SOIC127P600X175-14N" value="LM324D" x="21.7" y="10.3" smashed="yes">
 <attribute name="MPN" value="LM324D" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
 <attribute name="OC_FARNELL" value="1467655" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
 <attribute name="OC_NEWARK" value="72K8847" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
 <attribute name="PACKAGE" value="SOIC-14" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
 <attribute name="SUPPLIER" value="STMicroelectronics" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R17" library="rcl" package="R0805" value="100k" x="13.8" y="5.9" rot="R90"/>
-<element name="R18" library="rcl" package="RTRIMT93YB" value="10k" x="9.7" y="6.3"/>
-<element name="U3" library="hexasense" package="SOT230P696X180-4N" value="LM1117MP-3.3" x="33" y="8" rot="R180">
+<element name="R17" library="rcl" package="R0805" value="100k" x="13.8" y="5.9" smashed="yes" rot="R90">
+<attribute name="NAME" x="16.53" y="4.115" size="1.27" layer="25" rot="R90"/>
+</element>
+<element name="R18" library="rcl" package="RTRIMT93YB" value="10k" x="9.7" y="6.3" smashed="yes">
+<attribute name="NAME" x="6.91" y="1.41" size="1.27" layer="25" rot="R90"/>
+</element>
+<element name="U3" library="hexasense" package="SOT230P696X180-4N" value="LM1117MP-3.3" x="33" y="8" smashed="yes" rot="R180">
 <attribute name="PACKAGE" value="SOT223-3" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="OC_NEWARK" value="41K3470" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="LM1117MP-3.3" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="SUPPLIER" value="NationalSemiconductor" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="OC_FARNELL" value="9778195" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="C2" library="rcl" package="C0805" value="10uF" x="39" y="7" rot="R270"/>
-<element name="C1" library="rcl" package="C0805" value="10uF" x="33" y="3" rot="R180"/>
-<element name="OFFSET-1" library="testpad" package="B1,27" value="TPB1,27" x="5.08" y="35.56" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="5.08" y="35.56" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="C2" library="rcl" package="C0805" value="10uF" x="39" y="7" smashed="yes" rot="R270">
+<attribute name="NAME" x="40.27" y="8.27" size="1.27" layer="25" rot="R270"/>
 </element>
-<element name="OFFSET-2" library="testpad" package="B1,27" value="TPB1,27" x="7.62" y="2.54" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="7.62" y="2.54" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="C1" library="rcl" package="C0805" value="10uF" x="33" y="3" smashed="yes" rot="R180">
+<attribute name="NAME" x="34.27" y="1.73" size="1.27" layer="25" rot="R180"/>
 </element>
-<element name="PT100-2" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="30.48" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="38.1" y="30.48" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="OFFSET-1" library="testpad" package="B1,27" value="TPB1,27" x="10.16" y="35.56" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="10.795" y="33.655" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="6.715" y="39.424" size="1.27" layer="26" ratio="10" rot="MR180"/>
+<attribute name="VALUE" x="10.795" y="34.798" size="0.0254" layer="28" rot="MR0"/>
 </element>
-<element name="PT100-1" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="38.1" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="38.1" y="38.1" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="OFFSET-2" library="testpad" package="B1,27" value="TPB1,27" x="7.62" y="2.54" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="8.255" y="0.635" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="17.455" y="1.406" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="8.255" y="1.778" size="0.0254" layer="28" rot="MR0"/>
+</element>
+<element name="PT100-2" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="30.48" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="38.735" y="28.575" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="37.435" y="29.896" size="1.27" layer="26" ratio="10" rot="MR0"/>
+<attribute name="VALUE" x="38.735" y="29.718" size="0.0254" layer="28" rot="MR0"/>
+</element>
+<element name="PT100-1" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="38.1" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="38.735" y="36.195" size="1" layer="38" rot="MR0"/>
+<attribute name="NAME" x="38.765" y="39.034" size="1.27" layer="26" ratio="10" rot="MR180"/>
+<attribute name="VALUE" x="38.735" y="37.338" size="0.0254" layer="28" rot="MR0"/>
 </element>
 </elements>
 <signals>
@@ -831,10 +889,11 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="24.3362" y1="34.43" x2="17.75" y2="34.43" width="0.254" layer="1"/>
 <via x="17.75" y="34.43" extent="1-16" drill="0.3"/>
 <wire x1="17.75" y1="34.43" x2="9.45" y2="34.43" width="0.254" layer="16"/>
-<wire x1="9.45" y1="34.43" x2="6.33" y2="37.55" width="0.254" layer="16"/>
+<wire x1="9.45" y1="34.43" x2="9.365" y2="34.515" width="0.254" layer="16"/>
 <contactref element="OFFSET-1" pad="TP"/>
-<wire x1="5.08" y1="35.56" x2="5.08" y2="36.3" width="0.254" layer="16"/>
-<wire x1="5.08" y1="36.3" x2="6.33" y2="37.55" width="0.254" layer="16"/>
+<wire x1="9.365" y1="34.515" x2="6.33" y2="37.55" width="0.254" layer="16"/>
+<wire x1="10.16" y1="35.56" x2="10.16" y2="35.31" width="0.254" layer="16"/>
+<wire x1="10.16" y1="35.31" x2="9.365" y2="34.515" width="0.254" layer="16"/>
 </signal>
 <signal name="OFFSET_2">
 <contactref element="R18" pad="2"/>
@@ -925,16 +984,17 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="29.2638" y1="39.51" x2="27.26" y2="39.51" width="0.254" layer="1"/>
 <wire x1="27.26" y1="39.51" x2="26.75" y2="39" width="0.254" layer="1"/>
 <via x="26.75" y="39" extent="1-16" drill="0.3"/>
-<wire x1="26.75" y1="39" x2="26.75" y2="37.85" width="0.254" layer="16"/>
-<wire x1="26.75" y1="37.85" x2="15.805" y2="26.905" width="0.254" layer="16"/>
-<wire x1="15.805" y1="26.905" x2="11.05" y2="26.905" width="0.254" layer="16"/>
 <wire x1="26.75" y1="39" x2="26.75" y2="40.9" width="0.254" layer="16"/>
 <wire x1="26.75" y1="40.9" x2="25.6" y2="42.05" width="0.254" layer="16"/>
 <via x="25.6" y="42.05" extent="1-16" drill="0.3"/>
 <wire x1="25.6" y1="42.05" x2="24.03" y2="42.05" width="0.254" layer="1"/>
 <wire x1="25.6" y1="42.14" x2="25.6" y2="42.05" width="0.254" layer="16"/>
-<wire x1="22.86" y1="45.72" x2="22.86" y2="44.79" width="0.254" layer="16"/>
-<wire x1="22.86" y1="44.79" x2="25.6" y2="42.05" width="0.254" layer="16"/>
+<wire x1="17.78" y1="27.94" x2="17.76" y2="27.94" width="0.254" layer="16"/>
+<wire x1="11.05" y1="26.905" x2="14.655" y2="26.905" width="0.254" layer="16"/>
+<wire x1="14.655" y1="26.905" x2="16.65" y2="28.9" width="0.254" layer="16"/>
+<wire x1="16.65" y1="28.9" x2="26.75" y2="39" width="0.254" layer="16"/>
+<wire x1="17.76" y1="27.94" x2="16.8" y2="28.9" width="0.254" layer="16"/>
+<wire x1="16.8" y1="28.9" x2="16.65" y2="28.9" width="0.254" layer="16"/>
 </signal>
 <signal name="+5V">
 <contactref element="U$1" pad="7"/>
