@@ -603,7 +603,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="NAME" x="4.435" y="13.78" size="1.27" layer="25" rot="R180"/>
 </element>
 <element name="R16" library="rcl" package="RTRIMT93YB" value="20k" x="3.4" y="6.3" smashed="yes">
-<attribute name="NAME" x="0.61" y="1.41" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="2.96" y="1.91" size="1.27" layer="25" rot="R90"/>
 </element>
 <element name="U_M-2" library="testpad" package="P1-13" value="TPPAD1-13" x="33.02" y="15.24" smashed="yes" rot="MR0">
 <attribute name="TP_SIGNAL_NAME" value="" x="33.655" y="13.335" size="1" layer="38" rot="MR0"/>
@@ -626,7 +626,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="NAME" x="16.53" y="4.115" size="1.27" layer="25" rot="R90"/>
 </element>
 <element name="R18" library="rcl" package="RTRIMT93YB" value="10k" x="9.7" y="6.3" smashed="yes">
-<attribute name="NAME" x="6.91" y="1.41" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="10.11" y="1.61" size="1.27" layer="25" rot="R90"/>
 </element>
 <element name="U3" library="hexasense" package="SOT230P696X180-4N" value="LM1117MP-3.3" x="33" y="8" smashed="yes" rot="R180">
 <attribute name="PACKAGE" value="SOT223-3" x="33" y="8" size="1.778" layer="27" rot="R180" display="off"/>
