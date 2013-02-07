@@ -539,17 +539,17 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <element name="R2" library="rcl" package="RTRIMT93YB" value="10k" x="6.33" y="38.82" rot="R90"/>
 <element name="R4" library="rcl" package="RTRIMT93YB" value="20k" x="14.62" y="39.42"/>
 <element name="U$1" library="Reichelt" package="RJ45-REICHELT" value="MEBP8-8G" x="4.7" y="25" rot="R270"/>
-<element name="U_M-1" library="testpad" package="B1,27" value="TPB1,27" x="34.4" y="37.02" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="34.4" y="37.02" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="U_M-1" library="testpad" package="B1,27" value="TPB1,27" x="35.56" y="38.1" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="35.56" y="38.1" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="TEMP-1" library="testpad" package="B1,27" value="TPB1,27" x="24.22" y="43.52" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="24.22" y="43.52" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="TEMP-1" library="testpad" package="B1,27" value="TPB1,27" x="22.86" y="45.72" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="22.86" y="45.72" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="GND" library="testpad" package="B1,27" value="TPB1,27" x="15.24" y="45.72" rot="MR0">
 <attribute name="TP_SIGNAL_NAME" value="" x="15.24" y="45.72" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="VCC" library="testpad" package="B1,27" value="TPB1,27" x="10.86" y="32.37" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="10.86" y="32.37" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="VCC" library="testpad" package="B1,27" value="TPB1,27" x="10.16" y="33.02" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="10.16" y="33.02" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="U$2" library="Ergaenzung" package="HOHLBUCHSE" value="HOHLBUCHSE" x="40" y="14.5"/>
 <element name="JP2" library="pinhead" package="1X04/90" value="" x="46.5" y="32.5" rot="R270"/>
@@ -567,11 +567,11 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <element name="R14" library="rcl" package="R0805" value="470k" x="26.95" y="9.65" rot="R90"/>
 <element name="R15" library="rcl" package="R0805" value="47k" x="6.6" y="12.9" rot="R180"/>
 <element name="R16" library="rcl" package="RTRIMT93YB" value="20k" x="3.4" y="6.3"/>
-<element name="U_M-2" library="testpad" package="B1,27" value="TPB1,27" x="30.13" y="9.02" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="94.33" y="33.32" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="U_M-2" library="testpad" package="B1,27" value="TPB1,27" x="30.48" y="10.16" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="94.68" y="34.46" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="TEMP-2" library="testpad" package="B1,27" value="TPB1,27" x="16.21" y="25.27" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="62.61" y="51.77" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="TEMP-2" library="testpad" package="B1,27" value="TPB1,27" x="17.78" y="25.4" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="64.18" y="51.9" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="U2" library="hexasense" package="SOIC127P600X175-14N" value="LM324D" x="21.7" y="10.3">
 <attribute name="MPN" value="LM324D" x="-38.2" y="18.1" size="1.778" layer="27" display="off"/>
@@ -591,17 +591,17 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </element>
 <element name="C2" library="rcl" package="C0805" value="10uF" x="39" y="7" rot="R270"/>
 <element name="C1" library="rcl" package="C0805" value="10uF" x="33" y="3" rot="R180"/>
-<element name="OFFSET-1" library="testpad" package="B1,27" value="TPB1,27" x="5.1" y="34.8" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="5.1" y="34.8" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="OFFSET-1" library="testpad" package="B1,27" value="TPB1,27" x="5.08" y="35.56" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="5.08" y="35.56" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="OFFSET-2" library="testpad" package="B1,27" value="TPB1,27" x="8.8" y="3.15" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="8.8" y="3.15" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="OFFSET-2" library="testpad" package="B1,27" value="TPB1,27" x="7.62" y="2.54" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="7.62" y="2.54" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="PT100-2" library="testpad" package="B1,27" value="TPB1,27" x="39.6" y="30.85" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="39.6" y="30.85" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="PT100-2" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="30.48" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="38.1" y="30.48" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
-<element name="PT100-1" library="testpad" package="B1,27" value="TPB1,27" x="41.6" y="38.5" rot="MR0">
-<attribute name="TP_SIGNAL_NAME" value="" x="41.6" y="38.5" size="1.778" layer="28" rot="MR0" display="off"/>
+<element name="PT100-1" library="testpad" package="B1,27" value="TPB1,27" x="38.1" y="38.1" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="38.1" y="38.1" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 </elements>
 <signals>
@@ -632,8 +632,6 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="20" y1="35.7" x2="24.3362" y2="35.7" width="0.254" layer="1"/>
 <wire x1="11.05" y1="29.445" x2="17.225" y2="35.62" width="0.254" layer="1"/>
 <wire x1="17.225" y1="35.62" x2="19.92" y2="35.62" width="0.254" layer="1"/>
-<wire x1="10.86" y1="32.37" x2="11.05" y2="32.18" width="0.254" layer="16"/>
-<wire x1="11.05" y1="32.18" x2="11.05" y2="29.445" width="0.254" layer="16"/>
 <wire x1="13.75" y1="8.4" x2="13.75" y2="6.9" width="0.254" layer="1"/>
 <wire x1="13.75" y1="6.9" x2="13.8" y2="6.85" width="0.254" layer="1"/>
 <wire x1="13.8" y1="9.75" x2="18.6862" y2="9.75" width="0.254" layer="1"/>
@@ -644,6 +642,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="29.6" y1="8" x2="29.7996" y2="8" width="0.254" layer="1"/>
 <wire x1="13.75" y1="8.4" x2="13.75" y2="10.75" width="0.254" layer="16"/>
 <wire x1="13.75" y1="10.75" x2="9.2" y2="15.3" width="0.254" layer="16"/>
+<wire x1="10.16" y1="33.02" x2="11.05" y2="32.13" width="0.254" layer="16"/>
+<wire x1="11.05" y1="32.13" x2="11.05" y2="29.445" width="0.254" layer="16"/>
 </signal>
 <signal name="GND">
 <contactref element="R5" pad="1"/>
@@ -703,10 +703,11 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="30.7" y1="19.24" x2="30.7" y2="14.9" width="0.254" layer="1"/>
 <contactref element="PT100-2" pad="TP"/>
 <wire x1="42.69" y1="31.23" x2="42.31" y2="30.85" width="0.254" layer="16"/>
-<wire x1="42.31" y1="30.85" x2="39.6" y2="30.85" width="0.254" layer="16"/>
 <wire x1="20.17" y1="11.57" x2="22.05" y2="13.45" width="0.254" layer="1"/>
 <wire x1="22.05" y1="13.45" x2="29.25" y2="13.45" width="0.254" layer="1"/>
 <wire x1="29.25" y1="13.45" x2="30.7" y2="14.9" width="0.254" layer="1"/>
+<wire x1="38.1" y1="30.48" x2="38.85" y2="31.23" width="0.254" layer="16"/>
+<wire x1="38.85" y1="31.23" x2="42.69" y2="31.23" width="0.254" layer="16"/>
 <wire x1="19.2362" y1="11.57" x2="20.17" y2="11.57" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
@@ -832,19 +833,19 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="17.75" y1="34.43" x2="9.45" y2="34.43" width="0.254" layer="16"/>
 <wire x1="9.45" y1="34.43" x2="6.33" y2="37.55" width="0.254" layer="16"/>
 <contactref element="OFFSET-1" pad="TP"/>
-<wire x1="5.1" y1="34.8" x2="5.1" y2="36.32" width="0.254" layer="16"/>
-<wire x1="5.1" y1="36.32" x2="6.33" y2="37.55" width="0.254" layer="16"/>
+<wire x1="5.08" y1="35.56" x2="5.08" y2="36.3" width="0.254" layer="16"/>
+<wire x1="5.08" y1="36.3" x2="6.33" y2="37.55" width="0.254" layer="16"/>
 </signal>
 <signal name="OFFSET_2">
 <contactref element="R18" pad="2"/>
 <contactref element="U2" pad="5"/>
 <contactref element="OFFSET-2" pad="TP"/>
-<wire x1="8.8" y1="3.15" x2="8.43" y2="3.52" width="0.254" layer="16"/>
-<wire x1="8.43" y1="3.52" x2="8.43" y2="6.3" width="0.254" layer="16"/>
 <wire x1="8.43" y1="6.3" x2="8.83" y2="5.9" width="0.254" layer="1"/>
 <wire x1="8.83" y1="5.9" x2="14.9" y2="5.9" width="0.254" layer="1"/>
 <wire x1="14.9" y1="5.9" x2="18.03" y2="9.03" width="0.254" layer="1"/>
 <wire x1="18.03" y1="9.03" x2="19.2362" y2="9.03" width="0.254" layer="1"/>
+<wire x1="7.62" y1="2.54" x2="8.43" y2="3.35" width="0.254" layer="16"/>
+<wire x1="8.43" y1="3.35" x2="8.43" y2="6.3" width="0.254" layer="16"/>
 </signal>
 <signal name="PT100_1">
 <contactref element="JP2" pad="1"/>
@@ -855,12 +856,12 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="42.69" y1="36.31" x2="42.08" y2="35.7" width="0.254" layer="1"/>
 <wire x1="42.08" y1="35.7" x2="31.85" y2="35.7" width="0.254" layer="1"/>
 <contactref element="PT100-1" pad="TP"/>
-<wire x1="41.6" y1="38.5" x2="42.69" y2="37.41" width="0.254" layer="16"/>
-<wire x1="42.69" y1="37.41" x2="42.69" y2="36.31" width="0.254" layer="16"/>
 <wire x1="24.3362" y1="36.97" x2="26.38" y2="36.97" width="0.254" layer="1"/>
 <wire x1="26.38" y1="36.97" x2="27" y2="36.35" width="0.254" layer="1"/>
 <wire x1="27" y1="36.35" x2="31.2" y2="36.35" width="0.254" layer="1"/>
 <wire x1="31.2" y1="36.35" x2="31.85" y2="35.7" width="0.254" layer="1"/>
+<wire x1="38.1" y1="38.1" x2="40.9" y2="38.1" width="0.254" layer="16"/>
+<wire x1="40.9" y1="38.1" x2="42.69" y2="36.31" width="0.254" layer="16"/>
 </signal>
 <signal name="U_M_2">
 <contactref element="U2" pad="8"/>
@@ -873,12 +874,12 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <via x="28.85" y="10.05" extent="1-16" drill="0.3"/>
 <wire x1="28.85" y1="10.05" x2="28.3" y2="10.6" width="0.254" layer="1"/>
 <wire x1="28.3" y1="10.6" x2="26.95" y2="10.6" width="0.254" layer="1"/>
-<wire x1="30.13" y1="9.02" x2="29.88" y2="9.02" width="0.254" layer="16"/>
-<wire x1="29.88" y1="9.02" x2="28.85" y2="10.05" width="0.254" layer="16"/>
 <wire x1="24.1638" y1="6.49" x2="26.89" y2="6.49" width="0.254" layer="1"/>
 <wire x1="26.89" y1="6.49" x2="28.45" y2="8.05" width="0.254" layer="1"/>
 <wire x1="28.45" y1="8.05" x2="28.45" y2="9.65" width="0.254" layer="16"/>
 <wire x1="28.45" y1="9.65" x2="28.85" y2="10.05" width="0.254" layer="16"/>
+<wire x1="30.48" y1="10.16" x2="30.37" y2="10.05" width="0.254" layer="16"/>
+<wire x1="30.37" y1="10.05" x2="28.85" y2="10.05" width="0.254" layer="16"/>
 </signal>
 <signal name="U_M_1">
 <contactref element="U_M-1" pad="TP"/>
@@ -895,9 +896,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <via x="32.85" y="36.3" extent="1-16" drill="0.3"/>
 <wire x1="32.85" y1="36.3" x2="32.77" y2="36.3" width="0.254" layer="1"/>
 <wire x1="32.77" y1="36.3" x2="32.1" y2="36.97" width="0.254" layer="1"/>
-<wire x1="32.85" y1="36.3" x2="33.68" y2="36.3" width="0.254" layer="16"/>
-<wire x1="33.68" y1="36.3" x2="34.4" y2="37.02" width="0.254" layer="16"/>
 <wire x1="32.85" y1="36.3" x2="32.85" y2="33.85" width="0.254" layer="16"/>
+<wire x1="35.56" y1="38.1" x2="34.65" y2="38.1" width="0.254" layer="16"/>
+<wire x1="34.65" y1="38.1" x2="32.85" y2="36.3" width="0.254" layer="16"/>
 </signal>
 <signal name="TEMP_2">
 <contactref element="R15" pad="1"/>
@@ -913,8 +914,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="20.615" y1="25.635" x2="26.95" y2="19.3" width="0.254" layer="1"/>
 <wire x1="26.95" y1="19.3" x2="26.95" y2="16.8962" width="0.254" layer="1"/>
 <wire x1="26.95" y1="16.8962" x2="24.1638" y2="14.11" width="0.254" layer="1"/>
-<wire x1="16.21" y1="25.27" x2="15.845" y2="25.635" width="0.254" layer="16"/>
-<wire x1="15.845" y1="25.635" x2="13.59" y2="25.635" width="0.254" layer="16"/>
+<wire x1="17.78" y1="25.4" x2="17.545" y2="25.635" width="0.254" layer="16"/>
+<wire x1="17.545" y1="25.635" x2="13.59" y2="25.635" width="0.254" layer="16"/>
 </signal>
 <signal name="TEMP_1">
 <contactref element="R9" pad="1"/>
@@ -931,8 +932,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="26.75" y1="40.9" x2="25.6" y2="42.05" width="0.254" layer="16"/>
 <via x="25.6" y="42.05" extent="1-16" drill="0.3"/>
 <wire x1="25.6" y1="42.05" x2="24.03" y2="42.05" width="0.254" layer="1"/>
-<wire x1="24.22" y1="43.52" x2="25.6" y2="42.14" width="0.254" layer="16"/>
 <wire x1="25.6" y1="42.14" x2="25.6" y2="42.05" width="0.254" layer="16"/>
+<wire x1="22.86" y1="45.72" x2="22.86" y2="44.79" width="0.254" layer="16"/>
+<wire x1="22.86" y1="44.79" x2="25.6" y2="42.05" width="0.254" layer="16"/>
 </signal>
 <signal name="+5V">
 <contactref element="U$1" pad="7"/>
