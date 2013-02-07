@@ -74,9 +74,9 @@
 <wire x1="54" y1="-6" x2="54" y2="56" width="0" layer="48" style="longdash"/>
 <wire x1="-6" y1="-6" x2="-6" y2="56" width="0" layer="48" style="longdash"/>
 <wire x1="-6" y1="56" x2="54" y2="56" width="0" layer="48" style="longdash"/>
-<text x="66.8" y="25.1" size="1.27" layer="1" font="vector" ratio="15">Power</text>
-<text x="67.2" y="30.4" size="1.016" layer="1" font="vector" ratio="15">20130116</text>
-<text x="67.6" y="22.3" size="1.27" layer="1" font="vector" ratio="15">Hexasense</text>
+<text x="49.1" y="44.95" size="1.016" layer="1" font="vector" ratio="15" rot="R180">20130207</text>
+<text x="49.1" y="49.1" size="1.27" layer="1" font="vector" ratio="15" rot="R180">Hexasense
+Power</text>
 <hole x="5" y="45" drill="4"/>
 <hole x="45" y="5" drill="4"/>
 <dimension x1="0" y1="50" x2="50" y2="50" x3="25" y3="60" textsize="1.778" layer="48"/>
@@ -956,4 +956,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </signals>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
