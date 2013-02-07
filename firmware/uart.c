@@ -204,7 +204,23 @@ LICENSE:
  #define UART0_CONTROL  UCSR0B
  #define UART0_DATA     UDR0
  #define UART0_UDRIE    UDRIE0
-#elif defined(__AVR_ATmega164P__) || defined(__AVR_ATmega324P__) || defined(__AVR_ATmega644P__)
+#elif defined(__AVR_ATmega164P__) || defined(__AVR_ATmega324P__) || defined(__AVR_ATmega644P__) 
+ /* ATmega with two USART */
+ #define ATMEGA_USART0
+ #define ATMEGA_USART1
+ #define UART0_RECEIVE_INTERRUPT   USART0_RX_vect
+ #define UART1_RECEIVE_INTERRUPT   USART1_RX_vect
+ #define UART0_TRANSMIT_INTERRUPT  USART0_UDRE_vect
+ #define UART1_TRANSMIT_INTERRUPT  USART1_UDRE_vect
+ #define UART0_STATUS   UCSR0A
+ #define UART0_CONTROL  UCSR0B
+ #define UART0_DATA     UDR0
+ #define UART0_UDRIE    UDRIE0
+ #define UART1_STATUS   UCSR1A
+ #define UART1_CONTROL  UCSR1B
+ #define UART1_DATA     UDR1
+ #define UART1_UDRIE    UDRIE1
+#elif defined(__AVR_ATmega1284P__)
  /* ATmega with two USART */
  #define ATMEGA_USART0
  #define ATMEGA_USART1
