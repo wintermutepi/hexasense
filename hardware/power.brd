@@ -74,7 +74,7 @@
 <wire x1="54" y1="-6" x2="54" y2="56" width="0" layer="48" style="longdash"/>
 <wire x1="-6" y1="-6" x2="-6" y2="56" width="0" layer="48" style="longdash"/>
 <wire x1="-6" y1="56" x2="54" y2="56" width="0" layer="48" style="longdash"/>
-<text x="49.1" y="44.95" size="1.016" layer="1" font="vector" ratio="15" rot="R180">20130207</text>
+<text x="49.1" y="44.95" size="1.016" layer="1" font="vector" ratio="15" rot="R180">20130218</text>
 <text x="49.1" y="49.1" size="1.27" layer="1" font="vector" ratio="15" rot="R180">Hexasense
 Power</text>
 <hole x="5" y="45" drill="4"/>
@@ -638,8 +638,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <element name="C2" library="rcl" package="C0805" value="10uF" x="39" y="7" smashed="yes" rot="R270">
 <attribute name="NAME" x="40.27" y="8.27" size="1.27" layer="25" rot="R270"/>
 </element>
-<element name="C1" library="rcl" package="C0805" value="10uF" x="33" y="3" smashed="yes" rot="R180">
-<attribute name="NAME" x="34.27" y="1.73" size="1.27" layer="25" rot="R180"/>
+<element name="C1" library="rcl" package="C0805" value="10uF" x="36.2" y="19.9" smashed="yes" rot="R90">
+<attribute name="NAME" x="34.93" y="18.63" size="1.27" layer="25" rot="R90"/>
 </element>
 <element name="OFFSET-1" library="testpad" package="P1-13" value="TPPAD1-13" x="10.16" y="35.56" smashed="yes" rot="MR0">
 <attribute name="TP_SIGNAL_NAME" value="" x="10.795" y="33.655" size="1" layer="38" rot="MR0"/>
@@ -743,6 +743,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="C1" pad="2"/>
 <via x="22.3" y="11.15" extent="1-16" drill="0.3"/>
 <via x="26.95" y="35" extent="1-16" drill="0.3"/>
+<contactref element="U3" pad="1"/>
 </signal>
 <signal name="N$11">
 <contactref element="R9" pad="2"/>
@@ -1006,18 +1007,15 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="U$1" pad="7"/>
 <contactref element="U3" pad="3"/>
 <contactref element="U$2" pad="I"/>
-<wire x1="36.2004" y1="10.3114" x2="36.2004" y2="10.7004" width="0.3048" layer="1"/>
-<wire x1="36.2004" y1="10.7004" x2="40" y2="14.5" width="0.3048" layer="1"/>
 <wire x1="11.05" y1="21.825" x2="11.05" y2="15" width="0.254" layer="16"/>
 <wire x1="11.05" y1="15" x2="18.7" y2="7.35" width="0.254" layer="16"/>
 <wire x1="18.7" y1="7.35" x2="32.85" y2="7.35" width="0.254" layer="16"/>
 <wire x1="32.85" y1="7.35" x2="40" y2="14.5" width="0.254" layer="16"/>
-</signal>
-<signal name="N$15">
-<contactref element="U3" pad="1"/>
 <contactref element="C1" pad="1"/>
-<wire x1="33.95" y1="3" x2="36.2004" y2="5.2504" width="0.254" layer="1"/>
-<wire x1="36.2004" y1="5.2504" x2="36.2004" y2="5.6886" width="0.254" layer="1"/>
+<wire x1="36.2" y1="18.95" x2="36.2" y2="18.3" width="0.254" layer="1"/>
+<wire x1="36.2" y1="18.3" x2="40" y2="14.5" width="0.254" layer="1"/>
+<wire x1="36.2004" y1="10.3114" x2="36.2004" y2="10.7004" width="0.254" layer="1"/>
+<wire x1="36.2004" y1="10.7004" x2="40" y2="14.5" width="0.254" layer="1"/>
 </signal>
 </signals>
 </board>
