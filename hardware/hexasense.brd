@@ -574,10 +574,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="NAME" x="19.755" y="5.9534" size="1.27" layer="25" ratio="10"/>
 </element>
 <element name="LED8" library="led" package="LED5MM" value="GREEN" x="83.8" y="48.4" smashed="yes" rot="R90">
-<attribute name="NAME" x="86.595" y="56.2634" size="1.27" layer="25" ratio="10"/>
+<attribute name="NAME" x="86.795" y="45.7634" size="1.27" layer="25" ratio="10"/>
 </element>
 <element name="LED9" library="led" package="LED5MM" value="BLUE" x="83.8" y="53.9" smashed="yes" rot="R270">
-<attribute name="NAME" x="86.745" y="45.4734" size="1.27" layer="25" ratio="10"/>
+<attribute name="NAME" x="87.145" y="55.7734" size="1.27" layer="25" ratio="10"/>
 </element>
 <element name="U$3" library="philips" package="SO24" value="PCA9532D" x="64.2" y="11" smashed="yes" rot="R90"/>
 <element name="S1" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="20" y="31" smashed="yes">
