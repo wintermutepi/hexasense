@@ -127,7 +127,7 @@ void read_digital_sensors(void) {
 	  uart_puts(buffer);        // and transmit string to UART
 #ifndef STRESS_TEST
 	  uart_puts_P("\r\n");
-	  uart_puts_P("Dewpoint based on HYT271 sensor:\r\n");
+	  uart_puts_P("Dewpoint based on HYT271 sensor: ");
 #else
 	  uart_puts_P(";");
 #endif
