@@ -102,12 +102,23 @@ void read_digital_sensors(void) {
 }
 
 void read_analog_sensor(void) {
-  float temperature=temperature_adc(); // convert from adc value to temperaure 
+  float temperature1=temperature_adc(0); // convert from adc value to temperaure 
+  float temperature2=temperature_adc(4); // convert from adc value to temperaure 
 #ifndef STRESS_TEST
-  uart_puts_P("Temperature from ADC: ");
+  uart_puts_P("Temperature from ADC0: ");
 #endif
   char temperature_string_buffer[10];
-  dtostrf(temperature, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC4: ");
+#endif
+  dtostrf(temperature2, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
 #ifndef STRESS_TEST
   uart_puts_P("\r\n");
