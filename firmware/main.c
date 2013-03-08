@@ -57,54 +57,6 @@ void init(void) {
 
 void read_digital_sensors(void) {
   char buffer[7];
-  uint8_t temp1; 
-  float temp2;
-#ifndef STRESS_TEST
-  uart_puts_P("DHT22 sensor:\r\n");
-#endif
-  DHT22_ERROR_t errorCode = read_dht22( &temp1, &temp2 ); 
-  switch(errorCode) { 
-	case DHT_ERROR_NONE: 
-#ifndef STRESS_TEST
-	  uart_puts_P("Temperature: ");
-#endif
-	  dtostrf(temp2, 5, 2, buffer);   // convert interger into string (decimal format)         
-	  uart_puts(buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
-	  uart_puts_P("\r\nHumidity: ");
-#else
-	  uart_puts_P(";");
-#endif
-	  itoa(temp1, buffer, 10);   // convert interger into string (decimal format)         
-	  uart_puts(buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
-	  uart_puts_P("\r\n");
-#else
-	  uart_puts_P(";");
-#endif
-	  break; 
-	case DHT_BUS_HUNG:
-	  uart_puts_P("Bus hung error reading DHT22 sensor.\r\n");
-	  break;
-	case  DHT_ERROR_NOT_PRESENT:
-	  uart_puts_P("Error reading DHT22 sensor: sensor not present.\r\n");
-	  break;
-	case  DHT_ERROR_ACK_TOO_LONG:
-	  uart_puts_P("Error reading DHT22 sensor: ACK takes too long.\r\n");
-	  break;
-	case  DHT_ERROR_SYNC_TIMEOUT:
-	  uart_puts_P("Error reading DHT22 sensor: Sync timeout.\r\n");
-	  break;
-	case  DHT_ERROR_DATA_TIMEOUT:
-	  uart_puts_P("Error reading DHT22 sensor: Data timeout.\r\n");
-	  break;
-	case  DHT_ERROR_CHECKSUM:
-	  uart_puts_P("Error reading DHT22 sensor: Checksum invalid.\r\n");
-	  break;
-	default:
-	  uart_puts_P("Unknown error reading DHT22 sensor.\r\n");
-	  break;
-  }
 #ifndef STRESS_TEST
   uart_puts_P("HYT271 sensor:\r\n");
 #endif
@@ -150,12 +102,23 @@ void read_digital_sensors(void) {
 }
 
 void read_analog_sensor(void) {
-  float temperature=temperature_adc(); // convert from adc value to temperaure 
+  float temperature1=temperature_adc(0); // convert from adc value to temperaure 
+  float temperature2=temperature_adc(4); // convert from adc value to temperaure 
 #ifndef STRESS_TEST
-  uart_puts_P("Temperature from ADC: ");
+  uart_puts_P("Temperature from ADC0: ");
 #endif
   char temperature_string_buffer[10];
-  dtostrf(temperature, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC4: ");
+#endif
+  dtostrf(temperature2, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
 #ifndef STRESS_TEST
   uart_puts_P("\r\n");
