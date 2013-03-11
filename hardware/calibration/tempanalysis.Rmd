@@ -1,0 +1,86 @@
+Temperature sensor calibration
+========================================================
+
+
+```{r loaddata, cache=TRUE}
+foo=read.table("data/20130311.txt", sep=";");
+logdata=data.frame(
+  idx=c(1:length(foo$V1)),
+  t_hyt=foo$V1,
+  h_hyt=foo$V2,
+  t_an1=foo$V4,
+  t_an2=foo$V5
+  )
+mintemp=min(logdata$t_hyt, logdata$t_an1, logdata$t_an2)
+maxtemp=max(logdata$t_hyt, logdata$t_an1, logdata$t_an2)
+tmpframe=data.frame(logdata$t_an1, logdata$t_an2);
+t_mean_analog = rowMeans(tmpframe);
+```
+
+# Visual inspection of dataset
+
+```{r visual, dependson="loaddata", cache=TRUE, fig.width=7, fig.height=6}
+plot(logdata$idx, logdata$t_hyt, type="l", col=1, xlab="Index", 
+     ylab="Temperature [deg C]", ylim=c(mintemp, maxtemp));
+lines(logdata$idx, logdata$t_an1, type="l", col=2);
+lines(logdata$idx, logdata$t_an2, type="l", col=3);
+legend(3000, 26.2, c("HYT271", "Analog 1", "Analog 2"), col=c(1:3), lty=1)
+```
+
+```{r summary, dependson="loaddata"}
+summary(logdata)
+```
+
+# Fitting a linear model
+
+Assumption: The real temperature is the mean of the two analog temperature sensors.
+TODO: Ensure proper calibration of both sensors.
+
+```{r linmodel, dependson="loaddata", cache=TRUE}
+lm1 = lm(logdata$t_hyt ~ t_mean_analog)
+summary(lm1)
+plot(lm1)
+cat(paste("The offset of the linear model is ", lm1$coefficients[1]))
+```
+
+
+## Using loess to smoothen values.
+The t_mean_analog factor seems odd - this should be one. Hypothesis: The discretization of the sensor values interferes with the model. 
+
+```{r smooth, dependson="loaddata", cache=TRUE}
+loess_hyt=loess(logdata$t_hyt ~ logdata$idx, span=0.1)
+plot(logdata$idx, logdata$t_hyt, type="o", col=1, xlab="Index", 
+     ylab="Temperature [deg C]", ylim=c(mintemp, maxtemp), pch=19, cex=0.2);
+lines(logdata$idx, loess_hyt$fitted, type="l", col=3, cex=10);
+
+loess_analog=loess(t_mean_analog ~ logdata$idx, span=0.1)
+lines(logdata$idx, t_mean_analog, type="o", col=2, pch=19, cex=0.2);
+lines(logdata$idx, loess_analog$fitted, type="l", col=3, cex=2);
+legend(3000, 26.2, c("HYT271", "Analog Mean"), col=c(1:2), lty=1)
+lm3=lm(loess_hyt$fitted ~ loess_analog$fitted)
+summary(lm3)
+qqplot(logdata$t_hyt, t_mean_analog)
+abline(c(lm3$coeff[1], 1))
+```
+
+## FOo0
+
+```{r foo, dependson="loaddata"}
+s_t_hyt = sort(logdata$t_hyt)
+s_t_analog= sort(t_mean_analog)
+lm4=lm(s_t_hyt ~ s_t_analog)
+summary(lm4)
+qqplot(logdata$t_hyt, t_mean_analog)
+abline(c(abs(lm4$coeff[1]), 1))
+```
+
+## Using simpler median statistics 
+
+```{r median, dependson="loaddata", cache=TRUE}
+m_hyt=quantile(logdata$t_hyt, probs=0.5)
+m_analog=quantile(t_mean_analog, probs=0.5)
+offset = m_analog - m_hyt
+cat(paste("The offset between HYT and the mean analog sensor is ", offset))
+qqplot(logdata$t_hyt, t_mean_analog)
+abline(c(offset, 1))
+```
