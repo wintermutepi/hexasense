@@ -3,7 +3,7 @@ Temperature sensor calibration
 
 
 ```{r loaddata, cache=TRUE}
-foo=read.table("data/20130311.txt", sep=";");
+foo=read.table("data/20130311-no-lights.txt", sep=";");
 logdata=data.frame(
   idx=c(1:length(foo$V1)),
   t_hyt=foo$V1,
