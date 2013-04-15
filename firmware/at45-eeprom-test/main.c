@@ -6,7 +6,6 @@
 #include <avr/pgmspace.h>
 
 #include "uart.h"
-#include "i2cmaster.h"
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
 #ifndef F_CPU
@@ -31,7 +30,6 @@ void init(void) {
   sei();
 
   uart_puts_P("HexaSense prototype startup\n\r");
-  i2c_init();
 }
 int main(void)
 {
