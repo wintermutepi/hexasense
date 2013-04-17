@@ -349,6 +349,62 @@
 </package>
 </packages>
 </library>
+<library name="atmel">
+<description>&lt;b&gt;AVR Devices&lt;/b&gt;&lt;p&gt;
+Configurable logic, microcontrollers, nonvolatile memories&lt;p&gt;
+Based on the following sources:&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;www.atmel.com
+&lt;li&gt;CD-ROM : Configurable Logic Microcontroller Nonvolatile Memory
+&lt;li&gt;CadSoft download site, www.cadsoft.de or www.cadsoftusa.com , file at90smcu_v400.zip
+&lt;li&gt;avr.lbr
+&lt;/ul&gt;
+&lt;author&gt;Revised by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="8S2">
+<description>&lt;b&gt;8S2&lt;/b&gt; 8-lead, 0.208 Body&lt;p&gt;
+Plastic Small Outline Package (EIAJ)&lt;br&gt;
+Source: http://www.atmel.com/dyn/resources/prod_documents/2535S.pdf</description>
+<wire x1="-2.6" y1="2.65" x2="-2.35" y2="2.9" width="0.1524" layer="21" curve="-90"/>
+<wire x1="2.35" y1="2.9" x2="2.6" y2="2.65" width="0.1524" layer="21" curve="-90"/>
+<wire x1="2.35" y1="-2.925" x2="2.6" y2="-2.675" width="0.1524" layer="21" curve="90"/>
+<wire x1="-2.6" y1="-2.675" x2="-2.35" y2="-2.925" width="0.1524" layer="21" curve="90"/>
+<wire x1="2.36" y1="-2.925" x2="-2.34" y2="-2.925" width="0.1524" layer="51"/>
+<wire x1="-2.34" y1="2.9" x2="2.36" y2="2.9" width="0.1524" layer="51"/>
+<wire x1="-2.21" y1="2.9" x2="-2.34" y2="2.9" width="0.1524" layer="21"/>
+<wire x1="-1.59" y1="2.9" x2="-0.95" y2="2.9" width="0.1524" layer="21"/>
+<wire x1="-0.32" y1="2.9" x2="0.32" y2="2.9" width="0.1524" layer="21"/>
+<wire x1="0.95" y1="2.9" x2="1.59" y2="2.9" width="0.1524" layer="21"/>
+<wire x1="2.21" y1="2.9" x2="2.36" y2="2.9" width="0.1524" layer="21"/>
+<wire x1="2.2" y1="-2.925" x2="2.33" y2="-2.925" width="0.1524" layer="21"/>
+<wire x1="1.59" y1="-2.925" x2="0.94" y2="-2.925" width="0.1524" layer="21"/>
+<wire x1="0.32" y1="-2.925" x2="-0.33" y2="-2.925" width="0.1524" layer="21"/>
+<wire x1="-0.95" y1="-2.925" x2="-1.59" y2="-2.925" width="0.1524" layer="21"/>
+<wire x1="-2.21" y1="-2.925" x2="-2.34" y2="-2.925" width="0.1524" layer="21"/>
+<wire x1="-2.6" y1="2.65" x2="-2.6" y2="-2.665" width="0.1524" layer="21"/>
+<wire x1="2.6" y1="-2.675" x2="2.6" y2="2.65" width="0.1524" layer="21"/>
+<circle x="-1.42" y="-1.115" radius="0.5" width="0.0508" layer="21"/>
+<smd name="1" x="-1.905" y="-3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="2" x="-0.645" y="-3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="3" x="0.625" y="-3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="4" x="1.895" y="-3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="8" x="-1.905" y="3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="7" x="-0.635" y="3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="6" x="0.635" y="3.404" dx="0.5" dy="1.4" layer="1"/>
+<smd name="5" x="1.905" y="3.404" dx="0.5" dy="1.4" layer="1"/>
+<text x="-2.8575" y="-2.159" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="4.064" y="-2.159" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<rectangle x1="-2.08" y1="2.95" x2="-1.73" y2="3.85" layer="51"/>
+<rectangle x1="-0.81" y1="2.95" x2="-0.46" y2="3.85" layer="51"/>
+<rectangle x1="0.46" y1="2.95" x2="0.81" y2="3.85" layer="51"/>
+<rectangle x1="1.73" y1="2.95" x2="2.08" y2="3.85" layer="51"/>
+<rectangle x1="1.72" y1="-3.85" x2="2.07" y2="-2.95" layer="51"/>
+<rectangle x1="0.45" y1="-3.85" x2="0.8" y2="-2.95" layer="51"/>
+<rectangle x1="-0.82" y1="-3.85" x2="-0.47" y2="-2.95" layer="51"/>
+<rectangle x1="-2.08" y1="-3.85" x2="-1.73" y2="-2.95" layer="51"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -567,6 +623,11 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="NAME" x="7.39" y="46.34" size="1.27" layer="25" rot="R270"/>
 </element>
 <element name="JP1" library="pinhead" package="2X07" value="" x="50" y="31" rot="R90"/>
+<element name="IC1" library="atmel" package="8S2" value="AT45DB161D-SU" x="-10.6" y="4.1">
+<attribute name="MPN" value="AT45DB161D-SU" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="ATMEL" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
+<attribute name="OC_FARNELL" value="1455040" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -602,6 +663,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="S3" pad="4"/>
 <contactref element="S4" pad="4"/>
 <contactref element="JP1" pad="1"/>
+<contactref element="IC1" pad="7"/>
 <wire x1="65.1" y1="54.15" x2="91.095" y2="31.03" width="0" layer="19" extent="1-16"/>
 <wire x1="55.1" y1="54.15" x2="65.1" y2="54.15" width="0" layer="19" extent="1-1"/>
 <wire x1="41.1" y1="46.905" x2="55.1" y2="54.15" width="0" layer="19" extent="1-16"/>
@@ -621,6 +683,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="51.27" y1="23.38" x2="33.89" y2="22.695" width="0" layer="19" extent="1-1"/>
 <wire x1="55.4" y1="3.35" x2="37.97" y2="3.25" width="0" layer="19" extent="1-1"/>
 <wire x1="65.4" y1="3.35" x2="55.4" y2="3.35" width="0" layer="19" extent="1-1"/>
+<wire x1="-11.235" y1="7.504" x2="12.1" y2="7.35" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="U$1" pad="1"/>
@@ -630,12 +693,18 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="U$7" pad="VDD"/>
 <contactref element="C1" pad="1"/>
 <contactref element="JP1" pad="2"/>
+<contactref element="IC1" pad="6"/>
+<contactref element="IC1" pad="3"/>
+<contactref element="IC1" pad="5"/>
 <wire x1="48.73" y1="23.38" x2="89.825" y2="31.03" width="0" layer="19" extent="16-16"/>
 <wire x1="37.97" y1="18.49" x2="48.73" y2="23.38" width="0" layer="19" extent="1-1"/>
 <wire x1="31.35" y1="13.805" x2="37.97" y2="18.49" width="0" layer="19" extent="1-1"/>
 <wire x1="41.1" y1="48.175" x2="48.73" y2="23.38" width="0" layer="19" extent="16-16"/>
 <wire x1="5.99" y1="48.165" x2="41.1" y2="48.175" width="0" layer="19" extent="16-16"/>
 <wire x1="6.26" y1="43.79" x2="5.99" y2="48.165" width="0" layer="19" extent="1-16"/>
+<wire x1="-8.695" y1="7.504" x2="6.26" y2="43.79" width="0" layer="19" extent="1-1"/>
+<wire x1="-9.965" y1="7.504" x2="-8.695" y2="7.504" width="0" layer="19" extent="1-1"/>
+<wire x1="-9.975" y1="0.696" x2="-9.965" y2="7.504" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TEMP_1">
 <contactref element="U$1" pad="3"/>
@@ -705,9 +774,13 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </signal>
 <signal name="SCK">
 <contactref element="JP1" pad="3"/>
+<contactref element="IC1" pad="2"/>
+<wire x1="-11.245" y1="0.696" x2="51.27" y2="25.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MISO">
 <contactref element="JP1" pad="5"/>
+<contactref element="IC1" pad="8"/>
+<wire x1="-12.505" y1="7.504" x2="51.27" y2="28.46" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BUSY">
 <contactref element="JP1" pad="7"/>
@@ -720,6 +793,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </signal>
 <signal name="MOSI">
 <contactref element="JP1" pad="4"/>
+<contactref element="IC1" pad="1"/>
+<wire x1="-12.505" y1="0.696" x2="48.73" y2="25.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="EPD-CSEL">
 <contactref element="JP1" pad="6"/>
@@ -729,6 +804,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 </signal>
 <signal name="DISCHARGE">
 <contactref element="JP1" pad="14"/>
+</signal>
+<signal name="CS">
+<contactref element="IC1" pad="4"/>
 </signal>
 </signals>
 </board>
