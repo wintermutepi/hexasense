@@ -44,6 +44,16 @@ void at45_init(void) {
   SPSR &= ~(1<<SPI2X); 
 } 
 
+void at45_erase_all_pages(void) {
+  at45_select(); 
+  at45_rw(0xc7); 
+  at45_rw(0x94); 
+  at45_rw(0x80); 
+  at45_rw(0x9a); 
+  at45_release(); 
+}
+
+
 // what's our status? 
 uint8_t at45_status(void) { 
   uint8_t result; 
