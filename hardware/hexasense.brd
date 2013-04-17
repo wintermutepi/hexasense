@@ -623,10 +623,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="NAME" x="7.39" y="46.34" size="1.27" layer="25" rot="R270"/>
 </element>
 <element name="JP1" library="pinhead" package="2X07" value="" x="50" y="31" rot="R90"/>
-<element name="IC1" library="atmel" package="8S2" value="AT45DB161D-SU" x="-10.6" y="4.1">
-<attribute name="MPN" value="AT45DB161D-SU" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="ATMEL" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
-<attribute name="OC_FARNELL" value="1455040" x="-10.6" y="4.1" size="1.778" layer="27" display="off"/>
+<element name="IC1" library="atmel" package="8S2" value="AT45DB161D-SU" x="59.2" y="25.7" rot="R270">
+<attribute name="MPN" value="AT45DB161D-SU" x="59.2" y="25.7" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="ATMEL" x="59.2" y="25.7" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="OC_FARNELL" value="1455040" x="59.2" y="25.7" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 </elements>
 <signals>
@@ -683,7 +683,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="51.27" y1="23.38" x2="33.89" y2="22.695" width="0" layer="19" extent="1-1"/>
 <wire x1="55.4" y1="3.35" x2="37.97" y2="3.25" width="0" layer="19" extent="1-1"/>
 <wire x1="65.4" y1="3.35" x2="55.4" y2="3.35" width="0" layer="19" extent="1-1"/>
-<wire x1="-11.235" y1="7.504" x2="12.1" y2="7.35" width="0" layer="19" extent="1-1"/>
+<wire x1="62.604" y1="26.335" x2="12.1" y2="7.35" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="U$1" pad="1"/>
@@ -702,9 +702,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="41.1" y1="48.175" x2="48.73" y2="23.38" width="0" layer="19" extent="16-16"/>
 <wire x1="5.99" y1="48.165" x2="41.1" y2="48.175" width="0" layer="19" extent="16-16"/>
 <wire x1="6.26" y1="43.79" x2="5.99" y2="48.165" width="0" layer="19" extent="1-16"/>
-<wire x1="-8.695" y1="7.504" x2="6.26" y2="43.79" width="0" layer="19" extent="1-1"/>
-<wire x1="-9.965" y1="7.504" x2="-8.695" y2="7.504" width="0" layer="19" extent="1-1"/>
-<wire x1="-9.975" y1="0.696" x2="-9.965" y2="7.504" width="0" layer="19" extent="1-1"/>
+<wire x1="62.604" y1="23.795" x2="6.26" y2="43.79" width="0" layer="19" extent="1-1"/>
+<wire x1="62.604" y1="25.065" x2="62.604" y2="23.795" width="0" layer="19" extent="1-1"/>
+<wire x1="55.796" y1="25.075" x2="62.604" y2="25.065" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TEMP_1">
 <contactref element="U$1" pad="3"/>
@@ -775,12 +775,12 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <signal name="SCK">
 <contactref element="JP1" pad="3"/>
 <contactref element="IC1" pad="2"/>
-<wire x1="-11.245" y1="0.696" x2="51.27" y2="25.92" width="0" layer="19" extent="1-1"/>
+<wire x1="55.796" y1="26.345" x2="51.27" y2="25.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MISO">
 <contactref element="JP1" pad="5"/>
 <contactref element="IC1" pad="8"/>
-<wire x1="-12.505" y1="7.504" x2="51.27" y2="28.46" width="0" layer="19" extent="1-1"/>
+<wire x1="62.604" y1="27.605" x2="51.27" y2="28.46" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BUSY">
 <contactref element="JP1" pad="7"/>
@@ -794,7 +794,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <signal name="MOSI">
 <contactref element="JP1" pad="4"/>
 <contactref element="IC1" pad="1"/>
-<wire x1="-12.505" y1="0.696" x2="48.73" y2="25.92" width="0" layer="19" extent="1-1"/>
+<wire x1="55.796" y1="27.605" x2="48.73" y2="25.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="EPD-CSEL">
 <contactref element="JP1" pad="6"/>
