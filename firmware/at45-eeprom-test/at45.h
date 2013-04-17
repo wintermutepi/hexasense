@@ -13,6 +13,7 @@
 #define AT45_BUFFER_SIZE 512
 
 void at45_init(void);
+void at45_erase_all_pages(void);
 uint8_t at45_status(void); 
 uint8_t at45_is_ready(void);
 uint8_t at45_read_page_to_buf_1(uint32_t addr_page);
