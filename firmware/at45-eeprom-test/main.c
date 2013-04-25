@@ -13,6 +13,13 @@
 #include "spi.h"
 #include "timer.h"
 
+PROGMEM const
+#define unsigned
+#define char prog_uint8_t
+#include "cat_2_7.xbm"
+#undef char
+#undef unsigned
+
 /* define CPU frequency in Mhz here if not defined in Makefile */
 #ifndef F_CPU
 #define F_CPU 16000000UL
@@ -74,13 +81,14 @@ int main(void)
       default:
       case 0:         // clear the screen
         epd27_clear();
-        state = 0;
+        ++state;
         break;
 
-        //  case 1:         // clear -> text
-        //    EPD.image(TEXT_BITS);
-        //    ++state;
-        //    break;
+      case 1:         // clear -> text
+        epd27_image_whitescreen(cat_2_7_bits);
+        //epd27_clear();
+        state=0;
+        break;
 
         //  case 2:         // text -> picture
         //    EPD.image(TEXT_BITS, PICTURE_BITS);
@@ -98,6 +106,9 @@ int main(void)
     timerticks = millis();
     char buffer[50];
     ultoa(timerticks, buffer, 10);
+    uart_puts(buffer);
+    uart_puts_P( "state: ");
+    itoa(state, buffer, 10);
     uart_puts(buffer);
     uart_puts_P("  loop.\r\n");
     _delay_ms(5000);
