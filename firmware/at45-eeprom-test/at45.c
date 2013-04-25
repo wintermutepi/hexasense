@@ -1,4 +1,5 @@
 #include "at45.h"
+#include "spi.h"
 #include <avr/io.h>
 
 // Command words from datasheet, p. 28ff.
@@ -19,30 +20,9 @@ void at45_release(void) {
 
 // at45db161d read/write 
 uint8_t at45_rw(uint8_t data) { 
-  SPDR = data; 
-  while (!(SPSR & 0x80)); 
-  return SPDR; 
+  return spi_rw(data);
 } 
 
-// initialisation of SPI towards the AT45 chip 
-void at45_init(void) __attribute__ ((optimize(1))); 
-
-void at45_init(void) { 
-  // Configure output pins.
-  AT45_PORT |= (1 << AT45_CS) | (1 << AT45_SCK); //| (1 << AT45_MOSI); 
-  AT45_DDR |= (1 << AT45_CS) | (1 << AT45_MOSI) | (1 << AT45_SCK); 
-  // Configure input pins.
-  //AT45_PORT |= (1 << AT45_MISO);
-  AT45_DDR &= ~(1 << AT45_MISO); 
-  // freq SPI CLK/2 
-
- // SPCR = (1<<SPE)|(1<<MSTR); 
- // SPSR |= (1<<SPI2X); 
-
- // set SPI rate = CLK/64 
-  SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR1); 
-  SPSR &= ~(1<<SPI2X); 
-} 
 
 void at45_erase_all_pages(void) {
   at45_select(); 
