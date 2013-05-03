@@ -17,6 +17,7 @@ PROGMEM const
 #define unsigned
 #define char prog_uint8_t
 #include "cat_2_7.xbm"
+#include "md_sensor1_2_7.xbm"
 #undef char
 #undef unsigned
 
@@ -84,21 +85,21 @@ int main(void)
         ++state;
         break;
 
-      case 1:         // clear -> text
+      case 1:       
         epd27_image_whitescreen(cat_2_7_bits);
         //epd27_clear();
-        state=0;
+        ++state;
         break;
 
-        //  case 2:         // text -> picture
-        //    EPD.image(TEXT_BITS, PICTURE_BITS);
-        //    ++state;
-        //    break;
+      case 2:       
+        epd27_image_transition(cat_2_7_bits, md_sensor1_2_7_bits);
+        ++state;
+        break;
 
-        //  case 3:        // picture -> text
-        //    EPD.image(PICTURE_BITS, TEXT_BITS);
-        //    state = 2;  // backe to picture nex time
-        //    break;
+      case 3:        
+        epd27_image_transition(md_sensor1_2_7_bits, cat_2_7_bits);
+        state=2;
+        break;
     }
     epd27_end();   // power down the EPD panel
 
