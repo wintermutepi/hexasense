@@ -393,6 +393,23 @@ Extended by Federico Battaglin &lt;author&gt;&amp;lt;federico.rd@fdpinternationa
 </package>
 </packages>
 </library>
+<library name="testpad">
+<description>&lt;b&gt;Test Pins/Pads&lt;/b&gt;&lt;p&gt;
+Cream on SMD OFF.&lt;br&gt;
+new: Attribute TP_SIGNAL_NAME&lt;br&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="B1,27">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<wire x1="-0.635" y1="0" x2="0.635" y2="0" width="0.0024" layer="37"/>
+<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.0024" layer="37"/>
+<smd name="TP" x="0" y="0" dx="1.27" dy="1.27" layer="1" roundness="100" cream="no"/>
+<text x="-0.635" y="1.016" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.635" y="-0.762" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="-0.635" y="-1.905" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -616,6 +633,30 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <element name="LED2" library="led" package="LED3MM" value="" x="56.6" y="58.9" rot="MR180"/>
 <element name="LED3" library="led" package="LED3MM" value="" x="10.6" y="59.1" rot="MR180"/>
 <element name="U$2" library="epaper" package="EPAPER" value="EPAPER" x="34" y="46"/>
+<element name="TP1" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-3.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-3.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP2" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-7.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-7.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP3" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-11.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-11.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP4" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-15.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-15.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP5" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-19.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-19.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP6" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-23.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-23.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP7" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-27.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-27.8" size="1.778" layer="27" display="off"/>
+</element>
+<element name="TP8" library="testpad" package="B1,27" value="TPB1,27" x="1" y="-31.8">
+<attribute name="TP_SIGNAL_NAME" value="" x="1" y="-31.8" size="1.778" layer="27" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -646,6 +687,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="11.49" y1="50.79" x2="11.49" y2="51.84" width="0.254" layer="1"/>
 <contactref element="U$2" pad="P1"/>
 <contactref element="U$2" pad="P1"/>
+<contactref element="TP7" pad="TP"/>
+<wire x1="8.15" y1="2.3" x2="1" y2="-27.8" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+3V3">
 <contactref element="U$1" pad="1"/>
@@ -693,6 +736,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <via x="58.7" y="15.2" extent="1-16" drill="0.3"/>
 <wire x1="58.7" y1="15.2" x2="58.7" y2="10.45" width="0.254" layer="1"/>
 <wire x1="58.7" y1="10.45" x2="58.75" y2="10.4" width="0.254" layer="1"/>
+<contactref element="TP5" pad="TP"/>
+<contactref element="TP6" pad="TP"/>
+<wire x1="1" y1="-19.8" x2="17.45" y2="33.15" width="0" layer="19" extent="1-16"/>
+<wire x1="1" y1="-23.8" x2="1" y2="-19.8" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TEMP_1">
 <contactref element="U$1" pad="3"/>
@@ -793,6 +840,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="31.11" y1="38.49" x2="31.11" y2="39.15" width="0.254" layer="16"/>
 <wire x1="44.16" y1="49.69" x2="45.31" y2="49.69" width="0.254" layer="1"/>
 <wire x1="45.31" y1="49.69" x2="49.505" y2="45.495" width="0.254" layer="1"/>
+<contactref element="TP8" pad="TP"/>
+<wire x1="1" y1="-31.8" x2="32.5" y2="37.1" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="MOSI">
 <contactref element="IC1" pad="1"/>
@@ -809,12 +858,16 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="41.62" y1="52.23" x2="39.33" y2="52.23" width="0.254" layer="16"/>
 <wire x1="39.33" y1="52.23" x2="33.65" y2="46.55" width="0.254" layer="16"/>
 <wire x1="33.65" y1="46.55" x2="33.65" y2="39.15" width="0.254" layer="16"/>
+<contactref element="TP1" pad="TP"/>
+<wire x1="1" y1="-3.8" x2="33.65" y2="39.15" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CS">
 <contactref element="IC1" pad="4"/>
 <contactref element="U$4" pad="PA7"/>
 <wire x1="57.204" y1="49.295" x2="59.05" y2="51.141" width="0.254" layer="1"/>
 <wire x1="59.05" y1="51.141" x2="59.05" y2="54.39" width="0.254" layer="1"/>
+<contactref element="TP4" pad="TP"/>
+<wire x1="1" y1="-15.8" x2="57.204" y2="49.295" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="R3" pad="1"/>
@@ -870,6 +923,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="51.5" y1="54.7" x2="49.1" y2="57.1" width="0.254" layer="16"/>
 <wire x1="49.1" y1="57.1" x2="23.66" y2="57.1" width="0.254" layer="16"/>
 <wire x1="23.66" y1="57.1" x2="20.95" y2="54.39" width="0.254" layer="16"/>
+<contactref element="TP3" pad="TP"/>
+<wire x1="1" y1="-11.8" x2="20.95" y2="54.39" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCLK">
 <contactref element="U$2" pad="P3"/>
@@ -885,6 +940,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <via x="51.2" y="52.7" extent="1-16" drill="0.3"/>
 <wire x1="51.2" y1="52.7" x2="44.63" y2="52.7" width="0.254" layer="16"/>
 <wire x1="44.63" y1="52.7" x2="44.16" y2="52.23" width="0.254" layer="16"/>
+<contactref element="TP2" pad="TP"/>
+<wire x1="1" y1="-7.8" x2="28.57" y2="39.15" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="BUSY">
 <contactref element="U$2" pad="P7"/>
