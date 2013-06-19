@@ -7846,13 +7846,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U$4" gate="G$1" pin="PA4"/>
 </segment>
 </net>
-<net name="DATA" class="0">
-<segment>
-<wire x1="53.34" y1="15.24" x2="60.96" y2="15.24" width="0.1524" layer="91"/>
-<label x="60.96" y="15.24" size="1.27" layer="95" xref="yes"/>
-<pinref part="U$4" gate="G$1" pin="PD3"/>
-</segment>
-</net>
 <net name="SDA" class="0">
 <segment>
 <wire x1="53.34" y1="20.32" x2="60.96" y2="20.32" width="0.1524" layer="91"/>
@@ -8116,6 +8109,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="195.58" y1="142.24" x2="193.04" y2="142.24" width="0.1524" layer="91"/>
 <label x="193.04" y="142.24" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U$4" gate="G$1" pin="PD3"/>
+<wire x1="53.34" y1="15.24" x2="60.96" y2="15.24" width="0.1524" layer="91"/>
+<label x="60.96" y="15.24" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="PWM" class="0">
 <segment>
@@ -8175,13 +8173,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U$4" gate="G$1" pin="PB0"/>
 <wire x1="27.94" y1="22.86" x2="20.32" y2="22.86" width="0.1524" layer="91"/>
 <label x="20.32" y="22.86" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="U$4" gate="G$1" pin="PB2"/>
-<wire x1="27.94" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
-<label x="20.32" y="17.78" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
