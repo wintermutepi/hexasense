@@ -111,14 +111,15 @@
 <wire x1="42" y1="14" x2="26" y2="14" width="2" layer="46"/>
 <wire x1="26" y1="14" x2="26" y2="0" width="2" layer="46"/>
 <text x="5.78" y="25.6" size="1.778" layer="1" font="vector" ratio="10" rot="SR90">HexaSense Display
-20130619</text>
-<hole x="63.3" y="59.2" drill="4"/>
+20130628</text>
 <hole x="63" y="4" drill="4"/>
 <hole x="4" y="4" drill="4"/>
 <hole x="4" y="58" drill="4"/>
 <hole x="4.5" y="20.5" drill="6"/>
 <text x="57.5" y="45" size="0.8128" layer="1" font="vector" ratio="20" rot="SR180">1</text>
 <rectangle x1="6" y1="26.3" x2="13.9" y2="49.5" layer="41"/>
+<hole x="54.9" y="30.8" drill="4"/>
+<rectangle x1="5.9" y1="26.3" x2="13.6" y2="49.3" layer="42"/>
 </plain>
 <libraries>
 <library name="Reichelt">
