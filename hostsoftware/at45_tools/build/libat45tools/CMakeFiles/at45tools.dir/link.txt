@@ -1,0 +1,2 @@
+/usr/bin/ar cr libat45tools.a  CMakeFiles/at45tools.dir/common.cpp.o CMakeFiles/at45tools.dir/buspirate.cpp.o
+/usr/bin/ranlib libat45tools.a
