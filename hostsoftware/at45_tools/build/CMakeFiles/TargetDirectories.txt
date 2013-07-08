@@ -1,2 +1,0 @@
-/home/md/Projects/hexasense/hostsoftware/at45_tools/build/src/CMakeFiles/at45_imguploader.dir
-/home/md/Projects/hexasense/hostsoftware/at45_tools/build/libat45tools/CMakeFiles/at45tools.dir
