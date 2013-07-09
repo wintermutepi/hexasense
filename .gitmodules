@@ -1,3 +1,6 @@
 [submodule "enclosure/mcad"]
 	path = enclosure/mcad
 	url = https://github.com/elmom/MCAD.git
+[submodule "firmware/at45_uploader/ruby-buspirate"]
+	path = firmware/at45_uploader/ruby-buspirate
+	url = https://github.com/profmaad/ruby-buspirate.git
