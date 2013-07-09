@@ -37,7 +37,7 @@
 
 
 # MCU name
-MCU = atmega328p
+MCU = atmega1284p
 
 
 # Processor frequency.
@@ -45,7 +45,7 @@ MCU = atmega328p
 #     processor frequency. You can then use this symbol in your source code to 
 #     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
 #     automatically to create a 32-bit value in your source code.
-F_CPU = 16000000
+F_CPU = 8000000
 
 
 # Output format. (can be srec, ihex, binary)
@@ -206,8 +206,8 @@ AVRDUDE_PORT = usb    # programmer connected to serial device
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
-#AVRDUDE_WRITE_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0x10:m -U efuse:w:0xff:m
-AVRDUDE_WRITE_FUSES =  -U lfuse:w:0xff:m -U hfuse:w:0xd9:m -U efuse:w:0x07:m
+AVRDUDE_WRITE_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0x10:m -U efuse:w:0xff:m
+
 
 
 # Uncomment the following if you want avrdude's erase cycle counter.

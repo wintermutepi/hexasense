@@ -3,12 +3,12 @@
 
 #include <stdint.h>
 
-#define AT45_PORT PORTB
-#define AT45_DDR DDRB
-#define AT45_CS PB2
-#define AT45_MOSI PB3
-#define AT45_MISO PB4
-#define AT45_SCK PB5
+#define AT45_PORT PORTA
+#define AT45_DDR DDRA
+#define AT45_CS PA7
+#define AT45_MOSI PB5
+#define AT45_MISO PB6
+#define AT45_SCK PB7
 
 #define AT45_BUFFER_SIZE 512
 
