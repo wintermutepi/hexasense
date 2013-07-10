@@ -14,6 +14,7 @@
 #include "timer.h"
 #include "hyt271.h"
 #include "i2cmaster.h"
+#include "dew_point.h"
 
 PROGMEM const
 #define unsigned
@@ -37,7 +38,7 @@ PROGMEM const
  * (2) stress-testing: for long-time hardware testing.
  * Define STRESS_TEST to select (2), (1) is default.
  */
-#define STRESS_TEST 0
+//#define STRESS_TEST 1
 
 void init(void) {
   /*
@@ -88,7 +89,7 @@ void read_digital_sensors(void) {
 #else
       uart_puts_P(";");
 #endif
-      //dp = dew_point(hyt271_temp, hyt271_hum);
+      dp = dew_point(hyt271_temp, hyt271_hum);
       itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
 #ifndef STRESS_TEST
