@@ -1,15 +1,14 @@
 #include "spi.h"
-#include <at45.h>
+#include <spi_conf.h>
 #include <avr/io.h>
 
 //void spi_init(void) __attribute__ ((optimize(1))); 
 void spi_init(void) {
-  // Configure output pins.
-  AT45_PORT |= (1 << AT45_CS) | (1 << AT45_SCK); //| (1 << AT45_MOSI); 
-  AT45_DDR |= (1 << AT45_CS) | (1 << AT45_MOSI) | (1 << AT45_SCK); 
-  // Configure input pins.
-  //AT45_PORT |= (1 << AT45_MISO);
-  AT45_DDR &= ~(1 << AT45_MISO); 
+  // Configure output pins. Chip select lines must be configured
+  // during peripheral configuration.
+  SPI_PORT |= (1 << SPI_SCK); 
+  SPI_DDR  |= (1 << SPI_MOSI) | (1 << SPI_SCK); 
+  SPI_DDR  &= ~(1 << SPI_MISO); 
 
   // GLOBAL SPI INIT
   // set SPI rate = CLK/64 
