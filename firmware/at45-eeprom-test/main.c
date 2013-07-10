@@ -23,7 +23,7 @@ PROGMEM const
 
 /* define CPU frequency in Mhz here if not defined in Makefile */
 #ifndef F_CPU
-#define F_CPU 16000000UL
+#define F_CPU 8000000UL
 #endif
 
 /* 9600 baud */
@@ -37,12 +37,13 @@ void init(void) {
    *  or 
    *  UART_BAUD_SELECT_DOUBLE_SPEED() ( double speed mode)
    */
-  uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) ); 
+  uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU)); 
   timer_init();
   /*
    * now enable interrupt, since UART library is interrupt controlled
    */
   sei();
+  uart_puts_P("\n\rHexaSense UART init complete.\n\r");
   spi_init();
   epd27_init();
 }
@@ -73,8 +74,8 @@ int main(void)
     //  PWM_start();
     //  enabled = true;
     //}
-    //uart_puts_P("Waiting for cog ready signal. ");
-    //epd27_wait_cog_ready();
+    uart_puts_P("Waiting for cog ready signal. ");
+    epd27_wait_cog_ready();
     epd27_begin(); // power up the EPD panel
     epd27_set_temperature(22); // adjust for current temperature
 

@@ -37,7 +37,7 @@
 
 
 # MCU name
-MCU = atmega328p
+MCU = atmega1284p
 
 
 # Processor frequency.
@@ -45,7 +45,7 @@ MCU = atmega328p
 #     processor frequency. You can then use this symbol in your source code to 
 #     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
 #     automatically to create a 32-bit value in your source code.
-F_CPU = 16000000
+F_CPU = 8000000
 
 
 # Output format. (can be srec, ihex, binary)
@@ -199,15 +199,15 @@ LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 # Type: avrdude -c ?
 # to get a full listing.
 #
-AVRDUDE_PROGRAMMER = usbasp
+DRAGON_AVRDUDE_PROGRAMMER = dragon_jtag
 
 # com1 = serial port. Use lpt1 to connect to parallel port.
-AVRDUDE_PORT = usb    # programmer connected to serial device
+DRAGON_AVRDUDE_PORT = usb    # programmer connected to serial device
 
-AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
+AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex -F
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
-#AVRDUDE_WRITE_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0x10:m -U efuse:w:0xff:m
-AVRDUDE_WRITE_FUSES =  -U lfuse:w:0xff:m -U hfuse:w:0xd9:m -U efuse:w:0x07:m
+AVRDUDE_WRITE_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0x10:m -U efuse:w:0xff:m -F
+#AVRDUDE_WRITE_FUSES =  -U lfuse:w:0xff:m -U hfuse:w:0xd9:m -U efuse:w:0x07:m
 
 
 # Uncomment the following if you want avrdude's erase cycle counter.
@@ -224,12 +224,41 @@ AVRDUDE_WRITE_FUSES =  -U lfuse:w:0xff:m -U hfuse:w:0xd9:m -U efuse:w:0x07:m
 # to submit bug reports.
 #AVRDUDE_VERBOSE = -v -v
 
-AVRDUDE_FLAGS = -p $(MCU) -c $(AVRDUDE_PROGRAMMER) 
-AVRDUDE_FLAGS += $(AVRDUDE_NO_VERIFY)
-AVRDUDE_FLAGS += $(AVRDUDE_VERBOSE)
-AVRDUDE_FLAGS += $(AVRDUDE_ERASE_COUNTER)
+DRAGON_AVRDUDE_FLAGS = -p $(MCU) -c $(DRAGON_AVRDUDE_PROGRAMMER) 
+DRAGON_AVRDUDE_FLAGS += $(DRAGON_AVRDUDE_NO_VERIFY) -P $(DRAGON_AVRDUDE_PORT)
+DRAGON_AVRDUDE_FLAGS += $(DRAGON_AVRDUDE_VERBOSE)
+DRAGON_AVRDUDE_FLAGS += $(DRAGON_AVRDUDE_ERASE_COUNTER)
+
+#
+JTAG2_AVRDUDE_PROGRAMMER = jtag2
+
+# com1 = serial port. Use lpt1 to connect to parallel port.
+JTAG2_AVRDUDE_PORT = usb    # programmer connected to serial device
+
+AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex -F
+#AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
+AVRDUDE_WRITE_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0x10:m -U efuse:w:0xff:m -F
+#AVRDUDE_WRITE_FUSES =  -U lfuse:w:0xff:m -U hfuse:w:0xd9:m -U efuse:w:0x07:m
 
 
+# Uncomment the following if you want avrdude's erase cycle counter.
+# Note that this counter needs to be initialized first using -Yn,
+# see avrdude manual.
+#AVRDUDE_ERASE_COUNTER = -y
+
+# Uncomment the following if you do /not/ wish a verification to be
+# performed after programming the device.
+#AVRDUDE_NO_VERIFY = -V
+
+# Increase verbosity level.  Please use this when submitting bug
+# reports about avrdude. See <http://savannah.nongnu.org/projects/avrdude> 
+# to submit bug reports.
+#AVRDUDE_VERBOSE = -v -v
+
+JTAG2_AVRDUDE_FLAGS = -p $(MCU) -c $(JTAG2_AVRDUDE_PROGRAMMER) 
+JTAG2_AVRDUDE_FLAGS += $(JTAG2_AVRDUDE_NO_VERIFY) -P $(JTAG2_AVRDUDE_PORT)
+JTAG2_AVRDUDE_FLAGS += $(JTAG2_AVRDUDE_VERBOSE)
+JTAG2_AVRDUDE_FLAGS += $(JTAG2_AVRDUDE_ERASE_COUNTER)
 
 #---------------- Debugging Options ----------------
 
@@ -363,12 +392,19 @@ gccversion :
 
 # Set the fuses (i.e. on pristine chips)
 fuses:
-	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FUSES)
+	$(AVRDUDE) $(JTAG2_AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FUSES)
 
 # Program the device.  
-program: $(TARGET).hex $(TARGET).eep
-	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+flash-jtag2: $(TARGET).hex $(TARGET).eep
+	$(AVRDUDE) $(JTAG2_AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
+# Program the device.  
+flash-usbasp: $(TARGET).hex $(TARGET).eep
+	$(AVRDUDE) $(USBASP_AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+
+# Program the device.  
+flash-dragon: $(TARGET).hex $(TARGET).eep
+	$(AVRDUDE) $(DRAGON_AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
 # Generate avr-gdb config/init file which does the following:
 #     define the reset signal, load the target file, connect to target, and set 
