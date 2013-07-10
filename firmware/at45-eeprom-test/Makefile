@@ -57,7 +57,7 @@ TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c timer.c uart.c at45.c at45_test.c epd27.c spi.c hyt271.c twimaster.c
+SRC = $(TARGET).c timer.c uart.c at45.c at45_test.c epd27.c spi.c hyt271.c twimaster.c dew_point.c
 
 
 # List Assembler source files here.
