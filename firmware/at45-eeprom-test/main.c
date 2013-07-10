@@ -12,6 +12,8 @@
 #include "epd27.h"
 #include "spi.h"
 #include "timer.h"
+#include "hyt271.h"
+#include "i2cmaster.h"
 
 PROGMEM const
 #define unsigned
@@ -28,6 +30,14 @@ PROGMEM const
 
 /* 9600 baud */
 #define UART_BAUD_RATE      9600      
+
+/**
+ * this firmware has two modi: 
+ * (1) button-triggered operation: meant for post-production testing
+ * (2) stress-testing: for long-time hardware testing.
+ * Define STRESS_TEST to select (2), (1) is default.
+ */
+#define STRESS_TEST 0
 
 void init(void) {
   /*
@@ -46,6 +56,54 @@ void init(void) {
   uart_puts_P("\n\rHexaSense UART init complete.\n\r");
   spi_init();
   epd27_init();
+  i2c_init();
+}
+
+void read_digital_sensors(void) {
+  char buffer[7];
+#ifndef STRESS_TEST
+  uart_puts_P("HYT271 sensor:\r\n");
+#endif
+  double hyt271_hum = 0.0;
+  double hyt271_temp = 0.0;
+  double dp = 0.0;
+  HYT271_ERROR_t error_code =  hyt271_get_measurements(&hyt271_hum, &hyt271_temp);
+  switch(error_code) {
+    case HYT271_ERROR_NONE:
+#ifndef STRESS_TEST
+      uart_puts_P("Temperature: ");
+#endif
+      dtostrf(hyt271_temp, 5, 2, buffer);   // convert interger into string (decimal format)         
+      uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+      uart_puts_P("\r\nHumidity: ");
+#else
+      uart_puts_P(";");
+#endif
+      itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
+      uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+      uart_puts_P("\r\n");
+      uart_puts_P("Dewpoint based on HYT271 sensor: ");
+#else
+      uart_puts_P(";");
+#endif
+      //dp = dew_point(hyt271_temp, hyt271_hum);
+      itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
+      uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+      uart_puts_P("\r\n");
+#else
+      uart_puts_P(";");
+#endif
+      break;
+    case HYT271_BUS_ERROR:
+      uart_puts_P("Bus error while reading HYT271 sensor.\r\n");
+      break;
+    default:
+      uart_puts_P("Unknown error reading HYT271 sensor.\r\n");
+      break;
+  }
 }
 
 int main(void)
@@ -113,6 +171,7 @@ int main(void)
     itoa(state, buffer, 10);
     uart_puts(buffer);
     uart_puts_P("  loop.\r\n");
+    read_digital_sensors();
     _delay_ms(5000);
   }
 }
