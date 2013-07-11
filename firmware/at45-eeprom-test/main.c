@@ -159,6 +159,11 @@ int main(void)
 
   // calibrate the analog sensors
   uart_puts_P("\n\r calibrate the analog sensors:\n\r");
+  uart_puts_P("Connect the -10 deg C resistor and turn the OFFSET-resistor\n\r");
+  uart_puts_P("until the voltmeter indicats 0V (+-50mV is sufficient).\n\r");
+  uart_puts_P("Then connect the 100 deg C resistor and turn the TEMP-resistor\n\r");
+  uart_puts_P("until the voltmeter indicats 1V (+-50mV is sufficient).\n\r");
+  uart_puts_P("Repeat these steps for the 2nd channel.\n\r");
   button_loop();
 
   // test the analog sensors
@@ -171,7 +176,8 @@ int main(void)
   button_loop();
 
   // if all is right, say so
-  uart_puts_P("all tests successful! The device may now be flashed with the production firmware.\n\r");
+  uart_puts_P("all tests successful! \n\r");
+  uart_puts_P("The device may now be flashed with the production firmware.\n\r");
 }
 
 
