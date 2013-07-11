@@ -63,6 +63,7 @@ void init(void) {
   epd27_init();
   i2c_init();
   adc_init();
+  button_init();
 }
 
 void read_digital_sensors(void) {
