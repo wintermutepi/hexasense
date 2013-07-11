@@ -33,10 +33,15 @@
 /**
  * HYT271 I2C bus definitions
  */
-
 #define HYT271_ADDR (0x28 << 1)
 #define HYT271_CONV_DELAY 6
 #define HYT271_BUFFER_LEN 4
+
+/**
+ * analog temperature sensors and respective adc channel
+ */
+#define ANALOG_TEMPERATURE_0 0
+#define ANALOG_TEMPERATURE_1 4
 
 #endif /* HW_CONFIG_H */
 

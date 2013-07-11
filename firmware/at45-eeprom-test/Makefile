@@ -57,8 +57,8 @@ TARGET = main
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c timer.c uart.c at45.c at45_test.c epd27.c spi.c hyt271.c twimaster.c dew_point.c
-
+SRC = $(TARGET).c timer.c uart.c at45.c at45_test.c epd27.c spi.c hyt271.c 
+SRC += twimaster.c dew_point.c adc_temp_conversion.c adc.c
 
 # List Assembler source files here.
 #     Make them always end in a capital .S.  Files ending in a lowercase .s

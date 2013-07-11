@@ -15,6 +15,8 @@
 #include "hyt271.h"
 #include "i2cmaster.h"
 #include "dew_point.h"
+#include "hw_config.h"
+#include "adc_temp_conversion.h"
 
 PROGMEM const
 #define unsigned
@@ -106,6 +108,38 @@ void read_digital_sensors(void) {
       break;
   }
 }
+
+
+void read_analog_sensor(void) {
+  float temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
+  float temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC0: ");
+#endif
+  char temperature_string_buffer[10];
+  dtostrf(temperature0, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC4: ");
+#endif
+  dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+  uart_puts_P(";");
+#endif
+}
+
+
+
+
+
 
 int main(void)
 {
