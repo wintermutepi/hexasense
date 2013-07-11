@@ -34,15 +34,7 @@ PROGMEM const
 #endif
 
 /* 9600 baud */
-#define UART_BAUD_RATE      9600      
-
-/**
- * this firmware has two modi: 
- * (1) button-triggered operation: meant for post-production testing
- * (2) stress-testing: for long-time hardware testing.
- * Define STRESS_TEST to select (2), (1) is default.
- */
-//#define STRESS_TEST 1
+#define UART_BAUD_RATE 9600      
 
 void init(void) {
   /*
@@ -54,55 +46,38 @@ void init(void) {
    */
   uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU)); 
   timer_init();
-  /*
-   * now enable interrupt, since UART library is interrupt controlled
-   */
-  sei();
-  uart_puts_P("\n\rHexaSense UART init complete.\n\r");
   spi_init();
   epd27_init();
   i2c_init();
   adc_init();
   button_init();
+  /*
+   * now enable interrupt, since UART library is interrupt controlled
+   */
+  sei();
 }
 
 void read_digital_sensors(void) {
   char buffer[7];
-#ifndef STRESS_TEST
-  uart_puts_P("HYT271 sensor:\r\n");
-#endif
+  uart_puts_P("HYT271 sensor\r\n");
   double hyt271_hum = 0.0;
   double hyt271_temp = 0.0;
   double dp = 0.0;
   HYT271_ERROR_t error_code =  hyt271_get_measurements(&hyt271_hum, &hyt271_temp);
   switch(error_code) {
     case HYT271_ERROR_NONE:
-#ifndef STRESS_TEST
       uart_puts_P("Temperature: ");
-#endif
       dtostrf(hyt271_temp, 5, 2, buffer);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
       uart_puts_P("\r\nHumidity: ");
-#else
-      uart_puts_P(";");
-#endif
       itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
       uart_puts_P("\r\n");
       uart_puts_P("Dewpoint based on HYT271 sensor: ");
-#else
-      uart_puts_P(";");
-#endif
       dp = dew_point(hyt271_temp, hyt271_hum);
       itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
       uart_puts(buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
       uart_puts_P("\r\n");
-#else
-      uart_puts_P(";");
-#endif
       break;
     case HYT271_BUS_ERROR:
       uart_puts_P("Bus error while reading HYT271 sensor.\r\n");
@@ -119,27 +94,15 @@ void read_analog_sensors(void) {
   float temperature1 = 0.0; 
   temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
   temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
-#ifndef STRESS_TEST
   uart_puts_P("Temperature from ADC0: ");
-#endif
   char temperature_string_buffer[10];
   dtostrf(temperature0, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
   uart_puts_P("\r\n");
-#else
-	  uart_puts_P(";");
-#endif
-#ifndef STRESS_TEST
   uart_puts_P("Temperature from ADC4: ");
-#endif
   dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
-#ifndef STRESS_TEST
   uart_puts_P("\r\n");
-#else
-  uart_puts_P(";");
-#endif
 }
 
 
@@ -161,10 +124,56 @@ void button_loop(void) {
 int main(void)
 {
   init();
-  uint8_t state = 0;
-  uint32_t timerticks;
 
-  uart_puts_P("\n\rHexaSense prototype startup completed.\n\r");
+  uart_puts_P("\n\r HEXASENSE BRINGUP FIRMWARE\n\r");
+  uart_puts_P("\n\r all inits complete.\n\r");
+
+  // test the buttons
+  uart_puts_P("testing the buttons:\n\r");
+  uart_puts_P("press button 0...\n\r");
+  button_loop();
+  uart_puts_P("press button 1...\n\r");
+  button_loop();
+
+  // test the display
+  uart_puts_P("\n\r testing the display:\n\r");
+  epd27_wait_cog_ready();
+  epd27_begin(); // power up the EPD panel
+  epd27_set_temperature(22); // adjust for current temperature
+  epd27_clear();
+  uart_puts_P("do you see a white screen?\n\r");
+  button_loop();
+  epd27_image_whitescreen(cat_2_7_bits);
+  uart_puts_P("do you see a cat?\n\r");
+  button_loop();
+
+  // test the LEDs
+  uart_puts_P("\n\r testing the LEDs:\n\r");
+  button_loop();
+
+  // test the digital sensors
+  uart_puts_P("\n\r testing the digial sensor:\n\r");
+  read_digital_sensors();
+  button_loop();
+
+  // calibrate the analog sensors
+  uart_puts_P("\n\r calibrate the analog sensors:\n\r");
+  button_loop();
+
+  // test the analog sensors
+  uart_puts_P("\n\r testing the analog sensors:\n\r");
+  read_analog_sensors();
+  button_loop();
+
+  // test the flash chip
+  uart_puts_P("\n\r testing the flash chip:\n\r");
+  button_loop();
+
+  // if all is right, say so
+  uart_puts_P("all tests successful! The device may now be flashed with the production firmware.\n\r");
+}
+
+
   // Deletes the whole flash.
   //at45_test_init();
 
@@ -173,6 +182,7 @@ int main(void)
   //DDRC |= (1 << PC7);
   //PORTC &= ~(1 << PC7);
   //bool enabled = true;
+/*
   while(true) {
     //at45_test_loop();
     //if (enabled) {
@@ -227,5 +237,4 @@ int main(void)
     read_analog_sensors();
     uart_puts_P("Waiting for a button to be pressed...\r\n");
     button_loop();
-  }
-}
+  } */
