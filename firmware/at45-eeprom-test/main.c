@@ -110,9 +110,11 @@ void read_digital_sensors(void) {
 }
 
 
-void read_analog_sensor(void) {
-  float temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
-  float temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
+void read_analog_sensors(void) {
+  float temperature0 = 0.0; 
+  float temperature1 = 0.0; 
+  temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
+  temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
 #ifndef STRESS_TEST
   uart_puts_P("Temperature from ADC0: ");
 #endif
@@ -207,6 +209,7 @@ int main(void)
     uart_puts(buffer);
     uart_puts_P("  loop.\r\n");
     read_digital_sensors();
+    read_analog_sensors();
     _delay_ms(5000);
   }
 }
