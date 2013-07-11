@@ -144,6 +144,7 @@ int main(void)
   uart_puts_P("do you see a white screen?\n\r");
   button_loop();
   epd27_image_whitescreen(cat_2_7_bits);
+  epd27_end();   // power down the EPD panel
   uart_puts_P("do you see a cat?\n\r");
   button_loop();
 
