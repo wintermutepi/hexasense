@@ -16,6 +16,7 @@
 #include "i2cmaster.h"
 #include "dew_point.h"
 #include "hw_config.h"
+#include "adc.h"
 #include "adc_temp_conversion.h"
 
 PROGMEM const
@@ -60,6 +61,7 @@ void init(void) {
   spi_init();
   epd27_init();
   i2c_init();
+  adc_init();
 }
 
 void read_digital_sensors(void) {
