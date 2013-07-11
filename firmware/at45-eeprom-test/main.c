@@ -18,6 +18,7 @@
 #include "hw_config.h"
 #include "adc.h"
 #include "adc_temp_conversion.h"
+#include "button.h"
 
 PROGMEM const
 #define unsigned
@@ -141,7 +142,18 @@ void read_analog_sensors(void) {
 }
 
 
-
+void button_loop(void) {
+  while(1) {
+    if (is_button0_pressed()) {
+      uart_puts_P("BTN0 pressed.\r\n");
+      read_digital_sensors();
+    }
+    if (is_button1_pressed()) {
+      uart_puts_P("BTN1 pressed.\r\n");
+      read_analog_sensors();
+    }
+  }
+}
 
 
 
@@ -212,6 +224,7 @@ int main(void)
     uart_puts_P("  loop.\r\n");
     read_digital_sensors();
     read_analog_sensors();
+    button_loop();
     _delay_ms(5000);
   }
 }
