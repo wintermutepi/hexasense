@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'ruby-buspirate', 'lib'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
@@ -16,7 +17,7 @@ DEFAULT_DEVICE = "/dev/ttyUSB0"
 begin
   bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
                      DEFAULT_DATABITS, DEFAULT_STOPBITS, DEFAULT_PARITY)
-  at45 = AT45.new(bp)
+  at45 = AT45.new(bp, AT45::DB161D::PAGECOUNT, AT45::DB161D::PAGESIZE)
 
   chip_version = at45.get_version()
   print  "Chip version: \t\t\t%02x:%02x:%02x:%02x - " % chip_version
@@ -41,11 +42,9 @@ begin
     exit(AT45::EXITCODE::NOT_INITIALIZED)
   end
 
-  print "Erasing chip \t\t\t"
-  at45.chip_erase_wait() 
-  puts " done"
-
-
+#  print "Erasing chip \t\t\t"
+#  at45.chip_erase_wait() 
+#  puts " done"
 
 ensure
   puts "Closing buspirate device."
