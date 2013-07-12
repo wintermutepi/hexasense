@@ -113,24 +113,24 @@ int main(void)
 
   // test the buttons
   uart_puts_P("testing the buttons:\n\r");
-  uart_puts_P("press button 0... ");
+  uart_puts_P("press the 2nd button from the left... ");
   while(1) {
     if (is_button0_pressed()) {
-      uart_puts_P("BTN0 pressed.\r\n");
+      uart_puts_P("OK.\r\n");
       break;
     }
   }
-  uart_puts_P("press button 1... ");
+  uart_puts_P("press the rightmost button... ");
   while(1) {
     if (is_button1_pressed()) {
-      uart_puts_P("BTN1 pressed.\r\n");
+      uart_puts_P("OK.\r\n");
       break;
     }
   }
-  uart_puts_P("press button 2... ");
+  uart_puts_P("press the leftmost button... ");
   while(1) {
     if (is_button2_pressed()) {
-      uart_puts_P("BTN2 pressed.\r\n");
+      uart_puts_P("OK.\r\n");
       break;
     }
   }
