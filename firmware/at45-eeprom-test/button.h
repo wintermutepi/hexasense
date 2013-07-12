@@ -8,6 +8,8 @@
 void button_init(void);
 bool is_button0_pressed(void);
 bool is_button1_pressed(void);
+bool is_button2_pressed(void);
+void button_loop(void);
 
 #endif /* BUTTON_H */
 

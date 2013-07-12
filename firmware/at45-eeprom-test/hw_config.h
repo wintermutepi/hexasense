@@ -2,7 +2,7 @@
 #define HW_CONFIG_H 1
 
 /**
- * Connection of the first button: PA1
+ * Connection of the first button
  */
 #define BTN0_DDR	DDRB
 #define BTN0_PORT	PORTB
@@ -10,12 +10,20 @@
 #define BTN0_IN		PINB
 
 /**
- * Connection of the second button: PA2
+ * Connection of the second button
  */
 #define BTN1_DDR	DDRA
 #define BTN1_PORT	PORTA
 #define BTN1_PIN	PA2
 #define BTN1_IN		PINA
+
+/**
+ * Connection of the third button (hxb-pairing button)
+ */
+#define BTN2_DDR	DDRD
+#define BTN2_PORT	PORTD
+#define BTN2_PIN	PD5
+#define BTN2_IN		PIND
 
 /**
  * I2C error codes.
