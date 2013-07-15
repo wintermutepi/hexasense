@@ -15,6 +15,10 @@
 #include "hyt271.h"
 #include "i2cmaster.h"
 #include "dew_point.h"
+#include "hw_config.h"
+#include "adc.h"
+#include "adc_temp_conversion.h"
+#include "button.h"
 
 PROGMEM const
 #define unsigned
@@ -58,6 +62,8 @@ void init(void) {
   spi_init();
   epd27_init();
   i2c_init();
+  adc_init();
+  button_init();
 }
 
 void read_digital_sensors(void) {
@@ -106,6 +112,51 @@ void read_digital_sensors(void) {
       break;
   }
 }
+
+
+void read_analog_sensors(void) {
+  float temperature0 = 0.0; 
+  float temperature1 = 0.0; 
+  temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
+  temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC0: ");
+#endif
+  char temperature_string_buffer[10];
+  dtostrf(temperature0, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+#ifndef STRESS_TEST
+  uart_puts_P("Temperature from ADC4: ");
+#endif
+  dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
+  uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+  uart_puts_P("\r\n");
+#else
+  uart_puts_P(";");
+#endif
+}
+
+
+void button_loop(void) {
+  while(1) {
+    if (is_button0_pressed()) {
+      uart_puts_P("BTN0 pressed.\r\n");
+      break;
+    }
+    if (is_button1_pressed()) {
+      uart_puts_P("BTN1 pressed.\r\n");
+      break;
+    }
+  }
+}
+
+
 
 int main(void)
 {
@@ -173,6 +224,8 @@ int main(void)
     uart_puts(buffer);
     uart_puts_P("  loop.\r\n");
     read_digital_sensors();
-    _delay_ms(5000);
+    read_analog_sensors();
+    uart_puts_P("Waiting for a button to be pressed...\r\n");
+    button_loop();
   }
 }
