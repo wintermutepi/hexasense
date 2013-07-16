@@ -12,27 +12,26 @@ DEFAULT_STOPBITS = 1
 DEFAULT_PARITY = SerialPort::NONE
 DEFAULT_DEVICE = "/dev/ttyUSB0"
 
-class TestAT45Commands < Test::Unit::TestCase
+$bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
+                    DEFAULT_DATABITS, DEFAULT_STOPBITS, DEFAULT_PARITY)
+$at45 = AT45.new($bp, AT45::DB161D::PAGECOUNT, AT45::DB161D::PAGESIZE)
 
+class TestAT45Commands < Test::Unit::TestCase
   def setup
-    sleep(1)
-    @bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
-                       DEFAULT_DATABITS, DEFAULT_STOPBITS, DEFAULT_PARITY)
-    @at45 = AT45.new(@bp, AT45::DB161D::PAGECOUNT, AT45::DB161D::PAGESIZE)
+    #sleep(1)
   end
 
   def teardown
-    @bp.close unless @bp.nil?
   end
 
   def test_chipversion  
-    chip_version = @at45.get_version()
+    chip_version = $at45.get_version()
     assert_equal(chip_version[0], 0x1f, "Non-Atmel chip");
     assert_equal(chip_version[1], 0x26, "Density is not 16Mbit");
   end
 
   def test_ready
-    assert(@at45.ready?, "Chip not ready.")
+    assert($at45.ready?, "Chip not ready.")
   end
 
   def test_buffer1
@@ -43,10 +42,10 @@ class TestAT45Commands < Test::Unit::TestCase
     end
     #puts "Zerobuf: #{zerobuf.join(" ")}, element class #{zerobuf[0].class}"
     #puts "Writebuf: #{writebuf.join(" ")} , element class #{writebuf[0].class}"
-    @at45.write_to_buf1(zerobuf);
-    @at45.write_to_buf1(writebuf);
-    @at45.wait_for_ready();
-    readbuf = @at45.read_from_buf1();
+    $at45.write_to_buf1(zerobuf);
+    $at45.write_to_buf1(writebuf);
+    $at45.wait_for_ready();
+    readbuf = $at45.read_from_buf1();
     #puts "Readbuf: #{readbuf.join(" ")}, element class #{readbuf[0].class}"
     assert_equal(readbuf, writebuf, "buffer1 not written correctly .");
   end
@@ -57,23 +56,23 @@ class TestAT45Commands < Test::Unit::TestCase
     (0..AT45::DB161D::PAGESIZE-1).each do |i|
       writebuf << (i.modulo(0xff));
     end
-    @at45.write_to_buf1(writebuf);
-    readbuf = @at45.read_from_buf1();
+    $at45.write_to_buf1(writebuf);
+    readbuf = $at45.read_from_buf1();
     assert_equal(readbuf, writebuf, "buffer1 contained defective data.");
     # erase page - otherwise, the memory is not fully written.
-    @at45.erase_page(23) 
-    @at45.wait_for_ready();
-    @at45.buf1_to_mm(23);
-    @at45.wait_for_ready();
+    $at45.erase_page(23) 
+    $at45.wait_for_ready();
+    $at45.buf1_to_mm(23);
+    $at45.wait_for_ready();
     # Zeroing buffer 1
-    @at45.write_to_buf1(zerobuf);
-    @at45.wait_for_ready();
-    readbuf = @at45.read_from_buf1();
+    $at45.write_to_buf1(zerobuf);
+    $at45.wait_for_ready();
+    readbuf = $at45.read_from_buf1();
     assert_equal(readbuf, zerobuf, "buffer1 not cleared correctly.");
-    @at45.wait_for_ready();
-    @at45.mm_to_buf1(23);
-    @at45.wait_for_ready();
-    readbuf = @at45.read_from_buf1();
+    $at45.wait_for_ready();
+    $at45.mm_to_buf1(23);
+    $at45.wait_for_ready();
+    readbuf = $at45.read_from_buf1();
     #puts "Writebuf: #{writebuf.join(" ")} , element class #{writebuf[0].class}"
     #puts "Readbuf: #{readbuf.join(" ")}, element class #{readbuf[0].class}"
     assert_equal(readbuf, writebuf, "Read from MM: Data differs.");
