@@ -3,4 +3,5 @@ source "https://rubygems.org"
 # no gem for ruby-buspirate yet
 gem "serialport", "~> 1.1.0"
 gem "rmagick", "~> 2.13.2"
+gem "ruby-progressbar"
 
