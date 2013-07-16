@@ -58,8 +58,33 @@ class AT45
     wait_for_ready;
   end
 
+  def upload_page(page, data, opts = {}) 
+    raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
+    $at45.write_to_buf1(data);
+    # erase page - otherwise, the memory is not fully written.
+    if (! opts[:erase] == false) 
+      $at45.erase_page(page) 
+      $at45.wait_for_ready();
+    end 
+    $at45.buf1_to_mm(page);
+    $at45.wait_for_ready();
+    if (opts[:verify] == true)
+      $at45.mm_to_buf1(page);
+      $at45.wait_for_ready();
+      readbuf = $at45.read_from_buf1();
+      if (readbuf != data) 
+        raise RuntimeError, "Page #{page} not written correctly."
+      else
+        return readbuf
+      end
+    else
+      return data
+    end
+    
+  end
+
   def erase_page(page)
-    raise ArgumentError, 'page out of range' unless 0 <= page && page <= @pagecount;
+    raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
     ensure_proper do
       @bp.spi_cs_block(true) do
         # Send cmd byte
@@ -72,7 +97,7 @@ class AT45
   end
 
   def buf1_to_mm(page)
-    raise ArgumentError, 'page out of range' unless 0 <= page && page <= @pagecount;
+    raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
     ensure_proper do
       @bp.spi_cs_block(true) do
         # Send cmd byte
@@ -85,7 +110,7 @@ class AT45
   end
 
   def mm_to_buf1(page)
-    raise ArgumentError, 'page out of range' unless 0 <= page && page <= @pagecount;
+    raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
     ensure_proper do
       @bp.spi_cs_block(true) do
         # Send cmd byte
@@ -156,7 +181,7 @@ class AT45
       end
 
       print "setting speed...\t\t"
-      if @bp.spi_set_speed(BusPirate::SPI::SPEED_1MHZ)
+      if @bp.spi_set_speed(BusPirate::SPI::SPEED_8MHZ)
         puts "done"
       else
         puts "failed"
@@ -181,7 +206,7 @@ class AT45
                              BusPirate::PinMode::OUTPUT,BusPirate::PinMode::INPUT,
                              BusPirate::PinMode::OUTPUT))
 
-        puts "done"
+                             puts "done"
       else
         puts "failed"
         exit

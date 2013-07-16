@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     rmagick (2.13.2)
+    ruby-progressbar (1.1.1)
     serialport (1.1.0)
 
 PLATFORMS
@@ -9,4 +10,5 @@ PLATFORMS
 
 DEPENDENCIES
   rmagick (~> 2.13.2)
+  ruby-progressbar
   serialport (~> 1.1.0)
