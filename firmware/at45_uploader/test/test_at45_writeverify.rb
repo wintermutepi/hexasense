@@ -31,7 +31,7 @@ class TestAT45WriteVerify < Test::Unit::TestCase
       writebuf << (i.modulo(0x8e)).to_i;
     end
     assert_nothing_raised() {
-      readbuf=$at45.upload_and_verify_page(42, writebuf);
+      readbuf=$at45.upload_page(42, writebuf, :verify => true);
     }
     assert_equal(readbuf, writebuf, "Page 42 not written correctly.");
   end
