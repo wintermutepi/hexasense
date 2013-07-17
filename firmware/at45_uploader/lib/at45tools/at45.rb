@@ -152,8 +152,6 @@ class AT45
     return retval;
   end
 
-
-
   private
   def check_bitmask_set? (value, mask)
     return ((value & mask) == mask)
@@ -206,7 +204,7 @@ class AT45
                              BusPirate::PinMode::OUTPUT,BusPirate::PinMode::INPUT,
                              BusPirate::PinMode::OUTPUT))
 
-                             puts "done"
+        puts "done"
       else
         puts "failed"
         exit

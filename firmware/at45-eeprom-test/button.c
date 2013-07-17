@@ -67,3 +67,25 @@ bool is_button1_pressed(void) {
 	return false;
   }
 }
+
+bool is_button2_pressed(void) {
+  if (debounce(BTN2_IN, BTN2_PIN)) {
+	return true;
+  } else {
+	return false;
+  }
+}
+
+void button_loop(void) {
+  while(1) {
+    if (is_button0_pressed()) {
+      break;
+    }
+    if (is_button1_pressed()) {
+      break;
+    }
+    if (is_button2_pressed()) {
+      break;
+    }
+  }
+}
