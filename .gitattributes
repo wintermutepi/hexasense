@@ -1,0 +1,4 @@
+# treat eagle files as binary
+*.brd binary
+*.sch binary
+*.lbr binary
