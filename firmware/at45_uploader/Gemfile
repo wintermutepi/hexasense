@@ -4,4 +4,6 @@ source "https://rubygems.org"
 gem "serialport", "~> 1.1.0"
 gem "rmagick", "~> 2.13.2"
 gem "ruby-progressbar"
+gem "bindata", "~> 1.5.0"
+gem "chunky_png", "~> 1.2.8"
 
