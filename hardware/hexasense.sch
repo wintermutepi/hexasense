@@ -6857,17 +6857,18 @@ Source: www.kingbright.com</description>
 <pin name="VCC" x="17.78" y="5.08" visible="pin" length="short" direction="pwr" rot="R180"/>
 <pin name="MOSI" x="17.78" y="2.54" visible="pin" length="short" rot="R180"/>
 <pin name="SSEL" x="17.78" y="0" visible="pin" length="short" rot="R180"/>
-<pin name="SDA" x="17.78" y="-5.08" visible="pin" length="short" rot="R180"/>
+<pin name="I2C_SDA" x="17.78" y="-5.08" visible="pin" length="short" rot="R180"/>
 <pin name="RESET_DISP" x="17.78" y="-7.62" visible="pin" length="short" rot="R180"/>
 <pin name="DISCHARGE" x="17.78" y="-10.16" visible="pin" length="short" rot="R180"/>
 <pin name="GND" x="-17.78" y="5.08" visible="pin" length="short" direction="pwr"/>
 <pin name="SCLK" x="-17.78" y="2.54" visible="pin" length="short"/>
 <pin name="MISO" x="-17.78" y="0" visible="pin" length="short"/>
 <pin name="BUSY" x="-17.78" y="-2.54" visible="pin" length="short"/>
-<pin name="SCL" x="-17.78" y="-5.08" visible="pin" length="short"/>
+<pin name="I2C_SCL" x="-17.78" y="-5.08" visible="pin" length="short"/>
 <pin name="PWM" x="-17.78" y="-7.62" visible="pin" length="short"/>
 <pin name="PWR_CTRL" x="-17.78" y="-10.16" visible="pin" length="short"/>
 <text x="-12.7" y="8.128" size="1.27" layer="95">&gt;NAME</text>
+<pin name="BORDER_CTRL" x="17.78" y="-2.54" visible="pin" length="short" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -6878,17 +6879,18 @@ Source: www.kingbright.com</description>
 <devices>
 <device name="" package="EPAPER">
 <connects>
+<connect gate="G$1" pin="BORDER_CTRL" pad="P8"/>
 <connect gate="G$1" pin="BUSY" pad="P7"/>
 <connect gate="G$1" pin="DISCHARGE" pad="P14"/>
 <connect gate="G$1" pin="GND" pad="P1"/>
+<connect gate="G$1" pin="I2C_SCL" pad="P9"/>
+<connect gate="G$1" pin="I2C_SDA" pad="P10"/>
 <connect gate="G$1" pin="MISO" pad="P5"/>
 <connect gate="G$1" pin="MOSI" pad="P4"/>
 <connect gate="G$1" pin="PWM" pad="P11"/>
 <connect gate="G$1" pin="PWR_CTRL" pad="P13"/>
 <connect gate="G$1" pin="RESET_DISP" pad="P12"/>
-<connect gate="G$1" pin="SCL" pad="P9"/>
 <connect gate="G$1" pin="SCLK" pad="P3"/>
-<connect gate="G$1" pin="SDA" pad="P10"/>
 <connect gate="G$1" pin="SSEL" pad="P6"/>
 <connect gate="G$1" pin="VCC" pad="P2"/>
 </connects>
@@ -7858,7 +7860,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U$7" gate="G$1" pin="SDA"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="SDA"/>
+<pinref part="U$2" gate="G$1" pin="I2C_SDA"/>
 <wire x1="231.14" y1="139.7" x2="233.68" y2="139.7" width="0.1524" layer="91"/>
 <label x="233.68" y="139.7" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -7875,7 +7877,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U$7" gate="G$1" pin="SCL"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="SCL"/>
+<pinref part="U$2" gate="G$1" pin="I2C_SCL"/>
 <wire x1="195.58" y1="139.7" x2="193.04" y2="139.7" width="0.1524" layer="91"/>
 <label x="193.04" y="139.7" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -8173,6 +8175,18 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="U$4" gate="G$1" pin="PB0"/>
 <wire x1="27.94" y1="22.86" x2="20.32" y2="22.86" width="0.1524" layer="91"/>
 <label x="20.32" y="22.86" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="BORDER_CTRL" class="0">
+<segment>
+<pinref part="U$2" gate="G$1" pin="BORDER_CTRL"/>
+<wire x1="231.14" y1="142.24" x2="233.68" y2="142.24" width="0.1524" layer="91"/>
+<label x="233.68" y="142.24" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U$4" gate="G$1" pin="PB2"/>
+<wire x1="27.94" y1="17.78" x2="20.32" y2="17.78" width="0.1524" layer="91"/>
+<label x="20.32" y="17.78" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
