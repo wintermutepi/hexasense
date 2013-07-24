@@ -6,17 +6,6 @@ require 'chunky_png'
 
 $verbose = false
 
-# lowest values.
-tempstart, humstart = 16, 10
-# highest values.
-tempend, humend = 34, 100
-# increment
-tempinc, huminc = 1, 10
-
-tempcount, humcount = 1, 1
-m = []  
-tempcount.times { m << Array.new( humcount ) }  
-
 require 'pp'
 
 def imgrow2line(row)
