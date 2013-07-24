@@ -1,9 +1,9 @@
 require "bindata"
 
-class LineFormat < BinData::Record
+class LineFormat < BinData::Array
   # A string is a fixed-length uint8 array, see
   # http://bindata.rubyforge.org/manual.html#strings
-  string :pixelbytes, :length => $BYTES_PER_LINE
+  uint8 :pixelbytes, :initial_length => $BYTES_PER_LINE
 end
 
 class PageFormat < BinData::Record
