@@ -15,10 +15,10 @@
 #define EPD_PORT_PANEL_ON PORTA
 #define EPD_DDR_PANEL_ON DDRA
 
-// BORDER is not connected on the EPD 2.7 board
-//#define EPD_PIN_BORDER
-//#define EPD_PORT_BORDER
-//#define EPD_DDR_BORDER
+// BORDER 
+#define EPD_PIN_BORDER PB2
+#define EPD_PORT_BORDER PORTB
+#define EPD_DDR_BORDER DDRB
 
 // output
 #define EPD_PIN_DISCHARGE PB0
