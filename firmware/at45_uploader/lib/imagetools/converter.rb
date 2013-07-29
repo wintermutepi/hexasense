@@ -12,10 +12,10 @@ module IMG
         (0..(EPD27::LINES_PER_PAGE-1)).each {|line_idx|
           current_row = page_idx * EPD27::LINES_PER_PAGE + line_idx
           if (current_row < EPD27::LINES_PER_DISPLAY)
-            puts "Page #{page_idx}, line #{line_idx}, on image row #{current_row}" if $verbose
+#            puts "Page #{page_idx}, line #{line_idx}, on image row #{current_row}" if $verbose
             page.lines[line_idx] = imgrow2line(image.row(current_row));
           else
-            puts "Inserting blank line for padding." if $verbose
+#            puts "Inserting blank line for padding." if $verbose
             page.lines[line_idx] = IMG::LineFormat.new();
           end
         }
@@ -37,12 +37,12 @@ module IMG
           pixel = row[byte_idx*8 + subidx]
           if pixel == ChunkyPNG::Color::BLACK # black pixel
             curbyte = curbyte | (1 << subidx)
-            puts "pixel_idx: #{pixel_idx}, byte_idx: #{byte_idx}, subidx #{subidx}," \
-            << " pixel index: #{byte_idx*8+subidx}, pixel value: #{pixel}, black" if $verbose
+#            puts "pixel_idx: #{pixel_idx}, byte_idx: #{byte_idx}, subidx #{subidx}," \
+#            << " pixel index: #{byte_idx*8+subidx}, pixel value: #{pixel}, black" if $verbose
           else # white pixel
             curbyte = curbyte & ~(1 << pixel_idx.modulo(8))
-            puts "pixel_idx: #{pixel_idx}, byte_idx: #{byte_idx}, subidx #{subidx}," \
-            << " pixel index: #{byte_idx*8+subidx}, pixel value: #{pixel}, white" if $verbose
+#            puts "pixel_idx: #{pixel_idx}, byte_idx: #{byte_idx}, subidx #{subidx}," \
+#            << " pixel index: #{byte_idx*8+subidx}, pixel value: #{pixel}, white" if $verbose
           end
         }
         line[byte_idx]=curbyte;
@@ -67,7 +67,7 @@ module IMG
       screen_count = 0;
       progressbar=ProgressBar.create(:title => "Screen", :starting_at => 0, 
                                      :total => num_screens,
-                                     :format => '%t %c/%C |%B| %e')
+                                     :format => '%t %c/%C |%B| %e') if not $verbose
       for file in Dir.entries(basedir)
         if file =~ /^img-(\d+)-(\d+).png/ 
           temp, hum = $1.to_i, $2.to_i
@@ -104,7 +104,7 @@ module IMG
               exit
             end
             screen_count += 1;
-            progressbar.increment
+            progressbar.increment if not $verbose
           else
             puts "Failure: file " << file << " has wrong dimensions.";
             exit

@@ -21,12 +21,12 @@ end.parse!
 
 $verbose=options[:verbose]
 outfile = options[:file]
-if (outfile == '')
+if not outfile 
   puts "No output file (-o) specified, aborting.";
   exit(-1);
 end
 
-puts "Using file name #{outfile}"
+puts "Using file name #{outfile}" if $verbose;
 EPD27.dump_flash_config if $verbose;
 
 basedir = File.join(File.dirname(__FILE__), "..", "pics")
