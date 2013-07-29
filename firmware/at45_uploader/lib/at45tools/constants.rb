@@ -18,7 +18,7 @@ class AT45
 
   module DB161D
     PAGECOUNT         = 4096;
-    PAGESIZE          = 528;
+    PAGESIZE          = 564;
   end
 
   module EXITCODE
