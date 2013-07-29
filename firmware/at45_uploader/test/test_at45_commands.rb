@@ -40,13 +40,13 @@ class TestAT45Commands < Test::Unit::TestCase
     (0..AT45::DB161D::PAGESIZE-1).each do |i|
       writebuf << (i.modulo(0xFF)).to_i;
     end
-    #puts "Zerobuf: #{zerobuf.join(" ")}, element class #{zerobuf[0].class}"
-    #puts "Writebuf: #{writebuf.join(" ")} , element class #{writebuf[0].class}"
+    #puts "Zerobuf: #{zerobuf.join(" ")}, element class #{zerobuf[0].class}, length #{zerobuf.length}"
+    #puts "Writebuf: #{writebuf.join(" ")} , element class #{writebuf[0].class}, length #{writebuf.length}"
     $at45.write_to_buf1(zerobuf);
     $at45.write_to_buf1(writebuf);
     $at45.wait_for_ready();
     readbuf = $at45.read_from_buf1();
-    #puts "Readbuf: #{readbuf.join(" ")}, element class #{readbuf[0].class}"
+    #puts "Readbuf: #{readbuf.join(" ")}, element class #{readbuf[0].class}, length #{readbuf.length}"
     assert_equal(readbuf, writebuf, "buffer1 not written correctly .");
   end
 

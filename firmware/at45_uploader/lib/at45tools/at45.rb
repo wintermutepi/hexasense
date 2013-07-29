@@ -129,9 +129,9 @@ class AT45
     ensure_proper do
       @bp.spi_cs_block(true) do
         # Send cmd byte
-        retval = @bp.spi_bulk_write_read(AT45::CMD::BUFFER1_WRITE) 
+        @bp.spi_bulk_write_read(AT45::CMD::BUFFER1_WRITE) 
         # Send 3-byte address - 15 reserved bits, 9 address bits
-        retval = @bp.spi_bulk_write_read([0x00,0x00,0x00]) 
+        @bp.spi_bulk_write_read([0x00,0x00,0x00]) 
         retval = @bp.spi_bulk_write_read(data) 
       end
     end
@@ -143,9 +143,11 @@ class AT45
       @bp.spi_cs_block(true) do
         # Send cmd byte
         retval = @bp.spi_bulk_write_read(AT45::CMD::BUFFER1_READ) 
-        # Send 4 bytes - 3 dummy address bytes, one additional byte 
-        # to give the AT45 time to initialize
-        retval = @bp.spi_bulk_write_read([0x00,0x00,0x00,0x00]) 
+        # Send 3-byte address - 15 reserved bits, 9 address bits
+        retval = @bp.spi_bulk_write_read([0x00,0x00,0x00]) 
+        # Send 1 bytes to give the AT45 time to initialize
+        retval = @bp.spi_bulk_write_read([0x00]) 
+        # clock dummy data in to read buffer.
         retval = @bp.spi_bulk_write_read([].fill(0x00, 0..@pagesize-1));
       end
     end

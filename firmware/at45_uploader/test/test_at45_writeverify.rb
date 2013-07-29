@@ -67,7 +67,7 @@ class TestAT45WriteVerify < Test::Unit::TestCase
       writebuf << (i.modulo(0x8e)).to_i;
     end
     progressbar=ProgressBar.create(:title => "Page", :starting_at => 0, 
-                                   :total => AT45::DB161D::PAGECOUNT-1,
+                                   :total => AT45::DB161D::PAGECOUNT,
                                    :format => '%t %c/%C |%B| %e')
     (0..AT45::DB161D::PAGECOUNT-1).each{ |page|
       assert_nothing_raised() {
