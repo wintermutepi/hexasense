@@ -38,8 +38,11 @@ class AT45
 
   def wait_for_ready
     while (! ready?) do
-      print(".")
-      sleep(1)
+      if block_given?
+        yield
+      else
+        print("."); sleep(1)
+      end
     end
   end
 
@@ -60,19 +63,21 @@ class AT45
 
   def upload_page(page, data, opts = {}) 
     raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
-    $at45.write_to_buf1(data);
+    write_to_buf1(data);
     # erase page - otherwise, the memory is not fully written.
-    if (! opts[:erase] == false) 
-      $at45.erase_page(page) 
-      $at45.wait_for_ready();
+    if (opts[:erase] == true) 
+      erase_page(page) 
+      wait_for_ready() {};
     end 
-    $at45.buf1_to_mm(page);
-    $at45.wait_for_ready();
+    buf1_to_mm(page);
+    wait_for_ready();
     if (opts[:verify] == true)
-      $at45.mm_to_buf1(page);
-      $at45.wait_for_ready();
-      readbuf = $at45.read_from_buf1();
+      mm_to_buf1(page);
+      wait_for_ready();
+      readbuf = read_from_buf1();
       if (readbuf != data) 
+        puts "Written page: len #{data.length}: #{data}"
+        puts "Read back page: len #{data.length}: #{readbuf}"
         raise RuntimeError, "Page #{page} not written correctly."
       else
         return readbuf
@@ -80,7 +85,6 @@ class AT45
     else
       return data
     end
-    
   end
 
   def erase_page(page)
@@ -206,7 +210,7 @@ class AT45
                              BusPirate::PinMode::OUTPUT,BusPirate::PinMode::INPUT,
                              BusPirate::PinMode::OUTPUT))
 
-        puts "done"
+                             puts "done"
       else
         puts "failed"
         exit
