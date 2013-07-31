@@ -11,11 +11,11 @@
 
 
 void at45_select(void) { 
-  AT45_PORT &= ~(1 << AT45_CS); 
+  AT45_CS_PORT &= ~(1 << AT45_CS); 
 } 
 
 void at45_release(void) { 
-  AT45_PORT |= (1 << AT45_CS); 
+  AT45_CS_PORT |= (1 << AT45_CS); 
 } 
 
 // at45db161d read/write 
@@ -23,6 +23,26 @@ uint8_t at45_rw(uint8_t data) {
   return spi_rw(data);
 } 
 
+// initialisation of SPI towards the AT45 chip 
+void at45_init(void) __attribute__ ((optimize(1))); 
+void at45_init(void) { 
+  // Configure output pins.
+  AT45_CS_PORT  |= (1 << AT45_CS);
+  AT45_SCK_PORT |= (1 << AT45_SCK); 
+  AT45_CS_DDR   |= (1 << AT45_CS);
+  AT45_MOSI_DDR |= (1 << AT45_MOSI);
+  AT45_SCK_DDR  |= (1 << AT45_SCK); 
+  // Configure input pins.
+  AT45_MISO_DDR &= ~(1 << AT45_MISO); 
+  // freq SPI CLK/2 
+
+ // SPCR = (1<<SPE)|(1<<MSTR); 
+ // SPSR |= (1<<SPI2X); 
+
+ // set SPI rate = CLK/64 
+  SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR1); 
+  SPSR &= ~(1<<SPI2X); 
+} 
 
 void at45_erase_all_pages(void) {
   at45_select(); 
@@ -33,10 +53,19 @@ void at45_erase_all_pages(void) {
   at45_release(); 
 }
 
+void at45_get_version(struct at45_version_t* version) {
+  at45_select(); 
+  at45_rw(0x9f); 
+  version->data[0] = at45_rw(0x00); 
+  version->data[1] = at45_rw(0x00); 
+  version->data[2] = at45_rw(0x00); 
+  version->data[3] = at45_rw(0x00); 
+  at45_release(); 
+}
 
 // what's our status? 
 uint8_t at45_status(void) { 
-  uint8_t result; 
+  uint8_t result=0x00; 
   at45_select(); 
   at45_rw(STATUS_REG_READ); 
   // the status is clocked out continuously as data written to SO. So:
@@ -44,7 +73,6 @@ uint8_t at45_status(void) {
   at45_rw(0xFF); 
   result = at45_rw(0xFF); 
   at45_release(); 
-
   return result; 
 } 
 

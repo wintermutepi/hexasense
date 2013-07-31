@@ -50,6 +50,7 @@ void init(void) {
   epd27_init();
   i2c_init();
   adc_init();
+  at45_init();
   button_init();
   /*
    * now enable interrupt, since UART library is interrupt controlled
@@ -111,6 +112,30 @@ int main(void)
   uart_puts_P("\n\r HEXASENSE BRINGUP FIRMWARE\n\r");
   uart_puts_P("\n\r all inits complete.\n\r");
 
+
+ // Test AT45 flash
+  uart_puts_P("\n\r testing AT45 flash:\n\r");
+  if (at45_is_ready())
+    uart_puts_P("\n\r OK: flash is ready.\n\r");
+  else
+    uart_puts_P("\n\r FAILURE: flash does not report ready.\n\r");
+
+  struct at45_version_t version;
+  at45_get_version(&version);
+  if (version.data[0] != 0x1f) {
+    uart_puts_P("\n\r FAILURE: Did not find ATMEL AT45 chip.\n\r");
+  } else {
+    if (version.data[1] != 0x26) {
+      uart_puts_P("\n\r FAILURE: Density is not 16M.\n\r");
+    } else {
+      uart_puts_P("\n\r OK: Found AT45DB161D flash.\n\r");
+    }
+  }
+
+
+  uart_puts_P("Press a button to continue.");
+  button_loop();
+
   // test the buttons
   uart_puts_P("testing the buttons:\n\r");
   uart_puts_P("press the 2nd button from the left... ");
@@ -134,6 +159,9 @@ int main(void)
       break;
     }
   }
+
+ 
+    
 
   // test the display
   uart_puts_P("\n\r testing the display:\n\r");
