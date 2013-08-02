@@ -27,6 +27,11 @@ OptionParser.new do |opts|
   opts.on("-s", "--skip-erase", "Skip the initial erase cycle") do |s|
     options[:skip_erase] = s
   end
+
+  opts.on("-p", "--power", "Enable bus pirate target power") do |p|
+    options[:enable_power] = p
+  end
+
   opts.on("-i", "--input [FILENAME]", "flash image file to be uploaded") do |file|
     options[:file] = file
   end
@@ -36,6 +41,7 @@ end.parse!
 
 $verbose=options[:verbose]
 infile = options[:file]
+options[:enable_power] ||= false;
 if not infile 
   puts "No input file (-i) specified, aborting.";
   exit(-1);
@@ -63,11 +69,14 @@ else
   exit;
 end
 
+
 begin
   bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
-                     DEFAULT_DATABITS, DEFAULT_STOPBITS, DEFAULT_PARITY)
+                     DEFAULT_DATABITS, DEFAULT_STOPBITS, 
+                     DEFAULT_PARITY)
   bp.reset_console
-  at45 = AT45.new(bp, AT45::DB161D::PAGECOUNT, AT45::DB161D::PAGESIZE)
+  at45 = AT45.new(bp, AT45::DB161D::PAGECOUNT, 
+                  AT45::DB161D::PAGESIZE, options[:enable_power])
 
   chip_version = at45.get_version()
   print  "Chip version: \t\t\t%02x:%02x:%02x:%02x - " % chip_version

@@ -80,6 +80,32 @@ class TestAT45WriteVerify < Test::Unit::TestCase
     end
   end
 
+  def test_write_pagenumbers
+    maxpage_idx = 70;
+    (0..maxpage_idx).each do |page_idx|
+      writebuf = [];
+      (0..AT45::DB161D::PAGESIZE-1).each do |i|
+        writebuf << (page_idx).to_i;
+      end
+      assert_nothing_raised() {
+        readbuf=$at45.upload_page(page_idx, writebuf, :verify => true);
+      }
+    end
+    (0..maxpage_idx).each do |page_idx|
+      writebuf = readbuf = blankpage = [];
+      (0..AT45::DB161D::PAGESIZE-1).each do |i|
+        writebuf << (page_idx).to_i;
+      end
+      $at45.write_to_buf1(@blankpage);
+      readbuf = $at45.read_from_buf1();
+      assert_equal(readbuf, @blankpage, "Buffer 1 not cleared correctly.");
+      $at45.mm_to_buf1(page_idx);
+      $at45.wait_for_ready();
+      readbuf = $at45.read_from_buf1();
+      assert_equal(readbuf, writebuf, "Page #{page_idx} not stored correctly.");
+    end
+  end
+
 
 
   def test_write_offset_hypothesis
