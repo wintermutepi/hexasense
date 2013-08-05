@@ -67,6 +67,17 @@ module IMG
       lut1 = IMG::LookupPageFormat.new();
       lut2 = IMG::LookupPageFormat.new();
       lut3 = IMG::LookupPageFormat.new();
+      # Fill luts with end of table marker.
+      end_line = IMG::LookupTableFormat.new();
+      end_line.temperature = 0xde;
+      end_line.humidity = 0xad;
+      end_line.startpage = 0xbeef;
+      (0..IMG::LUTLINES_PER_PAGE-1).each {|index|
+        lut0.lines[index] = end_line;
+        lut1.lines[index] = end_line;
+        lut2.lines[index] = end_line;
+        lut3.lines[index] = end_line;
+      }
       screen_count = 0;
       progressbar=ProgressBar.create(:title => "Screen", :starting_at => 0, 
                                      :total => num_screens,
@@ -116,24 +127,6 @@ module IMG
         else 
           puts "Ignoring #{file}" if $verbose
         end
-      end
-
-      end_line = IMG::LookupTableFormat.new();
-      lut_line.temperature = 0xde;
-      lut_line.humidity = 0xad;
-      lut_line.startpage = 0xbeef;
-      case screen_count
-      when 0..IMG::LUTLINES_PER_PAGE-1
-        lut0.lines[screen_count] = lut_line;
-      when IMG::LUTLINES_PER_PAGE..(2*IMG::LUTLINES_PER_PAGE-1)
-        lut1.lines[screen_count-IMG::LUTLINES_PER_PAGE] = lut_line;
-      when (2*IMG::LUTLINES_PER_PAGE)..(3*IMG::LUTLINES_PER_PAGE-1)
-        lut2.lines[screen_count-2*IMG::LUTLINES_PER_PAGE] = lut_line;
-      when (3*IMG::LUTLINES_PER_PAGE)..(4*IMG::LUTLINES_PER_PAGE-1)
-        lut3.lines[screen_count-3*IMG::LUTLINES_PER_PAGE] = lut_line;
-      else
-        puts "Cannot assign lookup table line to AT45 memory page - exiting."
-        exit
       end
 
       # Don't forget to add the lookup table to the image
