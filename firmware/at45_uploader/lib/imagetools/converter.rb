@@ -52,12 +52,15 @@ module IMG
 
     def munch_directory(basedir)
 
+      file_list = [];
       num_screens=0;
       for file in Dir.entries(basedir)
         if file =~ /^img-(\d+)-(\d+).png/ 
           num_screens+=1
+          file_list << file;
         end
       end
+      file_list.sort!
       
       flash = IMG::FlashFormat.new()
       lut0 = IMG::LookupPageFormat.new();
@@ -68,7 +71,7 @@ module IMG
       progressbar=ProgressBar.create(:title => "Screen", :starting_at => 0, 
                                      :total => num_screens,
                                      :format => '%t %c/%C |%B| %e') if not $verbose
-      for file in Dir.entries(basedir)
+      for file in file_list
         if file =~ /^img-(\d+)-(\d+).png/ 
           temp, hum = $1.to_i, $2.to_i
           puts "File #{file}: Temp #{temp}, Hum #{hum}" if $verbose
@@ -113,6 +116,24 @@ module IMG
         else 
           puts "Ignoring #{file}" if $verbose
         end
+      end
+
+      end_line = IMG::LookupTableFormat.new();
+      lut_line.temperature = 0xde;
+      lut_line.humidity = 0xad;
+      lut_line.startpage = 0xbeef;
+      case screen_count
+      when 0..IMG::LUTLINES_PER_PAGE-1
+        lut0.lines[screen_count] = lut_line;
+      when IMG::LUTLINES_PER_PAGE..(2*IMG::LUTLINES_PER_PAGE-1)
+        lut1.lines[screen_count-IMG::LUTLINES_PER_PAGE] = lut_line;
+      when (2*IMG::LUTLINES_PER_PAGE)..(3*IMG::LUTLINES_PER_PAGE-1)
+        lut2.lines[screen_count-2*IMG::LUTLINES_PER_PAGE] = lut_line;
+      when (3*IMG::LUTLINES_PER_PAGE)..(4*IMG::LUTLINES_PER_PAGE-1)
+        lut3.lines[screen_count-3*IMG::LUTLINES_PER_PAGE] = lut_line;
+      else
+        puts "Cannot assign lookup table line to AT45 memory page - exiting."
+        exit
       end
 
       # Don't forget to add the lookup table to the image

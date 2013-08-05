@@ -9,6 +9,12 @@
 #define BUFFER_1_WRITE 0x84
 #define STATUS_REG_READ 0xd7
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <avr/pgmspace.h>
+#include <string.h>
+#include <stdlib.h>
+#include "uart.h"
 
 void at45_select(void) { 
   AT45_CS_PORT &= ~(1 << AT45_CS); 
@@ -63,6 +69,21 @@ void at45_get_version(struct at45_version_t* version) {
   at45_release(); 
 }
 
+
+uint8_t at45_read_page(struct at45_page_t* page, uint16_t addr_page) {
+  //uart_puts_P("Step 1: Reading page from buffer1.\r\n");
+  at45_read_from_buf_1(page->data, AT45_PAGE_SIZE, 0);
+  at45_wait_ready();
+  if (! at45_read_page_to_buf_1(addr_page)) {
+	return 0;
+  } else {
+	at45_wait_ready();
+	//uart_puts_P("Step 2: Reading page from buffer1.\r\n");
+	at45_read_from_buf_1(page->data, AT45_PAGE_SIZE, 0);
+	return 1;
+  }
+}
+
 // what's our status? 
 uint8_t at45_status(void) { 
   uint8_t result=0x00; 
@@ -81,34 +102,39 @@ uint8_t at45_is_ready(void) {
   return (result & (1 << 7));
 }
 
+uint8_t at45_wait_ready(void) {
+  uint8_t result = 0;
+  while (! (result = at45_is_ready())) ;;
+  return result;
+}
+
 // page to buffer 
-uint8_t at45_read_page_to_buf_1(uint32_t addr_page) { 
+uint8_t at45_read_page_to_buf_1(uint16_t addr_page) { 
   // 4096 - number of pages per AT45DB161D 
-  //addr_page += 256; 
   if(addr_page < 4096) 
   { 
 	at45_select(); 
 	at45_rw(MM_PAGE_TO_B1_XFER); 
-	at45_rw((char)(addr_page >> 6)); 
-	at45_rw((char)(addr_page << 2)); 
+	at45_rw((uint8_t) (((addr_page << 2) & 0x3f00) >> 8) );
+	at45_rw((uint8_t) ((addr_page << 2) & 0x00fc) );
 	at45_rw(0x00); 
 	at45_release(); 
-	return 0; 
+	return 1; 
   } 
-  return 1; 
+  return 0; 
 } 
 
 // copy from the buffer over to the chip 
-uint8_t at45_write_from_buf_1(uint32_t addr_page) __attribute__ ((optimize(1))); 
+uint8_t at45_write_from_buf_1(uint16_t addr_page) __attribute__ ((optimize(1))); 
 
-uint8_t at45_write_from_buf_1(uint32_t addr_page) { 
+uint8_t at45_write_from_buf_1(uint16_t addr_page) { 
   // 4096 - number of pages AT45DB161D 
   if(addr_page < 4096) 
   { 
 	at45_select(); 
 	at45_rw(B1_TO_MM_PAGE_PROG_W_ERASE); // write data from buffer1 to page 
-	at45_rw((uint8_t)(addr_page>>6)); 
-	at45_rw((uint8_t)(addr_page<<2)); 
+	at45_rw((uint8_t) (((addr_page << 2) & 0x3f00) >> 8));
+	at45_rw((uint8_t) ((addr_page << 2) & 0x00fc));
 	at45_rw(0x00); 
 	at45_release(); 
 	return 0; 
@@ -117,23 +143,29 @@ uint8_t at45_write_from_buf_1(uint32_t addr_page) {
 } 
 
 // copying from BUFFER1 to RAM 
-void at45_read_from_buf_1(uint8_t * dst, uint32_t count, uint16_t addr) { 
-  uint32_t i = 0; 
+void at45_read_from_buf_1(uint8_t * dst, uint16_t count, uint16_t addr) { 
+  uint16_t i = 0; 
+//  char conversion_buffer[50];
   at45_select(); 
   at45_rw(BUFFER_1_READ);                  
   at45_rw(0x00); 
-  at45_rw((uint8_t)(addr>>8)); 
-  at45_rw((uint8_t)addr); 
   at45_rw(0x00); 
-  while(count--) dst[i++] = at45_rw(0xFF); 
+  at45_rw(0x00); 
+  at45_rw(0x00); 
+  while(count--) {
+	dst[i++] = at45_rw(0xFF); 
+	//itoa(dst[i-1], conversion_buffer, 16);
+	//uart_puts(conversion_buffer);
+	//uart_puts_P(":");
+  }
   at45_release(); 
 } 
 
 // transferring the data over to BUFFER 1 
-void at45_write_to_buf_1(const uint8_t *src, uint32_t count, uint16_t addr) __attribute__ ((optimize(1))); 
+void at45_write_to_buf_1(const uint8_t *src, uint16_t count, uint16_t addr) __attribute__ ((optimize(1))); 
 
-void at45_write_to_buf_1(const uint8_t *src, uint32_t count, uint16_t addr) { 
-  uint32_t i = 0; 
+void at45_write_to_buf_1(const uint8_t *src, uint16_t count, uint16_t addr) { 
+  uint16_t i = 0; 
   at45_select(); 
   at45_rw(BUFFER_1_WRITE);                  
   at45_rw(0x00); 
