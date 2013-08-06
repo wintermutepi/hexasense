@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdlib.h>
 #include <string.h>
 #include <util/delay.h>
 #include <stdbool.h>
@@ -19,6 +20,7 @@
 #include "adc.h"
 #include "adc_temp_conversion.h"
 #include "button.h"
+#include "measurement_index.h"
 
 PROGMEM const
 #define unsigned
@@ -132,6 +134,42 @@ int main(void)
     }
   }
 
+  //struct at45_page_t clearpage;
+  //memset(&clearpage.data, 0xfe, AT45_PAGE_SIZE);
+  //while (! at45_is_ready()) ;;
+	//uart_puts_P("Writing 0xfe's to buffer1.\r\n");
+  //at45_write_to_buf_1((uint8_t*)&clearpage.data, AT45_PAGE_SIZE, 0);
+  //while (! at45_is_ready()) ;;
+	//uart_puts_P("Reading 0xfe's from buffer1.\r\n");
+	//at45_read_from_buf_1((uint8_t*)&clearpage, AT45_PAGE_SIZE, 0);
+
+  struct index_entry_t entry;
+  uint16_t current_entry_idx = 0;
+  uint8_t errcode = AT45_TABLE_SUCCESS;
+  uart_puts_P("Attempting to read index.\r\n");
+  uart_puts_P("IDX | TMP | HUM | PAGE\r\n");
+  char conversion_buffer[50];
+  while (((errcode = index_get_entry(&entry, current_entry_idx)) != AT45_END_OF_TABLE) && current_entry_idx < 6) {
+    if (errcode == AT45_FAILURE) {
+      uart_puts_P("Failed to access page.\r\n");
+      current_entry_idx++;
+      continue;
+    } else {
+      itoa(current_entry_idx, conversion_buffer, 10);
+      uart_puts(conversion_buffer);
+      uart_puts_P(" | ");
+      itoa(entry.temp, conversion_buffer, 10);
+      uart_puts(conversion_buffer);
+      uart_puts_P(" | ");
+      itoa(entry.hum, conversion_buffer, 10);
+      uart_puts(conversion_buffer);
+      uart_puts_P(" | ");
+      itoa(entry.page_idx, conversion_buffer, 10);
+      uart_puts(conversion_buffer);
+      uart_puts_P("\r\n");
+    }
+    current_entry_idx++;
+  }
 
   uart_puts_P("Press a button to continue.");
   button_loop();
@@ -160,8 +198,8 @@ int main(void)
     }
   }
 
- 
-    
+
+
 
   // test the display
   uart_puts_P("\n\r testing the display:\n\r");

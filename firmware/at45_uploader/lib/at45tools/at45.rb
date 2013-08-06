@@ -1,10 +1,11 @@
 require 'at45tools/constants.rb'
 
 class AT45
-  def initialize(buspirate, pagecount, pagesize) 
+  def initialize(buspirate, pagecount, pagesize, enable_power) 
     @bp = buspirate;
     @pagesize=pagesize
     @pagecount=pagecount
+    @enable_power=enable_power
     configure_buspirate
   end
 
@@ -37,11 +38,15 @@ class AT45
   end
 
   def wait_for_ready
+    now=Time.now();
     while (! ready?) do
       if block_given?
         yield
       else
-        print("."); sleep(1)
+        if (Time.now() > now+1)
+          print(".");
+          now = Time.now();
+        end
       end
     end
   end
@@ -63,15 +68,24 @@ class AT45
 
   def upload_page(page, data, opts = {}) 
     raise ArgumentError, 'page out of range' unless 0 <= page && page < @pagecount;
+    #puts "Page #{page}, got data: #{data}"
+    #    puts "First four bytes of page #{page}:"
+    #puts "%2x" % data[0];
+    #puts "%2x" % data[1];
+    #puts "%2x" % data[2];
+    #puts "%2x" % data[3];
     write_to_buf1(data);
+    # Note: We erase all pages by using command 0x83.
     # erase page - otherwise, the memory is not fully written.
-    if (opts[:erase] == true) 
-      erase_page(page) 
-      wait_for_ready() {};
-    end 
+    # if (opts[:erase] == true) 
+    #   erase_page(page) 
+    #   wait_for_ready() {};
+    # end 
     buf1_to_mm(page);
-    wait_for_ready();
+    wait_for_ready() {};
     if (opts[:verify] == true)
+      blankpage = [].fill(0x00, 0..AT45::DB161D::PAGESIZE-1);
+      write_to_buf1(blankpage);
       mm_to_buf1(page);
       wait_for_ready();
       readbuf = read_from_buf1();
@@ -80,9 +94,11 @@ class AT45
         puts "Read back page: len #{data.length}: #{readbuf}"
         raise RuntimeError, "Page #{page} not written correctly."
       else
+        wait_for_ready();
         return readbuf
       end
     else
+      wait_for_ready();
       return data
     end
   end
@@ -94,7 +110,7 @@ class AT45
         # Send cmd byte
         retval = @bp.spi_bulk_write_read(AT45::CMD::PAGE_ERASE) 
         # Send 3-byte address 
-        pageaddr=[0x00] << (((page << 1) & 0x0f00) >> 8) << ((page << 1) & 0x00fe) 
+        pageaddr=([(((page << 2) & 0x3f00) >> 8)] << ((page << 2) & 0x00fc)) << 0x00
         retval = @bp.spi_bulk_write_read(pageaddr) 
       end
     end
@@ -107,7 +123,7 @@ class AT45
         # Send cmd byte
         retval = @bp.spi_bulk_write_read(AT45::CMD::BUFFER1_TO_MM) 
         # Send 3-byte address 
-        pageaddr=[0x00] << (((page << 1) & 0x0f00) >> 8) << ((page << 1) & 0x00fe) 
+        pageaddr=([(((page << 2) & 0x3f00) >> 8)] << ((page << 2) & 0x00fc)) << 0x00
         retval = @bp.spi_bulk_write_read(pageaddr) 
       end
     end
@@ -120,7 +136,7 @@ class AT45
         # Send cmd byte
         retval = @bp.spi_bulk_write_read(AT45::CMD::MM_TO_BUFFER1) 
         # Send 3-byte address 
-        pageaddr=[0x00] << (((page << 1) & 0x0f00) >> 8) << ((page << 1) & 0x00fe) 
+        pageaddr=([(((page << 2) & 0x3f00) >> 8)] << ((page << 2) & 0x00fc)) << 0x00
         retval = @bp.spi_bulk_write_read(pageaddr) 
       end
     end
@@ -195,7 +211,6 @@ class AT45
       print "setting configuration...\t"
       if @bp.spi_set_config(BusPirate::SPI::PIN_OUTPUT_33V, 
                             BusPirate::SPI::CLOCK_IDLE_LOW, 
-                            #BusPirate::SPI::CLOCK_EDGE_IDLE_TO_ACTIVE, 
                             BusPirate::SPI::CLOCK_EDGE_ACTIVE_TO_IDLE, 
                             BusPirate::SPI::SAMPLE_TIME_MIDDLE)
                             puts "done"
@@ -205,7 +220,12 @@ class AT45
       end
 
       print "configuring peripherals...\t"
-      if (@bp.config_peripherals(true, false, true, true) &&
+      if (@bp.config_peripherals(
+                                 @enable_power, # power
+                                 false, # pullups
+                                 true, #aux
+                                 true #cs
+                                ) &&
           @bp.configure_pins(BusPirate::PinMode::INPUT, BusPirate::PinMode::OUTPUT,
                              BusPirate::PinMode::OUTPUT,BusPirate::PinMode::INPUT,
                              BusPirate::PinMode::OUTPUT))

@@ -7,7 +7,7 @@ class AT45
     PAGE_ERASE        = [0x81];
     BUFFER1_READ      = [0xd4];
     BUFFER1_WRITE     = [0x84];
-    BUFFER1_TO_MM     = [0x88];
+    BUFFER1_TO_MM     = [0x83];
     MM_TO_BUFFER1     = [0x53];
   end
 
@@ -18,7 +18,7 @@ class AT45
 
   module DB161D
     PAGECOUNT         = 4096;
-    PAGESIZE          = 264;
+    PAGESIZE          = 528;
   end
 
   module EXITCODE

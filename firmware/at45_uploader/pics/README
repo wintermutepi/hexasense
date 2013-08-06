@@ -1,0 +1,6 @@
+If you're looking for the pics here, they probably have not (yet) been
+generated. use
+
+ $ ruby bin/gen_images.rb
+
+to put them here.

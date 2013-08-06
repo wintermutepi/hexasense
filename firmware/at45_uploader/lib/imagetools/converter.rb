@@ -52,23 +52,37 @@ module IMG
 
     def munch_directory(basedir)
 
+      file_list = [];
       num_screens=0;
       for file in Dir.entries(basedir)
         if file =~ /^img-(\d+)-(\d+).png/ 
           num_screens+=1
+          file_list << file;
         end
       end
+      file_list.sort!
       
       flash = IMG::FlashFormat.new()
       lut0 = IMG::LookupPageFormat.new();
       lut1 = IMG::LookupPageFormat.new();
       lut2 = IMG::LookupPageFormat.new();
       lut3 = IMG::LookupPageFormat.new();
+      # Fill luts with end of table marker.
+      end_line = IMG::LookupTableFormat.new();
+      end_line.temperature = 0xde;
+      end_line.humidity = 0xad;
+      end_line.startpage = 0xbeef;
+      (0..IMG::LUTLINES_PER_PAGE-1).each {|index|
+        lut0.lines[index] = end_line;
+        lut1.lines[index] = end_line;
+        lut2.lines[index] = end_line;
+        lut3.lines[index] = end_line;
+      }
       screen_count = 0;
       progressbar=ProgressBar.create(:title => "Screen", :starting_at => 0, 
                                      :total => num_screens,
                                      :format => '%t %c/%C |%B| %e') if not $verbose
-      for file in Dir.entries(basedir)
+      for file in file_list
         if file =~ /^img-(\d+)-(\d+).png/ 
           temp, hum = $1.to_i, $2.to_i
           puts "File #{file}: Temp #{temp}, Hum #{hum}" if $verbose

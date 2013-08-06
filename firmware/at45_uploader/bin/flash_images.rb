@@ -13,7 +13,7 @@ DEFAULT_BAUDRATE = 115200
 DEFAULT_DATABITS = 8
 DEFAULT_STOPBITS = 1
 DEFAULT_PARITY = SerialPort::NONE
-DEFAULT_DEVICE = "/dev/ttyUSB0"
+DEFAULT_DEVICE = "/dev/ttyUSB1"
 
 
 options = {}
@@ -27,6 +27,11 @@ OptionParser.new do |opts|
   opts.on("-s", "--skip-erase", "Skip the initial erase cycle") do |s|
     options[:skip_erase] = s
   end
+
+  opts.on("-p", "--power", "Enable bus pirate target power") do |p|
+    options[:enable_power] = p
+  end
+
   opts.on("-i", "--input [FILENAME]", "flash image file to be uploaded") do |file|
     options[:file] = file
   end
@@ -36,6 +41,7 @@ end.parse!
 
 $verbose=options[:verbose]
 infile = options[:file]
+options[:enable_power] ||= false;
 if not infile 
   puts "No input file (-i) specified, aborting.";
   exit(-1);
@@ -63,10 +69,14 @@ else
   exit;
 end
 
+
 begin
   bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
-                     DEFAULT_DATABITS, DEFAULT_STOPBITS, DEFAULT_PARITY)
-  at45 = AT45.new(bp, AT45::DB161D::PAGECOUNT, AT45::DB161D::PAGESIZE)
+                     DEFAULT_DATABITS, DEFAULT_STOPBITS, 
+                     DEFAULT_PARITY)
+  bp.reset_console
+  at45 = AT45.new(bp, AT45::DB161D::PAGECOUNT, 
+                  AT45::DB161D::PAGESIZE, options[:enable_power])
 
   chip_version = at45.get_version()
   print  "Chip version: \t\t\t%02x:%02x:%02x:%02x - " % chip_version
@@ -103,13 +113,11 @@ begin
                                  :total => num_pages,
                                  :format => '%t %c/%C |%B| %e')
   (0..num_pages-1).each{ |page_idx|
-    #TODO slice original flash image
-    page = flash_image.slice(page_idx*AT45::DB161D::PAGESIZE, AT45::DB161D::PAGESIZE);
+    data = flash_image.slice(page_idx*AT45::DB161D::PAGESIZE, AT45::DB161D::PAGESIZE);
     begin 
-      eraseswitch = true if options[:skip_erase]
-      readbuf=at45.upload_page(page_idx, page, :erase => eraseswitch, :verify => true);
+      readbuf=at45.upload_page(page_idx, data, :verify => true);
     rescue RuntimeError => e
-      puts "Upload of page #{page} failed - #{e}. Aborting.";
+      puts "Upload of page #{page_idx} failed - #{e}. Aborting.";
       exit
     end
     progressbar.increment

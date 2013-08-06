@@ -33,9 +33,9 @@ void at45_test_buffer1(void) {
   itoa(at45_stat, conversion_buffer, 10);
   uart_puts(conversion_buffer);
   if (at45_is_ready()) {
-	uart_puts_P(", device ready.\r\n");
+    uart_puts_P(", device ready.\r\n");
   } else {
-	uart_puts_P(", device NOT ready.\r\n");
+    uart_puts_P(", device NOT ready.\r\n");
   }
 
   uint8_t buf1[4];
@@ -68,26 +68,26 @@ void at45_test_buffer1(void) {
 }
 
 void at45_test_write_page(void) {
-  uint8_t buf2[AT45_BUFFER_SIZE];
+  uint8_t buf2[AT45_PAGE_SIZE];
   char conversion_buffer[50];
 
   uart_puts_P(" Reading content from flash:");
-  memset(buf2, 0x00, AT45_BUFFER_SIZE);
+  memset(buf2, 0x00, AT45_PAGE_SIZE);
   if (at45_read_page_to_buf_1(0)) {
     uart_puts_P(" Error transferring flash page to buffer1\r\n");
   } else {
     uart_puts_P(" Transfered flash page to buffer1 successfully.\r\n");
   }
-  at45_read_from_buf_1(buf2, AT45_BUFFER_SIZE, 0);
-  for( uint16_t i = 0; i < AT45_BUFFER_SIZE; i += 1) {
+  at45_read_from_buf_1(buf2, AT45_PAGE_SIZE, 0);
+  for( uint16_t i = 0; i < AT45_PAGE_SIZE; i += 1) {
     itoa(buf2[i], conversion_buffer, 16);
     uart_puts(conversion_buffer);
   }
   uart_puts_P(" received.\r\n");
 
   uart_puts_P(" Generating increased buffer: ");
-  memset(buf2, buf2[0]+1, AT45_BUFFER_SIZE);
-  at45_write_to_buf_1(buf2, AT45_BUFFER_SIZE, 0);
+  memset(buf2, buf2[0]+1, AT45_PAGE_SIZE);
+  at45_write_to_buf_1(buf2, AT45_PAGE_SIZE, 0);
   if (at45_write_from_buf_1(0)) {
     uart_puts_P(" Error transferring buffer1 to flash.\r\n");
   } else {
@@ -95,14 +95,14 @@ void at45_test_write_page(void) {
   }
 
   uart_puts_P(" Reading 0x1Fs from flash again:");
-  memset(buf2, 0x00, AT45_BUFFER_SIZE);
+  memset(buf2, 0x00, AT45_PAGE_SIZE);
   if (at45_read_page_to_buf_1(0)) {
     uart_puts_P(" Error transferring flash page to buffer1\r\n");
   } else {
     uart_puts_P(" Transfered flash page to buffer1 successfully.\r\n");
   }
-  at45_read_from_buf_1(buf2, AT45_BUFFER_SIZE, 0);
-  for( uint16_t i = 0; i < AT45_BUFFER_SIZE; i += 1) {
+  at45_read_from_buf_1(buf2, AT45_PAGE_SIZE, 0);
+  for( uint16_t i = 0; i < AT45_PAGE_SIZE; i += 1) {
     itoa(buf2[i], conversion_buffer, 16);
     uart_puts(conversion_buffer);
   }
