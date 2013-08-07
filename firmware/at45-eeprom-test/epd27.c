@@ -91,7 +91,7 @@ void epd27_pwm_init(void) {
 
 
 void epd27_init(void) {
-  uart_puts_P("\r\nEPD27 init.");
+  //uart_puts_P("\r\nEPD27 init.");
   // Configure output pins.
   EPD_PORT_EPD_CS |= (1 << EPD_PIN_EPD_CS);
   EPD_DDR_EPD_CS |= (1 << EPD_PIN_EPD_CS);
@@ -121,7 +121,7 @@ void epd27_init(void) {
 
 void epd27_begin(void) {
   // power up sequence
-  uart_puts_P("\r\nEPD27 begin.");
+//  uart_puts_P("\r\nEPD27 begin.");
 	SPI_put(0x00);
   // set initial values - all low.
   EPD_PORT_RESET &= ~(1 << EPD_PIN_RESET);
@@ -244,7 +244,7 @@ void epd27_begin(void) {
 }
 
 void epd27_end(void) {
-  uart_puts_P("\r\nEPD27 end.");
+//  uart_puts_P("\r\nEPD27 end.");
   epd27_frame_fixed(0x55, EPD_normal); // dummy frame
 	epd27_line(0x7fffu, 0, 0x55, false, EPD_normal); // dummy_line
 	_delay_ms(25);
@@ -344,7 +344,7 @@ void  epd27_set_temperature(int16_t temperature) {
 }
 
 void epd27_clear() {
-  uart_puts_P("EPD27 clear.");
+//  uart_puts_P("EPD27 clear.");
   epd27_frame_fixed_repeat(0xff, EPD_compensate);
   epd27_frame_fixed_repeat(0xff, EPD_white);
   epd27_frame_fixed_repeat(0xaa, EPD_inverse);
@@ -383,10 +383,10 @@ void epd27_frame_data(const prog_uint8_t *image, EPD_stage stage) {
 
 
 void epd27_frame_fixed_repeat(uint8_t fixed_value, EPD_stage stage) {
-  uart_puts_P("\r\nEPD27 frame_fixed_repeat");
+//  uart_puts_P("\r\nEPD27 frame_fixed_repeat");
   long stage_time = epd27_factored_stage_time;
 	do {
-    uart_puts_P(".");
+    //uart_puts_P(".");
 		uint32_t t_start = millis();
 		epd27_frame_fixed(fixed_value, stage);
 		uint32_t t_end = millis();

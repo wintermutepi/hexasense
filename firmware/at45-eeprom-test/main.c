@@ -38,6 +38,9 @@ PROGMEM const
 /* 9600 baud */
 #define UART_BAUD_RATE 9600      
 
+/* stress test */
+#define STRESS_TEST 1
+
 void init(void) {
   /*
    *  Initialize UART library, pass baudrate and AVR cpu clock
@@ -59,58 +62,107 @@ void init(void) {
    */
   sei();
 }
-
 void read_digital_sensors(void) {
   char buffer[7];
-  uart_puts_P("HYT271 sensor\r\n");
+#ifndef STRESS_TEST
+  uart_puts_P("HYT271 sensor:\r\n");
+#endif
   double hyt271_hum = 0.0;
   double hyt271_temp = 0.0;
-  double dp = 0.0;
   HYT271_ERROR_t error_code =  hyt271_get_measurements(&hyt271_hum, &hyt271_temp);
   switch(error_code) {
-    case HYT271_ERROR_NONE:
-      uart_puts_P("Temperature: ");
-      dtostrf(hyt271_temp, 5, 2, buffer);   // convert interger into string (decimal format)         
-      uart_puts(buffer);        // and transmit string to UART
-      uart_puts_P("\r\nHumidity: ");
-      itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
-      uart_puts(buffer);        // and transmit string to UART
-      uart_puts_P("\r\n");
-      uart_puts_P("Dewpoint based on HYT271 sensor: ");
-      dp = dew_point(hyt271_temp, hyt271_hum);
-      itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
-      uart_puts(buffer);        // and transmit string to UART
-      uart_puts_P("\r\n");
-      break;
-    case HYT271_BUS_ERROR:
-      uart_puts_P("Bus error while reading HYT271 sensor.\r\n");
-      break;
-    default:
-      uart_puts_P("Unknown error reading HYT271 sensor.\r\n");
-      break;
+	case HYT271_ERROR_NONE:
+#ifndef STRESS_TEST
+	  uart_puts_P("Temperature: ");
+#endif
+	  dtostrf(hyt271_temp, 5, 2, buffer);   // convert interger into string (decimal format)         
+	  uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+	  uart_puts_P("\r\nHumidity: ");
+#else
+	  uart_puts_P(";");
+#endif
+	  itoa(hyt271_hum, buffer, 10);   // convert interger into string (decimal format)         
+	  uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+	  uart_puts_P("\r\n");
+	  uart_puts_P("Dewpoint based on HYT271 sensor: ");
+#else
+	  uart_puts_P(";");
+#endif
+	  double dp=dew_point(hyt271_temp, hyt271_hum);
+	  itoa(dp, buffer, 10);   // convert interger into string (decimal format)         
+	  uart_puts(buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
+	  uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+	  break;
+	case HYT271_BUS_ERROR:
+	  uart_puts_P("Bus error while reading HYT271 sensor.\r\n");
+	  break;
+	default:
+	  uart_puts_P("Unknown error reading HYT271 sensor.\r\n");
+	  break;
   }
 }
-
 void read_analog_sensors(void) {
   float temperature0 = 0.0; 
   float temperature1 = 0.0; 
   temperature0=temperature_adc(ANALOG_TEMPERATURE_0); // convert from adc value to temperaure 
   temperature1=temperature_adc(ANALOG_TEMPERATURE_1); // convert from adc value to temperaure 
+#ifndef STRESS_TEST
   uart_puts_P("Temperature from ADC0: ");
+#endif
   char temperature_string_buffer[10];
   dtostrf(temperature0, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
   uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
+#ifndef STRESS_TEST
   uart_puts_P("Temperature from ADC4: ");
+#endif
   dtostrf(temperature1, 5,2, temperature_string_buffer);   // convert interger into string (decimal format)         
   uart_puts(temperature_string_buffer);        // and transmit string to UART
+#ifndef STRESS_TEST
   uart_puts_P("\r\n");
+#else
+	  uart_puts_P(";");
+#endif
 }
+
+void stress_test(void) {
+  uint8_t screen = 1;
+  while(1) {
+    read_digital_sensors();
+    read_analog_sensors();
+    uart_puts_P("\r\n");
+    epd27_wait_cog_ready();
+    epd27_begin(); // power up the EPD panel
+    epd27_set_temperature(22); // adjust for current temperature
+    if(screen == 1){
+      epd27_clear();
+      screen = 0;
+    }
+    else{
+      epd27_image_whitescreen(cat_2_7_bits);
+      screen = 1;
+    }
+    epd27_end();   // power down the EPD panel
+    _delay_ms(30000);
+  }
+}
+
 
 int main(void)
 {
   init();
 
+#ifndef STRESS_TEST
   uart_puts_P("\n\r HEXASENSE BRINGUP FIRMWARE\n\r");
   uart_puts_P("\n\r all inits complete.\n\r");
 
@@ -253,4 +305,8 @@ int main(void)
   // if all is right, say so
   uart_puts_P("all tests successful! \n\r");
   uart_puts_P("The device may now be flashed with the production firmware.\n\r");
+#else
+  stress_test();
+#endif
+
 }
