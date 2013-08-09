@@ -107,6 +107,61 @@ void read_analog_sensors(void) {
   uart_puts_P("\r\n");
 }
 
+// See ruby tools: lib/imagetools/config.rb
+//#define BYTES_PER_LINE 33;
+#define LINES_PER_PAGE 16
+#define PAGES_PER_SCREEN 11
+
+
+void frame_helper(uint16_t pageindex, EPD_stage stage) {
+  struct at45_page_t* page = malloc(sizeof(uint8_t [AT45_PAGE_SIZE]));
+  // for all pages:
+  for( uint16_t curpage_idx = pageindex; 
+      curpage_idx < (pageindex + PAGES_PER_SCREEN); curpage_idx+= 1) {
+    // 1. get from at45
+    memset(page, 0x00, AT45_PAGE_SIZE);
+    if (! at45_read_page(page, curpage_idx)) {
+      free(page);
+      uart_puts_P("Failed to read page from AT45 - ABORTING");
+      return;
+    } else {
+      uart_puts_P("\r\nPage ");
+      char conversion_buffer[50];
+      itoa(curpage_idx, conversion_buffer, 10);
+      uart_puts(conversion_buffer);
+      //uart_puts_P(": ");
+      //at45_dump_page(page);
+      // 2. loop:
+      // calculate the section of the screen we're going to fill using this page
+      uint16_t startline = (curpage_idx - pageindex) * LINES_PER_PAGE;
+      uint16_t endline = (curpage_idx - pageindex + 1) * LINES_PER_PAGE - 1;
+      //uart_puts_P(" Startline: ");
+      //itoa(startline, conversion_buffer, 10);
+      //uart_puts(conversion_buffer);
+      //uart_puts_P(" Endline: ");
+      //itoa(endline, conversion_buffer, 10);
+      //uart_puts(conversion_buffer);
+      uint8_t line_data[BYTES_PER_LINE];
+      long stage_time = epd27_get_factored_stage_time();
+      do {
+        uint32_t t_start = millis();
+        for (uint16_t line = startline; line <= endline ; ++line) {
+          memcpy(&line_data, &page->data[((line - startline)*BYTES_PER_LINE)], BYTES_PER_LINE);
+          epd27_line(line, line_data, 0, false, stage);
+        }
+        uint32_t t_end = millis();
+        if (t_end > t_start) {
+          stage_time -= t_end - t_start;
+        } else {
+          stage_time -= t_start - t_end + 1 + UINT32_MAX;
+        }
+      } while (stage_time > 0);
+    }
+    // 3. get next section of screen
+  }
+  free(page);
+}
+
 int main(void)
 {
   init();
@@ -115,7 +170,7 @@ int main(void)
   uart_puts_P("\n\r all inits complete.\n\r");
 
 
- // Test AT45 flash
+  // Test AT45 flash
   uart_puts_P("\n\r testing AT45 flash:\n\r");
   if (at45_is_ready())
     uart_puts_P("\n\r OK: flash is ready.\n\r");
@@ -134,19 +189,13 @@ int main(void)
     }
   }
 
-  //struct at45_page_t clearpage;
-  //memset(&clearpage.data, 0xfe, AT45_PAGE_SIZE);
-  //while (! at45_is_ready()) ;;
-	//uart_puts_P("Writing 0xfe's to buffer1.\r\n");
-  //at45_write_to_buf_1((uint8_t*)&clearpage.data, AT45_PAGE_SIZE, 0);
-  //while (! at45_is_ready()) ;;
-	//uart_puts_P("Reading 0xfe's from buffer1.\r\n");
-	//at45_read_from_buf_1((uint8_t*)&clearpage, AT45_PAGE_SIZE, 0);
-
+  /** 
+   * Testing the page index table
+   */
   struct index_entry_t entry;
   uint16_t current_entry_idx = 0;
   uint8_t errcode = AT45_TABLE_SUCCESS;
-  uart_puts_P("Attempting to read index.\r\n");
+  uart_puts_P("Reading page index:\r\n");
   uart_puts_P("IDX | TMP | HUM | PAGE\r\n");
   char conversion_buffer[50];
   while (((errcode = index_get_entry(&entry, current_entry_idx)) != AT45_END_OF_TABLE) && current_entry_idx < 6) {
@@ -171,48 +220,58 @@ int main(void)
     current_entry_idx++;
   }
 
-  uart_puts_P("Press a button to continue.");
+  uart_puts_P("If the data seems plausible please press a button to continue.");
   button_loop();
 
-  // test the buttons
-  uart_puts_P("testing the buttons:\n\r");
-  uart_puts_P("press the 2nd button from the left... ");
-  while(1) {
-    if (is_button0_pressed()) {
-      uart_puts_P("OK.\r\n");
-      break;
-    }
-  }
-  uart_puts_P("press the rightmost button... ");
-  while(1) {
-    if (is_button1_pressed()) {
-      uart_puts_P("OK.\r\n");
-      break;
-    }
-  }
-  uart_puts_P("press the leftmost button... ");
-  while(1) {
-    if (is_button2_pressed()) {
-      uart_puts_P("OK.\r\n");
-      break;
-    }
-  }
-
-
-
+  // // test the buttons
+  // uart_puts_P("testing the buttons:\n\r");
+  // uart_puts_P("press the 2nd button from the left... ");
+  // while(1) {
+  //   if (is_button0_pressed()) {
+  //     uart_puts_P("OK.\r\n");
+  //     break;
+  //   }
+  // }
+  // uart_puts_P("press the rightmost button... ");
+  // while(1) {
+  //   if (is_button1_pressed()) {
+  //     uart_puts_P("OK.\r\n");
+  //     break;
+  //   }
+  // }
+  // uart_puts_P("press the leftmost button... ");
+  // while(1) {
+  //   if (is_button2_pressed()) {
+  //     uart_puts_P("OK.\r\n");
+  //     break;
+  //   }
+  // }
 
   // test the display
-  uart_puts_P("\n\r testing the display:\n\r");
-  epd27_wait_cog_ready();
+  //uart_puts_P("\n\r testing the display:\n\r");
+  //epd27_wait_cog_ready();
+  //epd27_begin(); // power up the EPD panel
+  //epd27_set_temperature(22); // adjust for current temperature
+  //epd27_clear();
+  //uart_puts_P("If you see a white screen, press any button.\n\r");
+  //button_loop();
+  //epd27_image_whitescreen(cat_2_7_bits);
+  //epd27_end();   // power down the EPD panel
+  //uart_puts_P("If you see a cat, press any button.\n\r");
+  //button_loop();
+
+
+  // Test Display and AT45 storage combined.
+
   epd27_begin(); // power up the EPD panel
   epd27_set_temperature(22); // adjust for current temperature
   epd27_clear();
-  uart_puts_P("If you see a white screen, press any button.\n\r");
-  button_loop();
-  epd27_image_whitescreen(cat_2_7_bits);
+  epd27_frame_fixed_repeat(0xaa, EPD_compensate);
+  epd27_frame_fixed_repeat(0xaa, EPD_white);
+  frame_helper(4, EPD_inverse);
+  frame_helper(4, EPD_normal);
   epd27_end();   // power down the EPD panel
-  uart_puts_P("If you see a cat, press any button.\n\r");
-  button_loop();
+
 
   // test the LEDs
   uart_puts_P("\n\r testing the LEDs:\n\r");

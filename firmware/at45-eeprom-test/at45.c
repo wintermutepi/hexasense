@@ -161,6 +161,16 @@ void at45_read_from_buf_1(uint8_t * dst, uint16_t count, uint16_t addr) {
   at45_release(); 
 } 
 
+void at45_dump_page(struct at45_page_t* page) {
+  char conversion_buffer[50];
+  for( uint16_t idx = 0; idx < AT45_PAGE_SIZE; idx += 1) {
+    uint8_t current = page->data[idx];
+    itoa(current, conversion_buffer, 16);
+    uart_puts(conversion_buffer);
+    uart_puts_P(":");
+  }
+}
+
 // transferring the data over to BUFFER 1 
 void at45_write_to_buf_1(const uint8_t *src, uint16_t count, uint16_t addr) __attribute__ ((optimize(1))); 
 

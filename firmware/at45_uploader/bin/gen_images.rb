@@ -15,7 +15,13 @@ progressbar=ProgressBar.create(:title => "Images", :starting_at => 0,
   [10,20,30].each {|hum|
     draw = Magick::Draw.new()
     draw.gravity(Magick::CenterGravity)
+    draw.fill('white');
+    draw.stroke('black');
+    draw.rectangle(3,3,EPD27::PIXEL_PER_LINE - 4,
+                   EPD27::LINES_PER_DISPLAY - 4);
+
     draw.pointsize(42)
+    draw.fill('black');
     draw.text(0, 0, "#{temp} -  #{hum}")
     img = Image.new(EPD27::PIXEL_PER_LINE, EPD27::LINES_PER_DISPLAY)
     draw.draw(img)

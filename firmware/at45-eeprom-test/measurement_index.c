@@ -26,24 +26,24 @@ uint8_t index_get_entry( struct index_entry_t* entry, uint16_t index) {
 //      uart_puts(conversion_buffer);
 //
   if (! at45_read_page(page, index_page)) {
-	free(page);
-	return AT45_FAILURE;
+    free(page);
+    return AT45_FAILURE;
   } else {
-	uint16_t offset = (index_in_page * sizeof(struct index_entry_t));
-	uint8_t* addr =(uint8_t*)(page) + offset;
+    uint16_t offset = (index_in_page * sizeof(struct index_entry_t));
+    uint8_t* addr =(uint8_t*)(page) + offset;
 
-	memcpy(entry, addr, sizeof(struct index_entry_t));
-	entry->temp = entry->temp;
-	entry->hum = entry->hum;
-	entry->page_idx = entry->page_idx;
-	if (entry->temp != 0xde && entry->hum != 0xad &&
-		entry->page_idx != 0xbeef) 
-	{
-	  free(page);
-	  return AT45_TABLE_SUCCESS;
-	} else {
-	  free(page);
-	  return AT45_END_OF_TABLE;
-	}
+    memcpy(entry, addr, sizeof(struct index_entry_t));
+    entry->temp = entry->temp;
+    entry->hum = entry->hum;
+    entry->page_idx = entry->page_idx;
+    if (entry->temp != 0xde && entry->hum != 0xad &&
+        entry->page_idx != 0xbeef) 
+    {
+      free(page);
+      return AT45_TABLE_SUCCESS;
+    } else {
+      free(page);
+      return AT45_END_OF_TABLE;
+    }
   }
 }

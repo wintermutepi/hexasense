@@ -36,6 +36,10 @@ void epd27_wait_cog_ready(void) {
 	}
 }
 
+uint16_t epd27_get_factored_stage_time(void) {
+  return epd27_factored_stage_time;
+}
+
 void epd27_cs_low(void) {
   EPD_PORT_EPD_CS &= ~(1<<EPD_PIN_EPD_CS);
 }

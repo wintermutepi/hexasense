@@ -45,6 +45,7 @@ int epd27_temperature_to_factor_10x(int temperature);
 // also has to handle AVR progmem
 void epd27_line(uint16_t line, const uint8_t *data, 
     uint8_t fixed_value, bool read_progmem, EPD_stage stage);
+uint16_t epd27_get_factored_stage_time(void);
 
 
 void PWM_start(void);
