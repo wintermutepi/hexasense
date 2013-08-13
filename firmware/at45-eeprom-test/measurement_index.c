@@ -47,3 +47,30 @@ uint8_t index_get_entry( struct index_entry_t* entry, uint16_t index) {
     }
   }
 }
+
+uint8_t index_get_first_entry(struct index_entry_t* entry) {
+  uint8_t errcode = AT45_TABLE_SUCCESS;
+  if (((errcode = index_get_entry(entry, 0)) 
+        != AT45_END_OF_TABLE)) {
+    if (errcode == AT45_FAILURE) {
+      return errcode;
+    } else {
+      return AT45_TABLE_SUCCESS;
+    }
+  }
+  return errcode;
+}
+
+uint8_t index_get_last_entry(struct index_entry_t* entry) {
+  uint16_t current_entry_idx = 0;
+  uint8_t errcode = AT45_TABLE_SUCCESS;
+  while (((errcode = index_get_entry(entry, current_entry_idx)) 
+        != AT45_END_OF_TABLE)) {
+    if (errcode == AT45_FAILURE) {
+      return errcode;
+    } 
+    current_entry_idx++;
+  }
+  errcode = index_get_entry(entry, current_entry_idx - 1);
+  return AT45_TABLE_SUCCESS;
+}

@@ -48,6 +48,10 @@
 #define BYTES_PER_SCAN 176/4
 #define FILLER true
 
-
+// Definitions for the AT45 memory stored screen pages.
+// See ruby tools: lib/imagetools/config.rb
+//#define BYTES_PER_LINE 33;
+#define LINES_PER_PAGE 16
+#define PAGES_PER_SCREEN 11
 
 #endif /* EPD27_CONF_H */

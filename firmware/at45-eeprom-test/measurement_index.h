@@ -23,6 +23,8 @@ struct index_entry_t {
 static const uint16_t INDEX_ENTRIES_PER_PAGE = AT45_PAGE_SIZE/sizeof(struct index_entry_t);
 
 uint8_t index_get_entry(struct index_entry_t* entry, uint16_t index);
+uint8_t index_get_first_entry(struct index_entry_t* entry);
+uint8_t index_get_last_entry(struct index_entry_t* entry);
 
 #endif /* MEASUREMENT_INDEX_H */
 
