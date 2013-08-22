@@ -111,7 +111,7 @@
 <wire x1="42" y1="14" x2="26" y2="14" width="2" layer="46"/>
 <wire x1="26" y1="14" x2="26" y2="0" width="2" layer="46"/>
 <text x="5.7" y="27" size="1.778" layer="1" font="vector" ratio="10" rot="SR90">HexaSense Display
-20130723</text>
+20130822</text>
 <hole x="63" y="4" drill="4"/>
 <hole x="4" y="4" drill="4"/>
 <hole x="4" y="58" drill="4"/>
@@ -608,7 +608,7 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <elements>
 <element name="U$1" library="Reichelt" package="RJ45-REICHELT" value="MEBP8-8G" x="34" y="25.6" rot="MR0"/>
 <element name="S1" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="21.25" y="7.3" smashed="yes" rot="R90">
-<attribute name="NAME" x="17.72" y="4.24" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="21.82" y="13.14" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="26.25" y="4.3" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="S2" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="46.75" y="7.3" smashed="yes" rot="R270">
@@ -616,9 +616,9 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <attribute name="VALUE" x="41.75" y="10.3" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="U$4" library="hexabus" package="HEXABUS" value="HEXABUS" x="42.1" y="52.9" rot="MR90"/>
-<element name="S4" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="10.4" y="7.3" smashed="yes" rot="R270">
-<attribute name="NAME" x="5.72" y="13.12" size="1.27" layer="25" rot="R270"/>
-<attribute name="VALUE" x="5.4" y="10.3" size="1.27" layer="27" rot="R270"/>
+<element name="S4" library="Ergaenzung" package="TASTER-9314_SMD" value="" x="13.25" y="7.3" smashed="yes" rot="R270">
+<attribute name="NAME" x="8.57" y="13.12" size="1.27" layer="25" rot="R270"/>
+<attribute name="VALUE" x="8.25" y="10.3" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="U$7" library="humidity" package="HYT271" value="HYT271" x="9.93" y="38.01" rot="R180"/>
 <element name="C1" library="rcl" package="C0805" value="100n" x="10.54" y="51.84" smashed="yes">
@@ -820,12 +820,12 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="U$4" pad="BTN"/>
 <contactref element="S4" pad="1"/>
 <contactref element="S4" pad="2"/>
-<wire x1="12.65" y1="2.3" x2="12.65" y2="12.3" width="0.254" layer="1"/>
-<wire x1="12.65" y1="12.3" x2="12.65" y2="20.7" width="0.254" layer="1"/>
-<wire x1="22.2" y1="44.4" x2="22.2" y2="30.25" width="0.254" layer="1"/>
-<wire x1="22.2" y1="30.25" x2="12.65" y2="20.7" width="0.254" layer="1"/>
+<wire x1="15.5" y1="2.3" x2="15.5" y2="12.3" width="0.254" layer="1"/>
+<wire x1="22.2" y1="44.4" x2="22.2" y2="29.3" width="0.254" layer="1"/>
 <wire x1="28.57" y1="54.39" x2="28.57" y2="50.77" width="0.254" layer="1"/>
 <wire x1="28.57" y1="50.77" x2="22.2" y2="44.4" width="0.254" layer="1"/>
+<wire x1="22.2" y1="29.3" x2="15.5" y2="22.6" width="0.254" layer="1"/>
+<wire x1="15.5" y1="22.6" x2="15.5" y2="12.3" width="0.254" layer="1"/>
 </signal>
 <signal name="S2">
 <contactref element="S2" pad="2"/>
