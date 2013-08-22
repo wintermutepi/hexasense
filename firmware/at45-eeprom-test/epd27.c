@@ -4,6 +4,8 @@
 #include "timer.h"
 #include <stdint.h>
 #include <avr/io.h>
+#include <stdlib.h>
+#include <string.h>
 #include <util/delay.h>
 
 // inline arrays
@@ -34,6 +36,10 @@ void epd27_wait_cog_ready(void) {
       (EPD_INPUT_PORT_BUSY & (1<<EPD_PIN_BUSY))) {
     ;;
 	}
+}
+
+uint16_t epd27_get_factored_stage_time(void) {
+  return epd27_factored_stage_time;
 }
 
 void epd27_cs_low(void) {
@@ -118,6 +124,64 @@ void epd27_init(void) {
 
   epd27_pwm_init();
 }
+
+
+void epd27_image_transfersection(uint16_t startline, uint16_t endline, 
+    struct at45_page_t* page, EPD_stage stage) {
+  uint8_t line_data[BYTES_PER_LINE];
+ // long stage_time = epd27_get_factored_stage_time();
+ // do {
+ //   uint32_t t_start = millis();
+    for (uint16_t line = startline; line <= endline ; ++line) {
+      memcpy(&line_data, &page->data[((line - startline)*BYTES_PER_LINE)], BYTES_PER_LINE);
+      epd27_line(line, line_data, 0, false, stage);
+    }
+ //   uint32_t t_end = millis();
+ //   if (t_end > t_start) {
+ //     stage_time -= t_end - t_start;
+ //   } else {
+ //     stage_time -= t_start - t_end + 1 + UINT32_MAX;
+ //   }
+ // } while (stage_time > 0);
+
+
+}
+
+void epd27_image_at45(uint16_t pageindex, EPD_stage stage) {
+  struct at45_page_t* page = malloc(sizeof(uint8_t [AT45_PAGE_SIZE]));
+  // for all pages:
+  for( uint16_t curpage_idx = pageindex; 
+      curpage_idx < (pageindex + PAGES_PER_SCREEN); curpage_idx+= 1) {
+    // 1. get from at45
+    memset(page, 0x00, AT45_PAGE_SIZE);
+    if (! at45_read_page(page, curpage_idx)) {
+      free(page);
+      uart_puts_P("Failed to read page from AT45 - ABORTING");
+      return;
+    } else {
+      //uart_puts_P("\r\nPage ");
+      //char conversion_buffer[50];
+      //itoa(curpage_idx, conversion_buffer, 10);
+      //uart_puts(conversion_buffer);
+      //uart_puts_P(": ");
+      //at45_dump_page(page);
+      // 2. loop:
+      // calculate the section of the screen we're going to fill using this page
+      uint16_t startline = (curpage_idx - pageindex) * LINES_PER_PAGE;
+      uint16_t endline = (curpage_idx - pageindex + 1) * LINES_PER_PAGE - 1;
+      //uart_puts_P(" Startline: ");
+      //itoa(startline, conversion_buffer, 10);
+      //uart_puts(conversion_buffer);
+      //uart_puts_P(" Endline: ");
+      //itoa(endline, conversion_buffer, 10);
+      //uart_puts(conversion_buffer);
+      epd27_image_transfersection(startline, endline, page, stage);
+    }
+  }
+  free(page);
+}
+
+
 
 void epd27_begin(void) {
   // power up sequence

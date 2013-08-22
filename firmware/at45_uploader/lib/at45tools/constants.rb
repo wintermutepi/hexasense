@@ -7,7 +7,8 @@ class AT45
     PAGE_ERASE        = [0x81];
     BUFFER1_READ      = [0xd4];
     BUFFER1_WRITE     = [0x84];
-    BUFFER1_TO_MM     = [0x83];
+    #BUFFER1_TO_MM     = [0x83]; // erase each page separately.
+    BUFFER1_TO_MM     = [0x88]; # do not erase each page separately.
     MM_TO_BUFFER1     = [0x53];
   end
 

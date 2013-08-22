@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <avr/pgmspace.h> // PROGMEM, prog_uint8_t
 #include "epd27_conf.h"
+#include "at45.h"
 
 typedef enum {           // Image pixel -> Display pixel
 	EPD_compensate,  // B -> W, W -> B (Current Image)
@@ -26,6 +27,7 @@ void epd27_clear(void);
 void epd27_image_whitescreen(const prog_uint8_t *image);
 // change from old image to new image (PROGMEM data)
 void epd27_image_transition(const prog_uint8_t *old_image, const prog_uint8_t *new_image);
+void epd27_image_at45(uint16_t pageindex, EPD_stage stage);
 
 /***
  * low level API
@@ -45,6 +47,9 @@ int epd27_temperature_to_factor_10x(int temperature);
 // also has to handle AVR progmem
 void epd27_line(uint16_t line, const uint8_t *data, 
     uint8_t fixed_value, bool read_progmem, EPD_stage stage);
+uint16_t epd27_get_factored_stage_time(void);
+void epd27_image_transfersection(uint16_t startline, uint16_t endline, 
+    struct at45_page_t* page, EPD_stage stage);
 
 
 void PWM_start(void);

@@ -13,7 +13,7 @@ DEFAULT_BAUDRATE = 115200
 DEFAULT_DATABITS = 8
 DEFAULT_STOPBITS = 1
 DEFAULT_PARITY = SerialPort::NONE
-DEFAULT_DEVICE = "/dev/ttyUSB1"
+DEFAULT_DEVICE = "/dev/ttyUSB0"
 
 
 options = {}
@@ -28,6 +28,10 @@ OptionParser.new do |opts|
     options[:skip_erase] = s
   end
 
+  opts.on("-n", "--no-verify", "Do not verify the written data") do |s|
+    options[:no_verify] = false
+  end
+
   opts.on("-p", "--power", "Enable bus pirate target power") do |p|
     options[:enable_power] = p
   end
@@ -36,12 +40,16 @@ OptionParser.new do |opts|
     options[:file] = file
   end
 
-
+  opts.on("-d", "--serial-device [FILENAME]", "the serial port the buspirate is connected to") do |serial|
+    options[:serial_port] = serial
+  end
 end.parse!
 
 $verbose=options[:verbose]
 infile = options[:file]
 options[:enable_power] ||= false;
+options[:no_verify] ||= false;
+options[:serial_port] ||= DEFAULT_DEVICE;
 if not infile 
   puts "No input file (-i) specified, aborting.";
   exit(-1);
@@ -71,7 +79,7 @@ end
 
 
 begin
-  bp = BusPirate.new(DEFAULT_DEVICE, DEFAULT_BAUDRATE, 
+  bp = BusPirate.new(options[:serial_port], DEFAULT_BAUDRATE, 
                      DEFAULT_DATABITS, DEFAULT_STOPBITS, 
                      DEFAULT_PARITY)
   bp.reset_console
@@ -115,7 +123,7 @@ begin
   (0..num_pages-1).each{ |page_idx|
     data = flash_image.slice(page_idx*AT45::DB161D::PAGESIZE, AT45::DB161D::PAGESIZE);
     begin 
-      readbuf=at45.upload_page(page_idx, data, :verify => true);
+      readbuf=at45.upload_page(page_idx, data, :verify => !options[:no_verify]);
     rescue RuntimeError => e
       puts "Upload of page #{page_idx} failed - #{e}. Aborting.";
       exit

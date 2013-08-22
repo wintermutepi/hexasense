@@ -1,9 +1,11 @@
+require 'at45tools/constants'
+
 class EPD27
 
   LINES_PER_DISPLAY = 176;
   PIXEL_PER_LINE = 264;
   BYTES_PER_LINE = PIXEL_PER_LINE/8;
-  LINES_PER_PAGE = (564/BYTES_PER_LINE.to_f).ceil.to_i 
+  LINES_PER_PAGE = (AT45::DB161D::PAGESIZE/BYTES_PER_LINE.to_f).ceil.to_i 
   PAGES_PER_SCREEN = (LINES_PER_DISPLAY/LINES_PER_PAGE.to_f).ceil.to_i
 
   def self.dump_flash_config
