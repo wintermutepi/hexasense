@@ -111,7 +111,7 @@
 <wire x1="42" y1="14" x2="26" y2="14" width="2" layer="46"/>
 <wire x1="26" y1="14" x2="26" y2="0" width="2" layer="46"/>
 <text x="5.7" y="27" size="1.778" layer="1" font="vector" ratio="10" rot="SR90">HexaSense Display
-20130822</text>
+20130828</text>
 <hole x="63" y="4" drill="4"/>
 <hole x="4" y="4" drill="4"/>
 <hole x="4" y="58" drill="4"/>
