@@ -694,10 +694,8 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="17.225" y1="35.62" x2="19.92" y2="35.62" width="0.254" layer="1"/>
 <wire x1="13.75" y1="8.4" x2="13.75" y2="6.9" width="0.254" layer="1"/>
 <wire x1="13.75" y1="6.9" x2="13.8" y2="6.85" width="0.254" layer="1"/>
-<wire x1="13.8" y1="9.75" x2="18.6862" y2="9.75" width="0.254" layer="1"/>
-<wire x1="18.6862" y1="9.75" x2="19.2362" y2="10.3" width="0.254" layer="1"/>
-<wire x1="19.2362" y1="10.3" x2="19.8862" y2="9.65" width="0.254" layer="1"/>
-<wire x1="19.8862" y1="9.65" x2="27.95" y2="9.65" width="0.254" layer="1"/>
+<wire x1="13.8" y1="9.75" x2="15.9" y2="9.75" width="0.254" layer="1"/>
+<wire x1="22.05" y1="9.65" x2="27.95" y2="9.65" width="0.254" layer="1"/>
 <wire x1="27.95" y1="9.65" x2="29.6" y2="8" width="0.254" layer="1"/>
 <wire x1="29.6" y1="8" x2="29.7996" y2="8" width="0.254" layer="1"/>
 <wire x1="13.75" y1="8.4" x2="13.75" y2="10.75" width="0.254" layer="16"/>
@@ -710,6 +708,10 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <wire x1="10.42" y1="37.83" x2="12.4" y2="35.85" width="0.254" layer="1"/>
 <wire x1="12.4" y1="35.85" x2="12.4" y2="30.95" width="0.254" layer="1"/>
 <wire x1="12.4" y1="30.95" x2="12.4775" y2="30.8725" width="0.254" layer="1"/>
+<wire x1="19.2362" y1="10.3" x2="21.4" y2="10.3" width="0.254" layer="1"/>
+<wire x1="21.4" y1="10.3" x2="22.05" y2="9.65" width="0.254" layer="1"/>
+<wire x1="19.2362" y1="10.3" x2="16.45" y2="10.3" width="0.254" layer="1"/>
+<wire x1="16.45" y1="10.3" x2="15.9" y2="9.75" width="0.254" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="R5" pad="1"/>
@@ -922,15 +924,16 @@ minimale Strichstärke: &lt;b&gt;0.2 mm&lt;/b&gt;&lt;br&gt;&lt;br&gt;
 <contactref element="U1" pad="3"/>
 <wire x1="19.92" y1="37.52" x2="20.47" y2="36.97" width="0.254" layer="1"/>
 <wire x1="20.47" y1="36.97" x2="24.3362" y2="36.97" width="0.254" layer="1"/>
-<wire x1="42.69" y1="36.31" x2="42.08" y2="35.7" width="0.254" layer="1"/>
-<wire x1="42.08" y1="35.7" x2="31.85" y2="35.7" width="0.254" layer="1"/>
 <contactref element="PT100-1" pad="TP"/>
+<wire x1="36.95" y1="35.7" x2="31.85" y2="35.7" width="0.254" layer="1"/>
 <wire x1="24.3362" y1="36.97" x2="26.38" y2="36.97" width="0.254" layer="1"/>
 <wire x1="26.38" y1="36.97" x2="27" y2="36.35" width="0.254" layer="1"/>
 <wire x1="27" y1="36.35" x2="31.2" y2="36.35" width="0.254" layer="1"/>
 <wire x1="31.2" y1="36.35" x2="31.85" y2="35.7" width="0.254" layer="1"/>
 <wire x1="38.1" y1="40.64" x2="42.43" y2="36.31" width="0.254" layer="16"/>
 <wire x1="42.43" y1="36.31" x2="42.69" y2="36.31" width="0.254" layer="16"/>
+<wire x1="42.69" y1="36.31" x2="37.56" y2="36.31" width="0.254" layer="1"/>
+<wire x1="37.56" y1="36.31" x2="36.95" y2="35.7" width="0.254" layer="1"/>
 </signal>
 <signal name="U_M_2">
 <contactref element="U2" pad="8"/>
