@@ -367,18 +367,18 @@ Extended by Federico Battaglin &lt;author&gt;&amp;lt;federico.rd@fdpinternationa
 <library name="epaper">
 <packages>
 <package name="EPAPER">
-<wire x1="-29.5" y1="20" x2="29.5" y2="20" width="0.127" layer="48" style="shortdash"/>
-<wire x1="29.5" y1="20" x2="29.5" y2="-20" width="0.127" layer="48" style="shortdash"/>
-<wire x1="29.5" y1="-20" x2="-29.5" y2="-20" width="0.127" layer="48" style="shortdash"/>
-<wire x1="-29.5" y1="-20" x2="-29.5" y2="20" width="0.127" layer="48" style="shortdash"/>
-<wire x1="-33.5" y1="30.5" x2="40.6" y2="30.5" width="0.127" layer="48"/>
-<wire x1="40.6" y1="30.5" x2="40.6" y2="-29.5" width="0.127" layer="48"/>
-<wire x1="40.6" y1="-29.5" x2="-33.5" y2="-29.5" width="0.127" layer="48"/>
-<wire x1="-33.5" y1="-29.5" x2="-33.5" y2="30.5" width="0.127" layer="48"/>
-<circle x="36.8" y="26.5" radius="1.6" width="0.127" layer="48"/>
-<circle x="36.8" y="-25.5" radius="1.6" width="0.127" layer="48"/>
-<circle x="-29.5" y="-25.5" radius="1.6" width="0.127" layer="48"/>
-<circle x="-30" y="26.5" radius="1.6" width="0.127" layer="48"/>
+<wire x1="-29.65" y1="20" x2="29.65" y2="20" width="0.127" layer="48" style="shortdash"/>
+<wire x1="29.65" y1="20" x2="29.65" y2="-20" width="0.127" layer="48" style="shortdash"/>
+<wire x1="29.65" y1="-20" x2="-29.65" y2="-20" width="0.127" layer="48" style="shortdash"/>
+<wire x1="-29.65" y1="-20" x2="-29.65" y2="20" width="0.127" layer="48" style="shortdash"/>
+<wire x1="-34.65" y1="30.5" x2="39.65" y2="30.5" width="0.127" layer="48"/>
+<wire x1="39.65" y1="30.5" x2="39.65" y2="-29.5" width="0.127" layer="48"/>
+<wire x1="39.65" y1="-29.5" x2="-34.65" y2="-29.5" width="0.127" layer="48"/>
+<wire x1="-34.65" y1="-29.5" x2="-34.65" y2="30.5" width="0.127" layer="48"/>
+<circle x="35.65" y="26.5" radius="1.6" width="0.127" layer="48"/>
+<circle x="35.65" y="-25.5" radius="1.6" width="0.127" layer="48"/>
+<circle x="-30.65" y="-25.5" radius="1.6" width="0.127" layer="48"/>
+<circle x="-30.65" y="26.5" radius="1.6" width="0.127" layer="48"/>
 <pad name="P7" x="10.16" y="1.15" drill="1" shape="offset"/>
 <pad name="P5" x="10.16" y="3.69" drill="1" shape="offset"/>
 <pad name="P3" x="10.16" y="6.23" drill="1" shape="offset"/>
@@ -393,6 +393,30 @@ Extended by Federico Battaglin &lt;author&gt;&amp;lt;federico.rd@fdpinternationa
 <pad name="P10" x="7.62" y="-1.39" drill="1" shape="offset" rot="R180"/>
 <pad name="P12" x="7.62" y="-3.93" drill="1" shape="offset" rot="R180"/>
 <pad name="P14" x="7.62" y="-6.47" drill="1" shape="offset" rot="R180"/>
+<dimension x1="-29.5" y1="-20" x2="-25.4" y2="-29.5" x3="-41.24" y3="-24.75" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-34.65" y1="-29.5" x2="39.65" y2="-29.5" x3="2.5" y3="-41.9" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-29.65" y1="-20" x2="-34.65" y2="-18.52" x3="-32.15" y3="-38.37" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="29.65" y1="-20" x2="39.65" y2="-17.16" x3="34.65" y3="-37.73" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-29.65" y1="-20" x2="29.65" y2="-20" x3="0" y3="-38.73" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-34.65" y1="30.5" x2="-16.92" y2="20" x3="-40.67" y3="25.25" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-34.65" y1="30.5" x2="39.65" y2="15.78" x3="2.5" y3="39.96" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-34.65" y1="30.5" x2="-34.65" y2="-29.5" x3="-47.37" y3="0.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-34.65" y1="-29.5" x2="8.89" y2="1.27" x3="-12.88" y3="-49.022" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="39.65" y1="-29.5" x2="8.89" y2="1.27" x3="24.27" y3="-49.022" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="39.65" y1="-29.5" x2="8.89" y2="1.27" x3="61.468" y3="-14.115" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="39.65" y1="30.5" x2="8.89" y2="1.27" x3="61.468" y3="15.885" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-34.65" y1="-29.5" x2="-30.65" y2="-25.5" x3="-32.65" y3="-33.45" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-34.65" y1="-29.5" x2="-30.65" y2="-25.5" x3="-36.65" y3="-27.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="39.65" y1="-29.5" x2="35.65" y2="-25.5" x3="44.17" y3="-27.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="39.65" y1="-29.5" x2="35.65" y2="-25.5" x3="37.65" y3="-32.7" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="39.65" y1="30.5" x2="35.65" y2="26.5" x3="42.78" y3="28.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="39.65" y1="30.5" x2="35.65" y2="26.5" x3="37.65" y3="33.17" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-34.65" y1="30.5" x2="-30.65" y2="26.5" x3="-32.65" y3="33.13" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-34.65" y1="30.5" x2="-30.65" y2="26.5" x3="-36.89" y3="28.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-30.65" y1="26.5" x2="35.65" y2="26.5" x3="2.5" y3="36.49" textsize="1.27" layer="47" dtype="horizontal"/>
+<dimension x1="-30.65" y1="26.5" x2="-30.65" y2="-25.5" x3="-36.67" y3="0.5" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-29.65" y1="20" x2="-23.26" y2="-20" x3="-21.25" y3="0" textsize="1.27" layer="47" dtype="vertical"/>
+<dimension x1="-29.65" y1="20" x2="29.65" y2="19.27" x3="0" y3="17.42" textsize="1.27" layer="47" dtype="horizontal"/>
 </package>
 </packages>
 </library>
