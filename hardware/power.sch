@@ -7362,10 +7362,10 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="U$1" library="Reichelt" deviceset="MEBP8-8G" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
-<part name="U_M-1" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="TEMP-1" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="GND" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="VCC" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
+<part name="U_M-1" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="TEMP-1" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="GND" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="VCC" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
 <part name="U$2" library="Ergaenzung" deviceset="HOHLBUCHSE" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="+3V5" library="supply1" deviceset="+3V3" device=""/>
@@ -7383,8 +7383,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="R16" library="rcl" deviceset="R-TRIMM" device="T93YB" value="20k"/>
-<part name="U_M-2" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="TEMP-2" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
+<part name="U_M-2" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="TEMP-2" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
 <part name="U2" library="hexasense" deviceset="LM324D" device=""/>
 <part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
@@ -7401,10 +7401,10 @@ Source: AVX .. aphvc.pdf</description>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="10uF"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C0805" value="10uF"/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
-<part name="OFFSET-1" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="OFFSET-2" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="PT100-2" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
-<part name="PT100-1" library="testpad" deviceset="TP" device="PAD1-13" value="TPPAD1-13"/>
+<part name="OFFSET-1" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="OFFSET-2" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="PT100-2" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
+<part name="PT100-1" library="testpad" deviceset="TP" device="B1,27" value="TPB1,27"/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
