@@ -43,6 +43,11 @@ OptionParser.new do |opts|
   opts.on("-d", "--serial-device [FILENAME]", "the serial port the buspirate is connected to") do |serial|
     options[:serial_port] = serial
   end
+
+	opts.on("-l", "--limit [PAGE]", Numeric, "number of pages to write", "(implies -s)") do |limit|
+		options[:limit] = limit
+		options[:skip_erase] = true
+	end
 end.parse!
 
 $verbose=options[:verbose]
@@ -75,6 +80,10 @@ if (num_pages <= AT45::DB161D::PAGECOUNT)
 else
   puts "too many pages - aborting."
   exit;
+end
+
+if options[:limit]
+	num_pages = options[:limit]
 end
 
 
@@ -123,7 +132,7 @@ begin
   (0..num_pages-1).each{ |page_idx|
     data = flash_image.slice(page_idx*AT45::DB161D::PAGESIZE, AT45::DB161D::PAGESIZE);
     begin 
-      readbuf=at45.upload_page(page_idx, data, :verify => !options[:no_verify]);
+      readbuf=at45.upload_page(page_idx, data, :erase => options[:skip_erase], :verify => !options[:no_verify]);
     rescue RuntimeError => e
       puts "Upload of page #{page_idx} failed - #{e}. Aborting.";
       exit
