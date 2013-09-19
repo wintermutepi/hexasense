@@ -58,9 +58,9 @@ temprange.each {|temp|
 			stat = "NOPE"
 		end
 
-		img_temp = Image.read(File.join(basedir, "t#{temp}.png"))[0]
-		img_hum = Image.read(File.join(basedir, "h#{hum}.png"))[0]
-		img_stat = Image.read(File.join(basedir, "s#{stat}.png"))[0]
+		img_temp = Image.read(File.join(basedir, "t#{temp}.png"))[0].transparent('white')
+		img_hum = Image.read(File.join(basedir, "h#{hum}.png"))[0].transparent('white')
+		img_stat = Image.read(File.join(basedir, "s#{stat}.png"))[0].transparent('white')
 
     img = Image.new(EPD27::PIXEL_PER_LINE, EPD27::LINES_PER_DISPLAY)
     draw.draw(img)
