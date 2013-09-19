@@ -38,13 +38,6 @@ progressbar=ProgressBar.create(:title => "Images", :starting_at => 0,
 
 temprange.each {|temp|
   humrange.each {|hum|
-    draw = Magick::Draw.new()
-    draw.gravity(Magick::CenterGravity)
-    draw.fill('white');
-    draw.stroke('black');
-    draw.rectangle(3,3,EPD27::PIXEL_PER_LINE - 4,
-                   EPD27::LINES_PER_DISPLAY - 4);
-
 		point = pt(temp, hum)
 		if good_climate.contains?(point)
 			stat = "GOOD"
@@ -63,7 +56,6 @@ temprange.each {|temp|
 		img_stat = Image.read(File.join(basedir, "s#{stat}.png"))[0].transparent('white')
 
     img = Image.new(EPD27::PIXEL_PER_LINE, EPD27::LINES_PER_DISPLAY)
-    draw.draw(img)
 		img.composite!(img_temp, 0, 0, CompositeOperator::OverCompositeOp)
 		img.composite!(img_hum, 0, 0, CompositeOperator::OverCompositeOp)
 		img.composite!(img_stat, 0, 0, CompositeOperator::OverCompositeOp)
