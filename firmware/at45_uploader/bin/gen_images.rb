@@ -6,7 +6,9 @@ require 'RMagick'
 include Magick
 require 'ruby-progressbar'
 
-temprange = (15..30).to_a
+# values below 15 will be clamped to 14 by the firmware, values above 30 will be 
+# clamped to 31. these screens should show "<15" and ">30".
+temprange = (14..31).to_a
 humrange = [10,20,30,40,50,60,70,80,90]
 status = ["AIR", "WARM", "COLD", "NOPE", "GOOD"]
 

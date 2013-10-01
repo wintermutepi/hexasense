@@ -53,14 +53,19 @@ module IMG
     def munch_directory(basedir)
 
       file_list = [];
+			special_list = [];
       num_screens=0;
       for file in Dir.entries(basedir)
-        if file =~ /^img-(\d+)-(\d+).png/ 
+        if file =~ /^img-(\d+)-(\d+).png/
           num_screens+=1
           file_list << file;
-        end
+        elsif file =~ /^img-s-(\d+).png/
+					num_screens+=1
+					special_list << file;
+				end
       end
       file_list.sort!
+			special_list.sort!
       
       flash = IMG::FlashFormat.new()
       lut0 = IMG::LookupPageFormat.new();
@@ -128,6 +133,33 @@ module IMG
           puts "Ignoring #{file}" if $verbose
         end
       end
+			for file in special_list
+				if file =~ /^img-s-(\d+).png/
+					code = $1.to_i
+          puts "File #{file}: special screen #{code}" if $verbose
+          image = nil;
+          begin
+            image = ChunkyPNG::Image.from_file(File.join(basedir, file));
+          rescue
+            puts "Failed to read PNG image data from file " \
+              << file << ". Exiting."
+              exit;
+          end
+          if (image.dimension.height == EPD27::LINES_PER_DISPLAY &&
+              image.dimension.width == EPD27::PIXEL_PER_LINE)
+            screen = img2screen(image);
+            flash.screens[screen_count] = screen;
+            screen_count += 1;
+            progressbar.increment if not $verbose
+          else
+            puts "Failure: file " << file << " has wrong dimensions.";
+            exit
+          end
+
+        else 
+          puts "Ignoring #{file}" if $verbose
+				end
+			end
 
       # Don't forget to add the lookup table to the image
       flash.lut_pages[0]=lut0;
