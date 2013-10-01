@@ -61,6 +61,7 @@ temprange.each {|temp|
 		img.composite!(img_temp, 0, 0, CompositeOperator::OverCompositeOp)
 		img.composite!(img_hum, 0, 0, CompositeOperator::OverCompositeOp)
 		img.composite!(img_stat, 0, 0, CompositeOperator::OverCompositeOp)
+		img.rotate!(180)
 
     filename = "img-#{temp}-#{hum}.png"
     img.write(File.join(basedir, filename))
