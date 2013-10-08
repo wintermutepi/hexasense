@@ -4372,18 +4372,20 @@ DIN A4, landscape with location and doc. field</description>
 <part name="TEMP1_2" library="con-hirschmann" deviceset="MPB1" device=""/>
 <part name="OFFSET1/2" library="con-hirschmann" deviceset="MPB1" device=""/>
 <part name="PT1001_2" library="con-hirschmann" deviceset="MPB1" device=""/>
-<part name="TH_HIGH" library="rcl" deviceset="R-EU_" device="0207/10"/>
-<part name="TH_LOW" library="rcl" deviceset="R-EU_" device="0207/10"/>
+<part name="TH_HIGH" library="rcl" deviceset="R-EU_" device="0207/10" value="138R5"/>
+<part name="TH_LOW" library="rcl" deviceset="R-EU_" device="0207/10" value="96R1"/>
 <part name="S3" library="switch" deviceset="M9040P2" device=""/>
 <part name="VCC_HEXASENSE" library="testpad" deviceset="TP" device="B1,27"/>
 <part name="GND_HEXASENSE" library="testpad" deviceset="TP" device="B1,27"/>
-<part name="TEMP1" library="testpad" deviceset="TP" device="B1,27"/>
-<part name="TEMP2" library="testpad" deviceset="TP" device="B1,27"/>
-<part name="OFFSET1" library="testpad" deviceset="TP" device="B1,27"/>
-<part name="OFFSET2" library="testpad" deviceset="TP" device="B1,27"/>
+<part name="TEMP-1" library="testpad" deviceset="TP" device="B1,27"/>
+<part name="TEMP-2" library="testpad" deviceset="TP" device="B1,27"/>
+<part name="OFFSET-1" library="testpad" deviceset="TP" device="B1,27"/>
+<part name="OFFSET-2" library="testpad" deviceset="TP" device="B1,27"/>
 <part name="PT100-1" library="testpad" deviceset="TP" device="B1,27"/>
 <part name="PT100-2" library="testpad" deviceset="TP" device="B1,27"/>
 <part name="FRAME1" library="frames" deviceset="A4L-LOC" device=""/>
+<part name="U_M-1" library="testpad" deviceset="TP" device="B1,27"/>
+<part name="U_M-2" library="testpad" deviceset="TP" device="B1,27"/>
 </parts>
 <sheets>
 <sheet>
@@ -4400,19 +4402,21 @@ DIN A4, landscape with location and doc. field</description>
 <instance part="TEMP1_2" gate="1" x="71.12" y="139.7"/>
 <instance part="OFFSET1/2" gate="1" x="71.12" y="129.54"/>
 <instance part="PT1001_2" gate="1" x="71.12" y="81.28"/>
-<instance part="TH_HIGH" gate="G$1" x="182.88" y="83.82" rot="R180"/>
-<instance part="TH_LOW" gate="G$1" x="182.88" y="78.74" rot="R180"/>
+<instance part="TH_HIGH" gate="G$1" x="185.42" y="88.9" rot="R180"/>
+<instance part="TH_LOW" gate="G$1" x="185.42" y="78.74" rot="R180"/>
 <instance part="S3" gate="2" x="170.18" y="73.66" rot="R270"/>
 <instance part="S3" gate="1" x="170.18" y="83.82" rot="R270"/>
 <instance part="VCC_HEXASENSE" gate="G$1" x="91.44" y="58.42" rot="R180"/>
 <instance part="GND_HEXASENSE" gate="G$1" x="104.14" y="71.12" rot="R180"/>
-<instance part="TEMP1" gate="G$1" x="111.76" y="142.24" rot="R270"/>
-<instance part="TEMP2" gate="G$1" x="109.22" y="137.16" rot="R270"/>
-<instance part="OFFSET1" gate="G$1" x="106.68" y="132.08" rot="R270"/>
-<instance part="OFFSET2" gate="G$1" x="104.14" y="127" rot="R270"/>
+<instance part="TEMP-1" gate="G$1" x="111.76" y="142.24" rot="R270"/>
+<instance part="TEMP-2" gate="G$1" x="109.22" y="137.16" rot="R270"/>
+<instance part="OFFSET-1" gate="G$1" x="106.68" y="132.08" rot="R270"/>
+<instance part="OFFSET-2" gate="G$1" x="104.14" y="127" rot="R270"/>
 <instance part="PT100-1" gate="G$1" x="111.76" y="114.3" rot="R270"/>
 <instance part="PT100-2" gate="G$1" x="109.22" y="109.22" rot="R270"/>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
+<instance part="U_M-1" gate="G$1" x="106.68" y="104.14" rot="R270"/>
+<instance part="U_M-2" gate="G$1" x="104.14" y="99.06" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -4431,62 +4435,55 @@ DIN A4, landscape with location and doc. field</description>
 </net>
 <net name="N$7" class="0">
 <segment>
-<pinref part="TEMP2" gate="G$1" pin="TP"/>
+<pinref part="TEMP-2" gate="G$1" pin="TP"/>
 <pinref part="S1" gate="1" pin="S"/>
 <wire x1="106.68" y1="137.16" x2="96.52" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="TEMP1" gate="G$1" pin="TP"/>
+<pinref part="TEMP-1" gate="G$1" pin="TP"/>
 <pinref part="S1" gate="1" pin="O"/>
 <wire x1="109.22" y1="142.24" x2="96.52" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="OFFSET1" gate="G$1" pin="TP"/>
+<pinref part="OFFSET-1" gate="G$1" pin="TP"/>
 <pinref part="S1" gate="2" pin="O"/>
 <wire x1="104.14" y1="132.08" x2="96.52" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="OFFSET2" gate="G$1" pin="TP"/>
+<pinref part="OFFSET-2" gate="G$1" pin="TP"/>
 <pinref part="S1" gate="2" pin="S"/>
 <wire x1="101.6" y1="127" x2="96.52" y2="127" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="S3" gate="1" pin="O"/>
-<pinref part="TH_HIGH" gate="G$1" pin="2"/>
-<wire x1="175.26" y1="83.82" x2="177.8" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="S3" gate="1" pin="S"/>
 <pinref part="TH_LOW" gate="G$1" pin="2"/>
-<wire x1="175.26" y1="78.74" x2="177.8" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="78.74" x2="180.34" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="TH_HIGH" gate="G$1" pin="1"/>
-<wire x1="187.96" y1="83.82" x2="190.5" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="83.82" x2="190.5" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="TH_LOW" gate="G$1" pin="1"/>
-<wire x1="190.5" y1="78.74" x2="187.96" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="78.74" x2="190.5" y2="66.04" width="0.1524" layer="91"/>
-<wire x1="190.5" y1="66.04" x2="134.62" y2="66.04" width="0.1524" layer="91"/>
-<junction x="190.5" y="78.74"/>
+<wire x1="193.04" y1="66.04" x2="134.62" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="GND" gate="1" pin="1"/>
 <pinref part="GND_HEXASENSE" gate="G$1" pin="TP"/>
 <wire x1="134.62" y1="73.66" x2="104.14" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="73.66" x2="73.66" y2="73.66" width="0.1524" layer="91"/>
 <junction x="104.14" y="73.66"/>
 <wire x1="134.62" y1="66.04" x2="134.62" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="TH_HIGH" gate="G$1" pin="1"/>
+<wire x1="190.5" y1="88.9" x2="193.04" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="88.9" x2="193.04" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="TH_LOW" gate="G$1" pin="1"/>
+<wire x1="193.04" y1="78.74" x2="193.04" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="190.5" y1="78.74" x2="193.04" y2="78.74" width="0.1524" layer="91"/>
+<junction x="193.04" y="78.74"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -4523,6 +4520,29 @@ DIN A4, landscape with location and doc. field</description>
 <pinref part="VCC_HEXASENSE" gate="G$1" pin="TP"/>
 <wire x1="73.66" y1="66.04" x2="91.44" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="66.04" x2="91.44" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="U_M-1" gate="G$1" pin="TP"/>
+<pinref part="S2" gate="2" pin="O"/>
+<wire x1="104.14" y1="104.14" x2="96.52" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$15" class="0">
+<segment>
+<pinref part="U_M-2" gate="G$1" pin="TP"/>
+<pinref part="S2" gate="2" pin="S"/>
+<wire x1="101.6" y1="99.06" x2="96.52" y2="99.06" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="S3" gate="1" pin="O"/>
+<wire x1="175.26" y1="83.82" x2="177.8" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="83.82" x2="177.8" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="TH_HIGH" gate="G$1" pin="2"/>
+<wire x1="177.8" y1="88.9" x2="180.34" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
