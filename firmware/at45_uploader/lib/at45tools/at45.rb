@@ -77,7 +77,7 @@ class AT45
     write_to_buf1(data);
     # Note: We erase all pages by using command 0x83.
     # erase page - otherwise, the memory is not fully written.
-    if (opts[:erase] == false) 
+    if (opts[:erase] == true) 
       erase_page(page) 
       wait_for_ready() {};
     end 
