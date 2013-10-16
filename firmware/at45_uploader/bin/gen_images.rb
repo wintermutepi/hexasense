@@ -17,7 +17,9 @@ def pt(x, y)
 end
 
 # climate polygons: Y is relative humidity, X is temperature
-# values taken from ... actually, i don't have the name of the paper at hand
+# values taken from Pels Leusden and H. Freymark. Darstellungen der 
+# Raumbehaglichkeit f ̈r den einfachen Praktischen Gebrauch. Der 
+# Gesundheitsingenieur, 16(72):23–25, 1951.
 # "good" corresponds to Zone I
 good_climate = Geometry::Polygon.new([pt(17, 75), pt(22, 65), pt(24, 35), pt(19, 35)])
 # "acceptable" corresponds to Zone II
