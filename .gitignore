@@ -37,3 +37,6 @@ OldVersions
 # VIM temporary files
 *.swp
 .Rproj.user
+
+# 3D printer service files
+*.cmb.gz
