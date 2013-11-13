@@ -10,7 +10,6 @@ require 'ruby-progressbar'
 # clamped to 31. these screens should show "<15" and ">30".
 temprange = (14..31).to_a
 humrange = [10,20,30,40,50,60,70,80,90]
-status = ["AIR", "WARM", "COLD", "NOPE", "GOOD"]
 
 def pt(x, y)
 	Geometry::Point.new(x, y)
@@ -21,7 +20,7 @@ end
 # Raumbehaglichkeit f ̈r den einfachen Praktischen Gebrauch. Der 
 # Gesundheitsingenieur, 16(72):23–25, 1951.
 # "good" corresponds to Zone I
-good_climate = Geometry::Polygon.new([pt(17, 75), pt(22, 65), pt(24, 35), pt(19, 35)])
+good_climate = Geometry::Polygon.new([pt(17, 75), pt(21, 65), pt(22, 35), pt(19, 35)])
 # "acceptable" corresponds to Zone II
 acceptable_climate = Geometry::Polygon.new([pt(16, 75), pt(17, 85), pt(21, 80), pt(25, 60),
 																					  pt(27, 30), pt(26, 20), pt(20, 20), pt(17, 35)])
@@ -49,7 +48,7 @@ temprange.each {|temp|
 			stat = if left_of(gc_major, point)
 				if left_of(gc_minor, point) then "WARM" else "AIR" end
 			else
-				if left_of(gc_minor, point) then "GOOD" else "COLD" end
+				if left_of(gc_minor, point) then "DRY" else "COLD" end
 			end
 		else
 			stat = "NOPE"
