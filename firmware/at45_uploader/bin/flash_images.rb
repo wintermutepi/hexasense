@@ -48,6 +48,10 @@ OptionParser.new do |opts|
 		options[:limit] = limit
 		options[:skip_erase] = true
 	end
+
+	opts.on("-r", "--retry [COUNT]", Numeric, "number of retries on failed write") do |count|
+		options[:retry] = count
+	end
 end.parse!
 
 $verbose=options[:verbose]
@@ -55,6 +59,7 @@ infile = options[:file]
 options[:enable_power] ||= false;
 options[:no_verify] ||= false;
 options[:serial_port] ||= DEFAULT_DEVICE;
+options[:retry] ||= 1
 if not infile 
   puts "No input file (-i) specified, aborting.";
   exit(-1);
@@ -131,12 +136,17 @@ begin
                                  :format => '%t %c/%C |%B| %e')
   (0..num_pages-1).each{ |page_idx|
     data = flash_image.slice(page_idx*AT45::DB161D::PAGESIZE, AT45::DB161D::PAGESIZE);
-    begin 
-      readbuf=at45.upload_page(page_idx, data, :erase => options[:skip_erase], :verify => !options[:no_verify]);
-    rescue RuntimeError => e
-      puts "Upload of page #{page_idx} failed - #{e}. Aborting.";
-      exit
-    end
+		(0..options[:retry]-1).each { |iter|
+			begin 
+				readbuf=at45.upload_page(page_idx, data, :erase => options[:skip_erase] || iter > 0, :verify => !options[:no_verify]);
+				break
+			rescue RuntimeError => e
+				if iter == options[:retry] - 1
+					puts "Upload of page #{page_idx} failed - #{e}. Aborting.";
+					exit
+				end
+			end
+		}
     progressbar.increment
   }
 
